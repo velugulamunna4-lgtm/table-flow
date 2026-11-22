@@ -24,6 +24,7 @@ import {
   Receipt,
   PhoneCall,
   Check,
+  UtensilsCrossed,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -133,8 +134,8 @@ export default function OrderStatusPage() {
   if (!order) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 text-center space-y-4">
-        <div className="w-20 h-20 mx-auto rounded-3xl bg-surface flex items-center justify-center text-4xl shadow-soft">
-          🍽️
+        <div className="w-20 h-20 mx-auto rounded-3xl bg-surface border border-borderSubtle flex items-center justify-center shadow-soft">
+          <UtensilsCrossed className="w-10 h-10 text-primary" />
         </div>
         <h3 className="font-heading font-extrabold text-2xl text-content-primary">
           No active order found for Table {tableNumber}
@@ -302,8 +303,8 @@ export default function OrderStatusPage() {
         className="bg-gradient-to-r from-sun/20 via-surface to-primary/10 border border-sun/40 flex flex-col sm:flex-row items-center justify-between gap-4"
       >
         <div className="flex items-center gap-3.5 text-center sm:text-left">
-          <div className="w-14 h-14 rounded-2xl bg-sun text-content-primary flex items-center justify-center text-3xl shadow-soft shrink-0">
-            🎲
+          <div className="w-14 h-14 rounded-2xl bg-sun text-content-primary flex items-center justify-center shadow-soft shrink-0">
+            <Gamepad2 className="w-7 h-7 text-content-primary" />
           </div>
           <div>
             <h4 className="font-heading font-extrabold text-lg text-content-primary">

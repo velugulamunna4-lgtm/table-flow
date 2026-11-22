@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { WaterRequestModal } from './WaterRequestModal';
 import { OrderHistoryDrawer } from './OrderHistoryDrawer';
@@ -10,7 +9,7 @@ import { useLanguageStore, useMenuStore } from '@/lib/store';
 import { translations } from '@/lib/i18n';
 import { restaurantConfig } from '@/config/restaurant.config';
 import { orderService } from '@/lib/orderService';
-import { Search, BellRing, Sparkles, X, Check, Droplet, Clock, Star } from 'lucide-react';
+import { Search, BellRing, Sparkles, X, Check, Droplets, Clock, Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export interface CustomerHeaderProps {
@@ -41,75 +40,45 @@ export const CustomerHeader: React.FC<CustomerHeaderProps> = ({ tableNumber, tab
   return (
     <>
       <header className="sticky top-0 z-30 bg-canvas/95 backdrop-blur-md border-b border-borderSubtle transition-all">
-        <div className="max-w-4xl mx-auto px-4 py-3 sm:py-4 space-y-3">
-          {/* Top row: Brand & Table identifier */}
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-primary text-white flex items-center justify-center font-heading font-black text-xl shadow-accent">
+        <div className="max-w-4xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3.5 space-y-2.5">
+          {/* Top row: Brand & Table identifier + Lang & Call Waiter */}
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-primary text-white flex items-center justify-center font-heading font-black text-lg sm:text-xl shadow-accent shrink-0">
                 TF
               </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h1 className="font-heading font-extrabold text-lg sm:text-xl text-content-primary leading-tight">
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <h1 className="font-heading font-extrabold text-base sm:text-xl text-content-primary leading-tight truncate">
                     {restaurantConfig.name}
                   </h1>
-                  <span className="px-2.5 py-0.5 rounded-full bg-sun text-content-primary text-xs font-black uppercase tracking-wider shadow-sm">
+                  <span className="px-2 py-0.5 rounded-full bg-sun text-content-primary text-[11px] font-black uppercase tracking-wider shrink-0 shadow-xs">
                     {t.tableLabel} {tableNumber}
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-content-secondary line-clamp-1">
+                <p className="text-[11px] sm:text-xs text-content-secondary truncate hidden xs:block">
                   {t.welcomeLine}
                 </p>
               </div>
             </div>
 
-            {/* Right controls: Water, History, Review, Waiter & Language */}
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              {/* Quick Water Button */}
-              <button
-                onClick={() => setIsWaterModalOpen(true)}
-                className="flex items-center gap-1 px-2.5 py-2 rounded-pill font-bold text-xs bg-surface border border-borderSubtle text-primary hover:bg-[#FAF4EB] shadow-soft transition-all"
-                title={t.water.requestWater}
-              >
-                <Droplet className="w-3.5 h-3.5 text-primary fill-primary/20" />
-                <span className="hidden sm:inline">{t.water.requestWater}</span>
-              </button>
-
-              {/* Order History */}
-              <button
-                onClick={() => setIsHistoryOpen(true)}
-                className="flex items-center gap-1 px-2.5 py-2 rounded-pill font-bold text-xs bg-surface border border-borderSubtle text-content-primary hover:bg-[#FAF4EB] shadow-soft transition-all"
-                title={t.orderHistory}
-              >
-                <Clock className="w-3.5 h-3.5 text-content-secondary" />
-                <span className="hidden md:inline">{t.orderHistory}</span>
-              </button>
-
-              {/* Review Experience */}
-              <button
-                onClick={() => setIsReviewOpen(true)}
-                className="flex items-center gap-1 px-2.5 py-2 rounded-pill font-bold text-xs bg-surface border border-borderSubtle text-[#9A6700] hover:bg-[#FAF4EB] shadow-soft transition-all"
-                title={t.reviews.title}
-              >
-                <Star className="w-3.5 h-3.5 text-[#FFC233] fill-[#FFC233]" />
-                <span className="hidden md:inline">Rate</span>
-              </button>
-
+            {/* Quick Actions & Switcher */}
+            <div className="flex items-center gap-1.5 shrink-0">
               {/* Call Waiter */}
               <button
                 onClick={handleCallWaiter}
                 disabled={waiterCalled}
-                className={`flex items-center gap-1 px-2.5 sm:px-3 py-2 rounded-pill font-bold text-xs transition-all select-none ${
+                className={`flex items-center gap-1 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-pill font-bold text-xs transition-all select-none ${
                   waiterCalled
                     ? 'bg-status-success text-white'
-                    : 'bg-surface border border-borderSubtle text-content-primary hover:bg-[#FAF4EB] shadow-soft'
+                    : 'bg-surface border border-borderSubtle text-content-primary hover:bg-canvas shadow-soft'
                 }`}
                 title="Call waiter to table"
               >
                 {waiterCalled ? (
                   <>
                     <Check className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">Called!</span>
+                    <span className="hidden sm:inline">Called</span>
                   </>
                 ) : (
                   <>
@@ -123,8 +92,40 @@ export const CustomerHeader: React.FC<CustomerHeaderProps> = ({ tableNumber, tab
             </div>
           </div>
 
-          {/* Search bar & Quick dietary filters */}
-          <div className="flex flex-col sm:flex-row gap-2 pt-1">
+          {/* Quick utility bar for phones: Water, History, Review */}
+          <div className="flex items-center justify-between gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+            <div className="flex items-center gap-1.5 shrink-0">
+              {/* Quick Water Button */}
+              <button
+                onClick={() => setIsWaterModalOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-pill font-bold text-xs bg-surface border border-borderSubtle text-primary hover:bg-canvas shadow-soft transition-all"
+              >
+                <Droplets className="w-3.5 h-3.5 text-primary" />
+                <span>{t.water.requestWater}</span>
+              </button>
+
+              {/* Order History */}
+              <button
+                onClick={() => setIsHistoryOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-pill font-bold text-xs bg-surface border border-borderSubtle text-content-primary hover:bg-canvas shadow-soft transition-all"
+              >
+                <Clock className="w-3.5 h-3.5 text-content-secondary" />
+                <span>{t.orderHistory}</span>
+              </button>
+
+              {/* Rate Experience */}
+              <button
+                onClick={() => setIsReviewOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-pill font-bold text-xs bg-surface border border-borderSubtle text-sun hover:bg-canvas shadow-soft transition-all"
+              >
+                <Star className="w-3.5 h-3.5 text-sun fill-sun" />
+                <span>Rate</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Search bar & Dietary toggle buttons */}
+          <div className="flex flex-col sm:flex-row gap-2 pt-0.5">
             {/* Search bar */}
             <div className="relative flex-1">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-content-muted" />
@@ -133,23 +134,23 @@ export const CustomerHeader: React.FC<CustomerHeaderProps> = ({ tableNumber, tab
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t.searchPlaceholder}
-                className="w-full h-11 pl-10 pr-9 rounded-pill bg-surface border border-borderSubtle text-content-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-soft"
+                className="w-full h-10 pl-10 pr-9 rounded-pill bg-surface border border-borderSubtle text-content-primary text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-soft"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
                   className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-content-muted hover:text-content-primary"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-3.5 h-3.5" />
                 </button>
               )}
             </div>
 
             {/* Dietary toggle buttons */}
-            <div className="flex gap-1.5 shrink-0 self-center sm:self-auto">
+            <div className="flex gap-1.5 shrink-0 justify-end">
               <button
                 onClick={() => setDietaryFilter('all')}
-                className={`px-3.5 py-2 rounded-pill text-xs font-bold transition-all border ${
+                className={`px-3 py-1.5 rounded-pill text-xs font-bold transition-all border ${
                   dietaryFilter === 'all'
                     ? 'bg-content-primary text-white border-content-primary'
                     : 'bg-surface text-content-secondary border-borderSubtle hover:bg-canvas'
@@ -159,24 +160,24 @@ export const CustomerHeader: React.FC<CustomerHeaderProps> = ({ tableNumber, tab
               </button>
               <button
                 onClick={() => setDietaryFilter('veg')}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-bold transition-all border ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-pill text-xs font-bold transition-all border ${
                   dietaryFilter === 'veg'
-                    ? 'bg-[#2DBE7E] text-white border-[#2DBE7E] shadow-sm'
-                    : 'bg-surface text-[#2DBE7E] border-borderSubtle hover:bg-canvas'
+                    ? 'bg-status-success text-white border-status-success shadow-xs'
+                    : 'bg-surface text-status-success border-borderSubtle hover:bg-canvas'
                 }`}
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-current" />
+                <div className="w-2 h-2 rounded-full bg-current" />
                 {t.filterVeg}
               </button>
               <button
                 onClick={() => setDietaryFilter('non-veg')}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-bold transition-all border ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-pill text-xs font-bold transition-all border ${
                   dietaryFilter === 'non-veg'
-                    ? 'bg-[#FF5A6E] text-white border-[#FF5A6E] shadow-sm'
-                    : 'bg-surface text-[#FF5A6E] border-borderSubtle hover:bg-canvas'
+                    ? 'bg-status-alert text-white border-status-alert shadow-xs'
+                    : 'bg-surface text-status-alert border-borderSubtle hover:bg-canvas'
                 }`}
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-current" />
+                <div className="w-2 h-2 rounded-full bg-current" />
                 {t.filterNonVeg}
               </button>
             </div>

@@ -123,9 +123,9 @@ export interface OrderReview {
   foodRating: number;    // 1 to 5
   ambianceRating: number;// 1 to 5
   serviceRating: number; // 1 to 5
-  tags: string[];        // e.g. "Piping Hot 🔥", "Quick Service ⚡"
+  tags: string[];        // e.g. "Fresh & Piping Hot", "Prompt Service"
   customerName?: string;
-  comment: string;
+  comment?: string;
   createdAt: string;
 }
 

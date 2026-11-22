@@ -49,7 +49,7 @@ export default function WaiterAppPage() {
             ? `Water: ${topCall.waterType?.toUpperCase() || 'NORMAL'}`
             : topCall.type.replace('_', ' ').toUpperCase();
         setBannerAlert(
-          `🔔 Table ${topCall.tableNumber} is requesting: ${detail}!`
+          `Table ${topCall.tableNumber} is requesting: ${detail}!`
         );
         setTimeout(() => setBannerAlert(null), 6000);
       }
@@ -168,8 +168,8 @@ export default function WaiterAppPage() {
             className="mt-4 p-4 rounded-3xl bg-[#FFF2F4] border-2 border-[#FF5A6E] shadow-lifted flex items-center justify-between gap-3"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#FF5A6E] text-white flex items-center justify-center font-bold text-lg animate-bounce">
-                🔔
+              <div className="w-10 h-10 rounded-full bg-status-alert text-white flex items-center justify-center font-bold">
+                <BellRing className="w-5 h-5 text-white animate-pulse" />
               </div>
               <div>
                 <h4 className="font-heading font-black text-base text-[#FF5A6E]">

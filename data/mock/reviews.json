@@ -7,7 +7,7 @@
     "foodRating": 5,
     "ambianceRating": 5,
     "serviceRating": 5,
-    "tags": ["Piping Hot 🔥", "Royal Dum Biryani 👑", "Quick Service ⚡"],
+    "tags": ["Fresh & Piping Hot", "Royal Dum Biryani", "Prompt Service"],
     "customerName": "Arjun & Sneha",
     "comment": "The Hyderabadi Dum Biryani and Gongura Mutton are out of this world! Saffron aroma was mesmerizing and zero waiting for menus.",
     "createdAt": "2026-11-22T08:30:00.000Z"
@@ -20,7 +20,7 @@
     "foodRating": 5,
     "ambianceRating": 4,
     "serviceRating": 5,
-    "tags": ["Melt-in-Mouth Kebabs 🍢", "Great Music 🎵", "Generous Portions 🍛"],
+    "tags": ["Tender Malai Kebabs", "Relaxing Atmosphere", "Generous Portions"],
     "customerName": "Kavitha R.",
     "comment": "Nawabi Murgh Malai Tikka was tender and juicy. The phone ordering and bill split made paying with friends so effortless!",
     "createdAt": "2026-11-22T07:45:00.000Z"
@@ -33,9 +33,9 @@
     "foodRating": 5,
     "ambianceRating": 5,
     "serviceRating": 4,
-    "tags": ["Royal Vibe ✨", "Best Rasmalai 🍨"],
+    "tags": ["Splendid Ambiance", "Signature Rasmalai"],
     "customerName": "Rahul V.",
-    "comment": "Loved the warm Sunny Family theme and the mini-game while waiting! The slow-simmered Dal Makhani is legendary.",
+    "comment": "Loved the warm theme and the interactive experience while waiting! The slow-simmered Dal Makhani is legendary.",
     "createdAt": "2026-11-22T06:15:00.000Z"
   }
 ]

@@ -21,11 +21,15 @@
     "isSpecial": true,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍗",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 18,
     "station": "tandoor",
     "calories": 520,
-    "tags": ["Chef Special", "Tandoor", "Must Try"]
+    "tags": [
+      "Chef Special",
+      "Tandoor",
+      "Must Try"
+    ]
   },
   {
     "id": "item-sp-2",
@@ -49,11 +53,14 @@
     "isSpecial": true,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🧀",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 20,
     "station": "wok",
     "calories": 480,
-    "tags": ["Chef Special", "Rich & Creamy"]
+    "tags": [
+      "Chef Special",
+      "Rich & Creamy"
+    ]
   },
   {
     "id": "item-sp-3",
@@ -77,11 +84,15 @@
     "isSpecial": true,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍖",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 22,
     "station": "wok",
     "calories": 610,
-    "tags": ["Chef Special", "Spicy", "Andhra Style"]
+    "tags": [
+      "Chef Special",
+      "Spicy",
+      "Andhra Style"
+    ]
   },
   {
     "id": "item-sp-4",
@@ -105,11 +116,15 @@
     "isSpecial": true,
     "isAvailable": false,
     "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍢",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 25,
     "station": "tandoor",
     "calories": 740,
-    "tags": ["Chef Special", "Platter", "Sold Out Demo"]
+    "tags": [
+      "Chef Special",
+      "Platter",
+      "Sold Out Demo"
+    ]
   },
   {
     "id": "item-sp-5",
@@ -133,11 +148,15 @@
     "isSpecial": true,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1559742811-822873691df8?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍤",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 18,
     "station": "wok",
     "calories": 540,
-    "tags": ["Chef Special", "Desi Ghee", "Coastal"]
+    "tags": [
+      "Chef Special",
+      "Desi Ghee",
+      "Coastal"
+    ]
   },
   {
     "id": "item-st-1",
@@ -160,7 +179,7 @@
     "spiceLevel": 1,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🧀",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 12,
     "station": "tandoor",
     "calories": 360
@@ -186,7 +205,7 @@
     "spiceLevel": 2,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍗",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 14,
     "station": "wok",
     "calories": 420
@@ -212,7 +231,7 @@
     "spiceLevel": 0,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🥟",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 15,
     "station": "tandoor",
     "calories": 310
@@ -238,7 +257,7 @@
     "spiceLevel": 1,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🥦",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 14,
     "station": "tandoor",
     "calories": 260
@@ -264,7 +283,7 @@
     "spiceLevel": 2,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🐟",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 16,
     "station": "wok",
     "calories": 390
@@ -290,7 +309,7 @@
     "spiceLevel": 1,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🥟",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 8,
     "station": "wok",
     "calories": 340
@@ -316,7 +335,7 @@
     "spiceLevel": 1,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🥘",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 18,
     "station": "wok",
     "calories": 580
@@ -342,7 +361,7 @@
     "spiceLevel": 0,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍲",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 12,
     "station": "wok",
     "calories": 420
@@ -368,7 +387,7 @@
     "spiceLevel": 1,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🧀",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 16,
     "station": "wok",
     "calories": 450
@@ -394,7 +413,7 @@
     "spiceLevel": 2,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1545247181-516773ca838b?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍖",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 20,
     "station": "wok",
     "calories": 620
@@ -420,7 +439,7 @@
     "spiceLevel": 0,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🫓",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 8,
     "station": "breads",
     "calories": 210
@@ -447,11 +466,14 @@
     "isSpecial": true,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍚",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 15,
     "station": "biryani",
     "calories": 720,
-    "tags": ["Bestseller", "Royal Dum"]
+    "tags": [
+      "Bestseller",
+      "Royal Dum"
+    ]
   },
   {
     "id": "item-by-2",
@@ -474,11 +496,13 @@
     "spiceLevel": 2,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍚",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 18,
     "station": "biryani",
     "calories": 790,
-    "tags": ["Chef Signature"]
+    "tags": [
+      "Chef Signature"
+    ]
   },
   {
     "id": "item-by-3",
@@ -501,7 +525,7 @@
     "spiceLevel": 1,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍚",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 14,
     "station": "biryani",
     "calories": 540
@@ -527,7 +551,7 @@
     "spiceLevel": 0,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍨",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 6,
     "station": "dessert",
     "calories": 280
@@ -553,7 +577,7 @@
     "spiceLevel": 0,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍯",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 5,
     "station": "dessert",
     "calories": 390
@@ -579,7 +603,7 @@
     "spiceLevel": 0,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍦",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 4,
     "station": "dessert",
     "calories": 210
@@ -605,7 +629,7 @@
     "spiceLevel": 0,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1546173159-315724a31696?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🥭",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 5,
     "station": "bar",
     "calories": 290
@@ -631,7 +655,7 @@
     "spiceLevel": 1,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🥛",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 4,
     "station": "bar",
     "calories": 95
@@ -657,7 +681,7 @@
     "spiceLevel": 0,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍋",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 4,
     "station": "bar",
     "calories": 75
@@ -683,7 +707,7 @@
     "spiceLevel": 0,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "☕",
+    "emojiFallback": "dish",
     "preparationTimeMinutes": 5,
     "station": "bar",
     "calories": 140

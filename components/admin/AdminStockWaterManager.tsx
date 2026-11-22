@@ -80,12 +80,13 @@ export const AdminStockWaterManager: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
             <Button
               variant="secondary"
               size="sm"
               onClick={() => setIsModifyCapacityOpen(true)}
               leftIcon={<Sliders className="w-4 h-4" />}
+              className="flex-1 sm:flex-none text-xs"
             >
               Modify Tank Capacity
             </Button>
@@ -94,8 +95,9 @@ export const AdminStockWaterManager: React.FC = () => {
               size="sm"
               onClick={() => handleRefillWater(1000)}
               leftIcon={<Plus className="w-4 h-4" />}
+              className="flex-1 sm:flex-none text-xs font-bold shadow-accent"
             >
-              +1,000L Refill Tank
+              +1,000L Refill
             </Button>
           </div>
         </div>
@@ -151,7 +153,7 @@ export const AdminStockWaterManager: React.FC = () => {
               {waterTank.roHealthPercent}%
             </div>
             <div className="text-xs text-content-secondary">
-              Water Purity: <strong className="text-content-primary">{waterTank.tdsPpm} PPM (Excellent)</strong>
+              Water Purity: <strong className="text-content-primary">{waterTank.tdsPpm} PPM (Safe)</strong>
             </div>
           </Card>
 
@@ -184,64 +186,118 @@ export const AdminStockWaterManager: React.FC = () => {
           </p>
         </div>
 
-        <div className="bg-surface rounded-3xl border border-borderSubtle overflow-hidden shadow-soft">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-canvas border-b border-borderSubtle font-heading font-black text-content-secondary uppercase tracking-wider text-[11px]">
-                <tr>
-                  <th className="py-3.5 px-4">Commodity Item</th>
-                  <th className="py-3.5 px-3">Category</th>
-                  <th className="py-3.5 px-3">Current Reserves</th>
-                  <th className="py-3.5 px-3">Min Threshold</th>
-                  <th className="py-3.5 px-3">Unit Cost</th>
-                  <th className="py-3.5 px-3">Status</th>
-                  <th className="py-3.5 px-4 text-right">Quick Restock</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-borderSubtle">
-                {stockItems.map((item) => (
-                  <tr key={item.id} className="hover:bg-canvas/50 transition-colors">
-                    <td className="py-3.5 px-4 font-heading font-bold text-sm text-content-primary">
+        {/* Desktop PC Table View */}
+        <div className="hidden md:block bg-surface rounded-3xl border border-borderSubtle overflow-hidden shadow-soft">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="bg-canvas border-b border-borderSubtle font-heading font-black text-content-secondary uppercase tracking-wider text-[11px]">
+              <tr>
+                <th className="py-3.5 px-4">Commodity Item</th>
+                <th className="py-3.5 px-3">Category</th>
+                <th className="py-3.5 px-3">Current Reserves</th>
+                <th className="py-3.5 px-3">Min Threshold</th>
+                <th className="py-3.5 px-3">Unit Cost</th>
+                <th className="py-3.5 px-3">Status</th>
+                <th className="py-3.5 px-4 text-right">Quick Restock</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-borderSubtle font-medium">
+              {stockItems.map((item) => (
+                <tr key={item.id} className="hover:bg-canvas/50 transition-colors">
+                  <td className="py-3.5 px-4">
+                    <div className="font-heading font-bold text-content-primary">
                       {item.name}
-                    </td>
-                    <td className="py-3.5 px-3 capitalize text-content-secondary font-medium">
+                    </div>
+                    <span className="text-[11px] text-content-muted">
+                      Updated {formatTimeElapsed(item.lastRestocked)}
+                    </span>
+                  </td>
+                  <td className="py-3.5 px-3">
+                    <span className="px-2 py-0.5 rounded-full bg-canvas text-content-secondary text-xs uppercase font-bold">
                       {item.category}
-                    </td>
-                    <td className="py-3.5 px-3 font-heading font-black text-base text-content-primary">
-                      {item.currentQty} <span className="text-xs font-normal text-content-muted">{item.unit}</span>
-                    </td>
-                    <td className="py-3.5 px-3 text-content-secondary">
-                      {item.minThreshold} {item.unit}
-                    </td>
-                    <td className="py-3.5 px-3 font-mono font-bold text-content-primary">
-                      {formatCurrency(item.costPerUnit)}
-                    </td>
-                    <td className="py-3.5 px-3">
-                      <span
-                        className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
-                          item.status === 'in_stock'
-                            ? 'bg-status-success/15 text-status-success'
-                            : item.status === 'low_stock'
-                            ? 'bg-sun/25 text-[#9A6700]'
-                            : 'bg-status-alert/15 text-status-alert animate-pulse'
-                        }`}
-                      >
-                        {item.status === 'in_stock' ? t.inStock : item.status === 'low_stock' ? t.lowStock : t.critical}
+                    </span>
+                  </td>
+                  <td className="py-3.5 px-3 font-mono font-bold text-content-primary">
+                    {item.currentQty} {item.unit}
+                  </td>
+                  <td className="py-3.5 px-3 font-mono text-content-muted">
+                    {item.minThreshold} {item.unit}
+                  </td>
+                  <td className="py-3.5 px-3 font-mono">
+                    {formatCurrency(item.costPerUnit)}/{item.unit}
+                  </td>
+                  <td className="py-3.5 px-3">
+                    {item.status === 'in_stock' ? (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-status-success/15 text-status-success text-xs font-bold">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        <span>In Stock</span>
                       </span>
-                    </td>
-                    <td className="py-3.5 px-4 text-right">
-                      <button
-                        onClick={() => handleRestock(item.id, item.minThreshold)}
-                        className="px-3 py-1.5 rounded-pill bg-canvas hover:bg-surface border border-borderSubtle hover:border-primary font-bold text-xs text-primary transition-all shadow-sm"
-                      >
-                        + Restock
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                    ) : item.status === 'low_stock' ? (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-sun/20 text-[#8F6200] text-xs font-bold">
+                        <AlertTriangle className="w-3.5 h-3.5" />
+                        <span>Low Stock</span>
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-status-alert/15 text-status-alert text-xs font-bold">
+                        <AlertTriangle className="w-3.5 h-3.5" />
+                        <span>Reorder</span>
+                      </span>
+                    )}
+                  </td>
+                  <td className="py-3.5 px-4 text-right">
+                    <button
+                      onClick={() => handleRestock(item.id, 25)}
+                      className="px-3 py-1.5 rounded-pill bg-primary/10 text-primary hover:bg-primary hover:text-white font-bold text-xs transition-all shadow-xs"
+                    >
+                      +25 {item.unit}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Mobile Phone Card View */}
+        <div className="md:hidden space-y-3">
+          {stockItems.map((item) => (
+            <Card key={item.id} padding="md" className="space-y-3">
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <h5 className="font-heading font-bold text-sm text-content-primary">
+                    {item.name}
+                  </h5>
+                  <span className="text-[11px] text-content-muted capitalize">
+                    {item.category} · {formatCurrency(item.costPerUnit)}/{item.unit}
+                  </span>
+                </div>
+                {item.status === 'in_stock' ? (
+                  <span className="px-2 py-0.5 rounded-full bg-status-success/15 text-status-success text-[11px] font-bold">
+                    Normal
+                  </span>
+                ) : item.status === 'low_stock' ? (
+                  <span className="px-2 py-0.5 rounded-full bg-sun/20 text-[#8F6200] text-[11px] font-bold">
+                    Low Stock
+                  </span>
+                ) : (
+                  <span className="px-2 py-0.5 rounded-full bg-status-alert/15 text-status-alert text-[11px] font-bold">
+                    Reorder
+                  </span>
+                )}
+              </div>
+
+              <div className="flex items-center justify-between text-xs pt-1 border-t border-borderSubtle">
+                <span className="font-mono font-bold text-content-primary">
+                  {item.currentQty} {item.unit} available
+                </span>
+                <button
+                  onClick={() => handleRestock(item.id, 25)}
+                  className="px-3 py-1 rounded-pill bg-primary/10 text-primary font-bold text-xs"
+                >
+                  +25 Restock
+                </button>
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
 
@@ -249,27 +305,44 @@ export const AdminStockWaterManager: React.FC = () => {
       <Modal
         isOpen={isModifyCapacityOpen}
         onClose={() => setIsModifyCapacityOpen(false)}
-        title="Modify Water Tank Capacity"
         maxWidth="sm"
+        title="Modify Water Reservoir Capacity"
       >
         <div className="space-y-4 pt-1">
-          <div>
-            <label className="text-xs font-bold text-content-secondary block mb-1">
-              New Commercial Tank Volume (Liters)
+          <p className="text-xs text-content-secondary leading-relaxed">
+            Update the physical commercial RO water reservoir capacity for Table Flow. This re-calibrates percentage gauges on both Kitchen and Admin displays.
+          </p>
+
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-content-primary">
+              Tank Capacity (in Liters)
             </label>
             <input
               type="number"
               value={newCapacity}
               onChange={(e) => setNewCapacity(e.target.value)}
-              className="w-full p-3 rounded-2xl bg-canvas border border-borderSubtle font-heading font-black text-xl text-content-primary focus:outline-none focus:ring-2 focus:ring-primary"
+              min="500"
+              max="20000"
+              step="100"
+              className="w-full h-11 px-3.5 rounded-2xl bg-canvas border border-borderSubtle font-mono text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
-          <div className="flex gap-2 pt-2">
-            <Button variant="secondary" size="md" className="flex-1" onClick={() => setIsModifyCapacityOpen(false)}>
+          <div className="pt-2 flex gap-2">
+            <Button
+              variant="ghost"
+              size="md"
+              className="flex-1"
+              onClick={() => setIsModifyCapacityOpen(false)}
+            >
               Cancel
             </Button>
-            <Button variant="primary" size="md" className="flex-1 font-bold" onClick={handleSaveCapacity}>
+            <Button
+              variant="primary"
+              size="md"
+              className="flex-1 font-bold shadow-accent"
+              onClick={handleSaveCapacity}
+            >
               Save Capacity
             </Button>
           </div>

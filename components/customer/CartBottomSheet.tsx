@@ -107,8 +107,8 @@ export const CartBottomSheet: React.FC<CartBottomSheetProps> = ({
     >
       {items.length === 0 ? (
         <div className="py-12 text-center space-y-4">
-          <div className="w-20 h-20 mx-auto rounded-3xl bg-canvas flex items-center justify-center text-4xl shadow-soft">
-            🍽️
+          <div className="w-20 h-20 mx-auto rounded-3xl bg-canvas border border-borderSubtle flex items-center justify-center shadow-soft">
+            <Utensils className="w-9 h-9 text-primary/60" />
           </div>
           <h4 className="font-heading font-bold text-xl text-content-primary">
             {t.emptyCart}

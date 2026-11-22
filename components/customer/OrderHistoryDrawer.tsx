@@ -52,7 +52,9 @@ export const OrderHistoryDrawer: React.FC<OrderHistoryDrawerProps> = ({
       <div className="space-y-4 pb-6">
         {historyOrders.length === 0 ? (
           <div className="py-12 text-center space-y-3">
-            <div className="text-4xl">📜</div>
+            <div className="w-16 h-16 mx-auto rounded-3xl bg-canvas border border-borderSubtle flex items-center justify-center shadow-soft">
+              <Receipt className="w-8 h-8 text-primary/60" />
+            </div>
             <h4 className="font-heading font-bold text-lg text-content-primary">
               No orders placed yet
             </h4>

@@ -3,81 +3,83 @@
 @tailwind utilities;
 
 :root {
-  /* Default Theme: Sunny Family */
-  --bg-canvas: #FFF9F2;
+  /* Default Theme: Warm Luxe (Professional, High-End Culinary) */
+  --bg-canvas: #FAF7F2;
   --bg-card: #FFFFFF;
-  --text-primary: #3A2A22;
-  --text-secondary: #7A6658;
-  --text-muted: #A89689;
-  --accent-primary: #FF7A45;
-  --accent-sun: #FFC233;
-  --success: #2DBE7E;
-  --alert: #FF5A6E;
-  --info: #8B6CF6;
-  --border-subtle: rgba(58, 42, 34, 0.08);
-  --card-shadow: 0 8px 30px rgba(58, 42, 34, 0.06);
+  --text-primary: #211B17;
+  --text-secondary: #5C5046;
+  --text-muted: #8E8278;
+  --accent-primary: #D95328;
+  --accent-sun: #D99B26;
+  --success: #219653;
+  --alert: #D32F2F;
+  --info: #6366F1;
+  --border-subtle: rgba(33, 27, 23, 0.08);
+  --card-shadow: 0 4px 20px rgba(33, 27, 23, 0.05);
 }
 
 [data-theme="modern-green"] {
   /* Modern Green Theme */
-  --bg-canvas: #F4F8F5;
+  --bg-canvas: #F4F7F4;
   --bg-card: #FFFFFF;
-  --text-primary: #1C2E24;
-  --text-secondary: #526A5C;
-  --text-muted: #829C8E;
-  --accent-primary: #2D7A58;
-  --accent-sun: #A3E635;
-  --success: #10B981;
-  --alert: #EF4444;
-  --info: #6366F1;
-  --border-subtle: rgba(28, 46, 36, 0.08);
-  --card-shadow: 0 8px 30px rgba(28, 46, 36, 0.06);
+  --text-primary: #19271E;
+  --text-secondary: #475C50;
+  --text-muted: #7A9183;
+  --accent-primary: #2D6A4F;
+  --accent-sun: #74C69D;
+  --success: #219653;
+  --alert: #D32F2F;
+  --info: #4F46E5;
+  --border-subtle: rgba(25, 39, 30, 0.08);
+  --card-shadow: 0 4px 20px rgba(25, 39, 30, 0.05);
 }
 
 /* Dark mode for Kitchen Display */
 .dark, [data-theme="kitchen-dark"] {
-  --bg-canvas: #12100E;
-  --bg-card: #1E1B18;
-  --text-primary: #F8F5F1;
-  --text-secondary: #C4BBB4;
-  --text-muted: #847C76;
-  --accent-primary: #FF7A45;
-  --accent-sun: #FFC233;
-  --success: #2DBE7E;
-  --alert: #FF5A6E;
-  --info: #A78BFA;
-  --border-subtle: rgba(248, 245, 241, 0.12);
-  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --bg-canvas: #121214;
+  --bg-card: #1C1C20;
+  --text-primary: #F7F7F8;
+  --text-secondary: #C2C2CB;
+  --text-muted: #7E7E8B;
+  --accent-primary: #E05A2B;
+  --accent-sun: #E5A020;
+  --success: #27AE60;
+  --alert: #E74C3C;
+  --info: #818CF8;
+  --border-subtle: rgba(255, 255, 255, 0.10);
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 body {
   background-color: var(--bg-canvas);
   color: var(--text-primary);
-  font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  touch-action: manipulation;
 }
 
-h1, h2, h3, h4, .font-heading {
-  font-family: var(--font-baloo), cursive, system-ui, sans-serif;
-  letter-spacing: -0.01em;
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.025em;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 /* Glassmorphism helpers */
 .glass-bar {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(58, 42, 34, 0.08);
+  border-top: 1px solid rgba(33, 27, 23, 0.08);
 }
 
 .dark .glass-bar {
-  background: rgba(30, 27, 24, 0.92);
+  background: rgba(28, 28, 32, 0.94);
   backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(248, 245, 241, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Hide scrollbars for clean category pills */
@@ -87,4 +89,11 @@ h1, h2, h3, h4, .font-heading {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Mobile viewport adjustments */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }

@@ -21,6 +21,7 @@ import {
   Zap,
   PhoneCall,
   ExternalLink,
+  Receipt,
 } from 'lucide-react';
 
 export default function MarketingLandingPage() {
@@ -238,8 +239,8 @@ export default function MarketingLandingPage() {
                     <span className="px-2 py-0.5 rounded-md bg-[#FF7A45] text-xs font-bold">~12m</span>
                   </div>
                   <div className="space-y-1.5 text-xs text-[#C4BBB4]">
-                    <div>🍗 1x Hyderabadi Chicken 65</div>
-                    <div>🍚 2x Hyderabadi Chicken Dum Biryani</div>
+                    <div>• 1x Hyderabadi Chicken 65</div>
+                    <div>• 2x Hyderabadi Chicken Dum Biryani</div>
                   </div>
                   <Link href="/kitchen">
                     <Button variant="primary" size="md" className="w-full mt-2 font-bold">
@@ -290,8 +291,8 @@ export default function MarketingLandingPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card padding="lg" className="text-center space-y-4 hover:border-primary/40 transition-all">
-            <div className="w-16 h-16 mx-auto rounded-3xl bg-sun/25 text-content-primary flex items-center justify-center text-3xl shadow-soft">
-              📱
+            <div className="w-16 h-16 mx-auto rounded-3xl bg-sun/20 text-content-primary flex items-center justify-center shadow-soft">
+              <QrCode className="w-8 h-8 text-primary" />
             </div>
             <div className="font-heading font-black text-xl text-content-primary">
               1. Scan Table QR
@@ -302,8 +303,8 @@ export default function MarketingLandingPage() {
           </Card>
 
           <Card padding="lg" className="text-center space-y-4 hover:border-primary/40 transition-all">
-            <div className="w-16 h-16 mx-auto rounded-3xl bg-primary/15 text-primary flex items-center justify-center text-3xl shadow-soft">
-              🍳
+            <div className="w-16 h-16 mx-auto rounded-3xl bg-primary/15 text-primary flex items-center justify-center shadow-soft">
+              <Flame className="w-8 h-8 text-primary" />
             </div>
             <div className="font-heading font-black text-xl text-content-primary">
               2. Kitchen Cooks Instantly
@@ -314,8 +315,8 @@ export default function MarketingLandingPage() {
           </Card>
 
           <Card padding="lg" className="text-center space-y-4 hover:border-primary/40 transition-all">
-            <div className="w-16 h-16 mx-auto rounded-3xl bg-status-success/15 text-status-success flex items-center justify-center text-3xl shadow-soft">
-              🧾
+            <div className="w-16 h-16 mx-auto rounded-3xl bg-status-success/15 text-status-success flex items-center justify-center shadow-soft">
+              <Receipt className="w-8 h-8 text-status-success" />
             </div>
             <div className="font-heading font-black text-xl text-content-primary">
               3. Split Bill & UPI Settle
@@ -341,7 +342,7 @@ export default function MarketingLandingPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card padding="md" className="space-y-3">
-              <div className="text-3xl font-heading font-black text-primary">⚡ 14 Mins</div>
+              <div className="text-3xl font-heading font-black text-primary">14 Mins</div>
               <h4 className="font-heading font-bold text-lg text-content-primary">
                 Faster Table Turnover
               </h4>
@@ -351,7 +352,7 @@ export default function MarketingLandingPage() {
             </Card>
 
             <Card padding="md" className="space-y-3">
-              <div className="text-3xl font-heading font-black text-sun">📈 +22%</div>
+              <div className="text-3xl font-heading font-black text-sun">+22%</div>
               <h4 className="font-heading font-bold text-lg text-content-primary">
                 Higher Average Bill
               </h4>
@@ -361,7 +362,7 @@ export default function MarketingLandingPage() {
             </Card>
 
             <Card padding="md" className="space-y-3">
-              <div className="text-3xl font-heading font-black text-status-success">🎯 0%</div>
+              <div className="text-3xl font-heading font-black text-status-success">0%</div>
               <h4 className="font-heading font-bold text-lg text-content-primary">
                 Misheard Order Errors
               </h4>
@@ -371,7 +372,7 @@ export default function MarketingLandingPage() {
             </Card>
 
             <Card padding="md" className="space-y-3">
-              <div className="text-3xl font-heading font-black text-[#8B6CF6]">😊 100%</div>
+              <div className="text-3xl font-heading font-black text-info">100%</div>
               <h4 className="font-heading font-bold text-lg text-content-primary">
                 Happier Floor Staff
               </h4>

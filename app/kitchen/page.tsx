@@ -6,11 +6,12 @@ import { KdsOrderCard } from '@/components/kitchen/KdsOrderCard';
 import { KdsSoldOutDrawer } from '@/components/kitchen/KdsSoldOutDrawer';
 import { KdsProductionView } from '@/components/kitchen/KdsProductionView';
 import { orderService } from '@/lib/orderService';
-import { Order, OrderStatus } from '@/types';
+import { Order, OrderStatus, WaterTankStatus } from '@/types';
 import { Send, Flame, CheckCircle2, Inbox } from 'lucide-react';
 
 export default function KitchenDisplayPage() {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [waterTank, setWaterTank] = useState<WaterTankStatus | null>(null);
   const [isSoldOutOpen, setIsSoldOutOpen] = useState(false);
   const [activeView, setActiveView] = useState<'tickets' | 'production'>('tickets');
 
@@ -19,7 +20,12 @@ export default function KitchenDisplayPage() {
     const unsub = orderService.subscribeToOrders((latest) => {
       setOrders(latest);
     });
-    return () => unsub();
+    orderService.getWaterTankStatus().then(setWaterTank);
+    const unsubTank = orderService.subscribeToWaterTank(setWaterTank);
+    return () => {
+      unsub();
+      unsubTank();
+    };
   }, []);
 
   const handleUpdateStatus = async (orderId: string, status: OrderStatus) => {
@@ -58,7 +64,7 @@ export default function KitchenDisplayPage() {
       <main className="flex-1 p-4 sm:p-6 overflow-x-auto">
         {activeView === 'production' ? (
           <div className="max-w-6xl mx-auto">
-            <KdsProductionView orders={orders} />
+            <KdsProductionView orders={orders} waterTank={waterTank} />
           </div>
         ) : (
           /* Kanban 3-Column Swimlanes */

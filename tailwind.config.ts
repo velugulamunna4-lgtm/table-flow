@@ -14,12 +14,12 @@ const config: Config = {
         surface: 'var(--bg-card)',
         primary: {
           DEFAULT: 'var(--accent-primary)',
-          hover: '#E56734',
-          subtle: 'rgba(255, 122, 69, 0.12)',
+          hover: '#C2471E',
+          subtle: 'rgba(217, 83, 40, 0.12)',
         },
         sun: {
           DEFAULT: 'var(--accent-sun)',
-          subtle: 'rgba(255, 194, 51, 0.15)',
+          subtle: 'rgba(217, 155, 38, 0.15)',
         },
         content: {
           primary: 'var(--text-primary)',
@@ -28,17 +28,17 @@ const config: Config = {
         },
         status: {
           success: 'var(--success)',
-          'success-subtle': 'rgba(45, 190, 126, 0.12)',
+          'success-subtle': 'rgba(33, 150, 83, 0.12)',
           alert: 'var(--alert)',
-          'alert-subtle': 'rgba(255, 90, 110, 0.12)',
+          'alert-subtle': 'rgba(211, 47, 47, 0.12)',
           info: 'var(--info)',
-          'info-subtle': 'rgba(139, 108, 246, 0.12)',
+          'info-subtle': 'rgba(99, 102, 241, 0.12)',
         },
         borderSubtle: 'var(--border-subtle)',
       },
       fontFamily: {
-        heading: ['var(--font-baloo)', 'cursive', 'sans-serif'],
-        sans: ['var(--font-jakarta)', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-jakarta)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['var(--font-jakarta)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       borderRadius: {
         'card': '24px',
@@ -48,14 +48,15 @@ const config: Config = {
         '4xl': '28px',
       },
       boxShadow: {
-        'soft': '0 8px 30px rgba(58, 42, 34, 0.06)',
-        'lifted': '0 16px 40px rgba(58, 42, 34, 0.10)',
-        'accent': '0 10px 25px rgba(255, 122, 69, 0.25)',
-        'sun': '0 10px 25px rgba(255, 194, 51, 0.25)',
-        'bottom-bar': '0 -8px 32px rgba(58, 42, 34, 0.08)',
+        'soft': '0 4px 20px rgba(33, 27, 23, 0.05)',
+        'lifted': '0 12px 32px rgba(33, 27, 23, 0.08)',
+        'accent': '0 8px 20px rgba(217, 83, 40, 0.22)',
+        'sun': '0 8px 20px rgba(217, 155, 38, 0.22)',
+        'bottom-bar': '0 -6px 28px rgba(33, 27, 23, 0.06)',
       },
     },
   },
   plugins: [],
 };
+
 export default config;

@@ -10,7 +10,7 @@ import { useMenuStore, useLanguageStore } from '@/lib/store';
 import { orderService } from '@/lib/orderService';
 import { Order } from '@/types';
 import { translations } from '@/lib/i18n';
-import { Clock, Receipt, Gamepad2, ArrowRight } from 'lucide-react';
+import { Clock, Receipt, Gamepad2, ArrowRight, Search, Sparkles } from 'lucide-react';
 
 export default function CustomerMenuPage() {
   const params = useParams();
@@ -62,17 +62,17 @@ export default function CustomerMenuPage() {
   });
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-4 space-y-5">
+    <div className="max-w-4xl mx-auto px-3 sm:px-4 py-3 sm:py-4 space-y-4 sm:space-y-5">
       {/* Active Order in Progress Banner (if diner placed an order) */}
       {activeOrder && (
-        <div className="p-4 rounded-3xl bg-sun/20 border border-sun/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-soft">
+        <div className="p-3.5 sm:p-4 rounded-3xl bg-sun/20 border border-sun/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-soft">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-sun text-content-primary flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-2xl bg-sun text-content-primary flex items-center justify-center font-bold shrink-0">
               <Clock className="w-5 h-5 animate-spin" style={{ animationDuration: '6s' }} />
             </div>
             <div>
-              <div className="font-heading font-black text-base text-content-primary">
-                Order {activeOrder.orderNumber} is in progress!
+              <div className="font-heading font-black text-sm sm:text-base text-content-primary">
+                Order {activeOrder.orderNumber} is cooking!
               </div>
               <div className="text-xs text-content-secondary font-medium">
                 Status: <span className="capitalize font-bold text-primary">{activeOrder.status}</span> · Ready in ~{activeOrder.estimatedMinutes}m
@@ -82,7 +82,7 @@ export default function CustomerMenuPage() {
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <Link
               href={`/t/${tableId}/status`}
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-pill bg-primary text-white font-bold text-xs sm:text-sm shadow-accent"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-pill bg-primary text-white font-bold text-xs sm:text-sm shadow-accent"
             >
               <span>Track Live Status</span>
               <ArrowRight className="w-4 h-4" />
@@ -106,25 +106,25 @@ export default function CustomerMenuPage() {
       )}
 
       {/* Items Section Header */}
-      <div className="flex items-center justify-between pt-2">
-        <h2 className="font-heading font-black text-xl sm:text-2xl text-content-primary">
-          {searchQuery ? `Search Results for "${searchQuery}"` : t.categories[selectedCategory as keyof typeof t.categories] || selectedCategory}
+      <div className="flex items-center justify-between pt-1">
+        <h2 className="font-heading font-black text-lg sm:text-2xl text-content-primary">
+          {searchQuery ? `Search: "${searchQuery}"` : t.categories[selectedCategory as keyof typeof t.categories] || selectedCategory}
         </h2>
         <span className="text-xs font-bold text-content-secondary px-3 py-1 rounded-full bg-surface border border-borderSubtle">
           {filteredItems.length} {filteredItems.length === 1 ? 'Dish' : 'Dishes'}
         </span>
       </div>
 
-      {/* Dish Grid */}
+      {/* Dish Grid: single column on phone, 2 cols on tablet+ */}
       {filteredItems.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-6">
           {filteredItems.map((item) => (
             <MenuItemCard key={item.id} item={item} />
           ))}
         </div>
       ) : (
         <EmptyState
-          emoji="🔍"
+          icon={<Search className="w-10 h-10 text-primary" />}
           title="No Dishes Found"
           description="We couldn't find any dishes matching your current search or diet filter. Try resetting your filters."
           actionLabel="Show All Items"
@@ -136,37 +136,37 @@ export default function CustomerMenuPage() {
       )}
 
       {/* Quick Navigation Cards to Play & Bill */}
-      <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         <Link
           href={`/t/${tableId}/play`}
-          className="p-5 rounded-3xl bg-surface border border-borderSubtle shadow-soft hover:shadow-lifted hover:border-primary/30 transition-all flex items-center justify-between group"
+          className="p-4 sm:p-5 rounded-3xl bg-surface border border-borderSubtle shadow-soft hover:shadow-lifted hover:border-primary/30 transition-all flex items-center justify-between group"
         >
-          <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-sun/20 text-sun flex items-center justify-center text-2xl">
-              🎮
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-2xl bg-sun/20 text-sun flex items-center justify-center shrink-0">
+              <Gamepad2 className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <div className="font-heading font-black text-base sm:text-lg text-content-primary group-hover:text-primary transition-colors">
+              <div className="font-heading font-black text-sm sm:text-base text-content-primary group-hover:text-primary transition-colors">
                 Waiting for food?
               </div>
               <div className="text-xs text-content-secondary">
-                Play 30s mini-games & win dessert points
+                Play quick mini-games & win rewards
               </div>
             </div>
           </div>
-          <ArrowRight className="w-5 h-5 text-content-muted group-hover:text-primary group-hover:translate-x-1 transition-all" />
+          <ArrowRight className="w-4 h-4 text-content-muted group-hover:text-primary group-hover:translate-x-1 transition-all" />
         </Link>
 
         <Link
           href={`/t/${tableId}/bill`}
-          className="p-5 rounded-3xl bg-surface border border-borderSubtle shadow-soft hover:shadow-lifted hover:border-primary/30 transition-all flex items-center justify-between group"
+          className="p-4 sm:p-5 rounded-3xl bg-surface border border-borderSubtle shadow-soft hover:shadow-lifted hover:border-primary/30 transition-all flex items-center justify-between group"
         >
-          <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-primary/15 text-primary flex items-center justify-center text-2xl">
-              🧾
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-2xl bg-primary/15 text-primary flex items-center justify-center shrink-0">
+              <Receipt className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <div className="font-heading font-black text-base sm:text-lg text-content-primary group-hover:text-primary transition-colors">
+              <div className="font-heading font-black text-sm sm:text-base text-content-primary group-hover:text-primary transition-colors">
                 View & Split Bill
               </div>
               <div className="text-xs text-content-secondary">
@@ -174,7 +174,7 @@ export default function CustomerMenuPage() {
               </div>
             </div>
           </div>
-          <ArrowRight className="w-5 h-5 text-content-muted group-hover:text-primary group-hover:translate-x-1 transition-all" />
+          <ArrowRight className="w-4 h-4 text-content-muted group-hover:text-primary group-hover:translate-x-1 transition-all" />
         </Link>
       </div>
     </div>

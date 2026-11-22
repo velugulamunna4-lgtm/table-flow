@@ -24,6 +24,7 @@ import {
   Minus,
   Check,
   Smartphone,
+  Utensils,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -174,8 +175,8 @@ export default function BillAndSplitPage() {
             animate={{ opacity: 1, scale: 1 }}
             className="p-8 sm:p-12 rounded-3xl bg-surface border-2 border-status-success text-center space-y-5 shadow-lifted"
           >
-            <div className="w-20 h-20 mx-auto rounded-full bg-status-success/15 text-status-success flex items-center justify-center text-4xl shadow-soft">
-              ✨
+            <div className="w-20 h-20 mx-auto rounded-full bg-status-success/15 text-status-success flex items-center justify-center shadow-soft">
+              <CheckCircle2 className="w-10 h-10 text-status-success" />
             </div>
 
             <div>
@@ -284,10 +285,10 @@ export default function BillAndSplitPage() {
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
-                  { id: 'full', label: 'Pay Full', desc: 'Settle entire bill', icon: '💳' },
-                  { id: 'equal', label: 'Split Equally', desc: 'Divide by persons', icon: '👥' },
-                  { id: 'item', label: 'Split by Items', desc: 'Claim what you ate', icon: '🍲' },
-                  { id: 'custom', label: 'Custom Amount', desc: 'Pay specific sum', icon: '✍️' },
+                  { id: 'full', label: 'Pay Full', desc: 'Settle entire bill', icon: <CreditCard className="w-5 h-5 text-primary" /> },
+                  { id: 'equal', label: 'Split Equally', desc: 'Divide by persons', icon: <Users className="w-5 h-5 text-sun" /> },
+                  { id: 'item', label: 'Split by Items', desc: 'Claim what you ate', icon: <Utensils className="w-5 h-5 text-status-success" /> },
+                  { id: 'custom', label: 'Custom Amount', desc: 'Pay specific sum', icon: <Receipt className="w-5 h-5 text-info" /> },
                 ].map((mode) => (
                   <button
                     key={mode.id}
@@ -298,7 +299,7 @@ export default function BillAndSplitPage() {
                         : 'bg-surface border-borderSubtle hover:bg-canvas text-content-primary'
                     }`}
                   >
-                    <div className="text-xl mb-1">{mode.icon}</div>
+                    <div className="mb-2 w-9 h-9 rounded-xl bg-canvas border border-borderSubtle flex items-center justify-center">{mode.icon}</div>
                     <div className="font-heading font-black text-sm">{mode.label}</div>
                     <div className="text-[11px] text-content-muted leading-tight">{mode.desc}</div>
                   </button>

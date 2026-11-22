@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { orderService } from '@/lib/orderService';
 import { useLanguageStore } from '@/lib/store';
 import { translations } from '@/lib/i18n';
-import { Star, Sparkles, Check, Heart } from 'lucide-react';
+import { Star, Sparkles, Check, Heart, ThumbsUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export interface OrderReviewModalProps {
@@ -32,8 +32,8 @@ export const OrderReviewModal: React.FC<OrderReviewModalProps> = ({
   const [ambiance, setAmbiance] = useState(5);
   const [service, setService] = useState(5);
   const [selectedTags, setSelectedTags] = useState<string[]>([
-    'Piping Hot 🔥',
-    'Royal Vibe ✨',
+    'Fresh & Piping Hot',
+    'Splendid Ambiance',
   ]);
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
@@ -41,13 +41,14 @@ export const OrderReviewModal: React.FC<OrderReviewModalProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const availableTags = [
-    'Piping Hot 🔥',
-    'Royal Vibe ✨',
-    'Quick Service ⚡',
-    'Generous Portions 🍛',
-    'Authentic Spices 🌶️',
-    'Great Music 🎵',
-    'Melt-in-Mouth 🍢',
+    'Fresh & Piping Hot',
+    'Splendid Ambiance',
+    'Prompt Service',
+    'Generous Portions',
+    'Authentic Spices',
+    'Relaxing Atmosphere',
+    'Tender & Flavorful',
+    'Child Friendly',
   ];
 
   const toggleTag = (tag: string) => {
@@ -58,129 +59,126 @@ export const OrderReviewModal: React.FC<OrderReviewModalProps> = ({
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
       await orderService.submitReview({
-        orderId,
         tableId,
         tableNumber,
+        orderId,
         overallRating: overall,
         foodRating: food,
         ambianceRating: ambiance,
         serviceRating: service,
         tags: selectedTags,
         customerName: name.trim() || undefined,
-        comment: comment.trim(),
+        comment: comment.trim() || undefined,
       });
       setSubmitted(true);
       setTimeout(() => {
         setSubmitted(false);
         onClose();
       }, 2500);
-    } catch (err) {
-      console.error(err);
+    } catch (e) {
+      console.error(e);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const renderStars = (rating: number, onSelect: (r: number) => void) => (
-    <div className="flex items-center gap-1.5">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <button
-          key={star}
-          type="button"
-          onClick={() => onSelect(star)}
-          className="p-1 hover:scale-110 active:scale-95 transition-transform"
-        >
-          <Star
-            className={`w-6 h-6 transition-colors ${
-              star <= rating
-                ? 'text-[#FFC233] fill-[#FFC233]'
-                : 'text-[#E0D8D0] fill-transparent'
-            }`}
-          />
-        </button>
-      ))}
-    </div>
-  );
+  const renderStars = (rating: number, setRating: (r: number) => void) => {
+    return (
+      <div className="flex items-center gap-1">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <button
+            key={star}
+            type="button"
+            onClick={() => setRating(star)}
+            className="p-1 hover:scale-110 active:scale-95 transition-transform"
+          >
+            <Star
+              className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors ${
+                star <= rating
+                  ? 'text-sun fill-sun'
+                  : 'text-borderSubtle fill-canvas'
+              }`}
+            />
+          </button>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} maxWidth="md" title={t.title}>
       {submitted ? (
-        <div className="py-8 text-center space-y-4">
+        <div className="py-8 text-center space-y-3">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="w-16 h-16 mx-auto rounded-full bg-status-success/15 text-status-success flex items-center justify-center text-3xl shadow-soft"
+            className="w-16 h-16 mx-auto rounded-full bg-status-success/20 text-status-success flex items-center justify-center shadow-soft"
           >
-            ✓
+            <Check className="w-8 h-8" />
           </motion.div>
           <h3 className="font-heading font-black text-2xl text-content-primary">
             {t.reviewSuccess}
           </h3>
-          <p className="text-xs text-content-secondary max-w-xs mx-auto">
-            Your compliments and ratings have been shared directly with our head chef and restaurant management.
+          <p className="text-xs sm:text-sm text-content-secondary max-w-xs mx-auto">
+            Your review helps us refine our recipes, hospitality, and dining ambiance.
           </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-5 pt-1">
-          <p className="text-xs text-content-secondary">{t.subtitle}</p>
+        <div className="space-y-4 pt-1 text-content-primary">
+          <p className="text-xs text-content-secondary">
+            {t.subtitle}
+          </p>
 
-          {/* Star Rating Breakdown */}
-          <div className="space-y-3 p-4 rounded-2xl bg-canvas border border-borderSubtle">
-            {/* Overall */}
-            <div className="flex items-center justify-between">
-              <span className="font-heading font-bold text-sm text-content-primary">
+          {/* Overall Rating */}
+          <div className="p-3.5 rounded-2xl bg-canvas border border-borderSubtle flex items-center justify-between">
+            <div>
+              <span className="font-heading font-bold text-sm block">
                 {t.overallRating}
               </span>
-              {renderStars(overall, setOverall)}
+              <span className="text-[11px] text-content-muted">General impression</span>
             </div>
+            {renderStars(overall, setOverall)}
+          </div>
 
-            {/* Food Taste */}
-            <div className="flex items-center justify-between pt-2 border-t border-borderSubtle">
-              <span className="text-xs font-semibold text-content-secondary">
-                {t.foodQuality}
-              </span>
+          {/* Factor Ratings */}
+          <div className="space-y-2">
+            <div className="p-2.5 rounded-xl bg-surface border border-borderSubtle flex items-center justify-between">
+              <span className="text-xs font-semibold">{t.foodQuality}</span>
               {renderStars(food, setFood)}
             </div>
 
-            {/* Ambiance */}
-            <div className="flex items-center justify-between pt-2 border-t border-borderSubtle">
-              <span className="text-xs font-semibold text-content-secondary">
-                {t.ambiance}
-              </span>
+            <div className="p-2.5 rounded-xl bg-surface border border-borderSubtle flex items-center justify-between">
+              <span className="text-xs font-semibold">{t.ambiance}</span>
               {renderStars(ambiance, setAmbiance)}
             </div>
 
-            {/* Service */}
-            <div className="flex items-center justify-between pt-2 border-t border-borderSubtle">
-              <span className="text-xs font-semibold text-content-secondary">
-                {t.serviceHospitality}
-              </span>
+            <div className="p-2.5 rounded-xl bg-surface border border-borderSubtle flex items-center justify-between">
+              <span className="text-xs font-semibold">{t.serviceHospitality}</span>
               {renderStars(service, setService)}
             </div>
           </div>
 
-          {/* Tags */}
-          <div className="space-y-2">
-            <label className="text-xs font-bold text-content-secondary block">
+          {/* Quick Compliment Tags */}
+          <div className="space-y-1.5">
+            <span className="text-xs font-bold text-content-secondary block">
               {t.selectTags}
-            </label>
+            </span>
             <div className="flex flex-wrap gap-1.5">
               {availableTags.map((tag) => {
-                const active = selectedTags.includes(tag);
+                const isSelected = selectedTags.includes(tag);
                 return (
                   <button
                     key={tag}
                     type="button"
                     onClick={() => toggleTag(tag)}
-                    className={`px-3 py-1.5 rounded-pill text-xs font-bold transition-all border ${
-                      active
-                        ? 'bg-primary text-white border-primary shadow-sm'
-                        : 'bg-surface text-content-secondary border-borderSubtle hover:bg-canvas'
+                    className={`px-3 py-1 rounded-pill text-xs font-bold transition-all border ${
+                      isSelected
+                        ? 'bg-primary text-white border-primary shadow-xs'
+                        : 'bg-canvas text-content-secondary border-borderSubtle hover:bg-surface'
                     }`}
                   >
                     {tag}
@@ -190,34 +188,40 @@ export const OrderReviewModal: React.FC<OrderReviewModalProps> = ({
             </div>
           </div>
 
-          {/* Customer Name & Comment */}
+          {/* Name & Comments */}
           <div className="space-y-2">
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Your Name (optional)"
-              className="w-full p-2.5 rounded-xl bg-canvas border border-borderSubtle text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+              placeholder="Your Name (Optional)"
+              className="w-full h-10 px-3.5 rounded-2xl bg-canvas border border-borderSubtle text-xs focus:outline-none focus:ring-2 focus:ring-primary"
             />
             <textarea
-              rows={3}
+              rows={2}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               placeholder={t.commentPlaceholder}
-              className="w-full p-2.5 rounded-xl bg-canvas border border-borderSubtle text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+              className="w-full p-3 rounded-2xl bg-canvas border border-borderSubtle text-xs focus:outline-none focus:ring-2 focus:ring-primary resize-none"
             />
           </div>
 
-          <Button
-            type="submit"
-            variant="primary"
-            size="lg"
-            isLoading={isSubmitting}
-            className="w-full font-bold shadow-accent"
-          >
-            {t.submitReview}
-          </Button>
-        </form>
+          {/* Action CTAs */}
+          <div className="pt-2 flex gap-2">
+            <Button variant="ghost" size="md" className="flex-1" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button
+              variant="primary"
+              size="md"
+              className="flex-1 font-bold shadow-accent"
+              isLoading={isSubmitting}
+              onClick={handleSubmit}
+            >
+              {t.submitReview}
+            </Button>
+          </div>
+        </div>
       )}
     </Modal>
   );

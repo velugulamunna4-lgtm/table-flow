@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button } from './Button';
 import { cn } from '@/lib/utils';
+import { Utensils } from 'lucide-react';
 
 export interface EmptyStateProps {
   emoji?: string;
+  icon?: React.ReactNode;
   title: string;
   description: string;
   actionLabel?: string;
@@ -12,7 +14,8 @@ export interface EmptyStateProps {
 }
 
 export const EmptyState: React.FC<EmptyStateProps> = ({
-  emoji = '🍽️',
+  emoji,
+  icon,
   title,
   description,
   actionLabel,
@@ -26,15 +29,17 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
         className
       )}
     >
-      <div className="text-5xl sm:text-6xl mb-4 select-none animate-bounce">{emoji}</div>
-      <h3 className="font-heading font-bold text-xl sm:text-2xl text-content-primary mb-2">
+      <div className="w-16 h-16 rounded-3xl bg-canvas border border-borderSubtle flex items-center justify-center mb-4 shadow-soft">
+        {icon || <Utensils className="w-8 h-8 text-primary/60" />}
+      </div>
+      <h3 className="font-heading font-black text-xl sm:text-2xl text-content-primary mb-2">
         {title}
       </h3>
-      <p className="text-sm sm:text-base text-content-secondary max-w-sm mb-6 leading-relaxed">
+      <p className="text-xs sm:text-sm text-content-secondary max-w-sm mb-6 leading-relaxed">
         {description}
       </p>
       {actionLabel && onAction && (
-        <Button onClick={onAction} variant="primary" size="md">
+        <Button onClick={onAction} variant="primary" size="md" className="font-bold shadow-accent">
           {actionLabel}
         </Button>
       )}

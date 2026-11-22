@@ -7,7 +7,7 @@ import { WaiterCall, orderService } from '@/lib/orderService';
 import { formatCurrency, formatTimeElapsed } from '@/lib/utils';
 import { VegIndicator } from '@/components/ui/VegIndicator';
 import { StatusBadge } from '@/components/ui/StatusBadge';
-import { X, Check, BellOff, ArrowRight, QrCode, Trash2, PlusCircle } from 'lucide-react';
+import { X, Check, BellOff, ArrowRight, QrCode, Trash2, PlusCircle, Utensils } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export interface WaiterOrderDetailDrawerProps {
@@ -174,7 +174,9 @@ export const WaiterOrderDetailDrawer: React.FC<WaiterOrderDetailDrawerProps> = (
                 </>
               ) : (
                 <div className="py-12 text-center space-y-3">
-                  <div className="text-4xl">🍽️</div>
+                  <div className="w-16 h-16 mx-auto rounded-3xl bg-canvas border border-borderSubtle flex items-center justify-center shadow-soft">
+                    <Utensils className="w-8 h-8 text-primary/60" />
+                  </div>
                   <h4 className="font-heading font-bold text-lg text-content-primary">
                     Table is currently free
                   </h4>

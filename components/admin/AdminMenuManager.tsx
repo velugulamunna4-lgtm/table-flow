@@ -77,7 +77,7 @@ export const AdminMenuManager: React.FC = () => {
         description,
         isAvailable: true,
         image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&auto=format&fit=crop&q=80',
-        emojiFallback: '🍲',
+        emojiFallback: 'culinary',
         preparationTimeMinutes: 15,
       };
       updateMenuItems([newItem, ...menuItems]);

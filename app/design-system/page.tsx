@@ -222,12 +222,12 @@ export default function DesignSystemPreviewPage() {
           </h2>
           <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2">
             {[
-              { id: 'specials', label: "⭐ Chef's Specials", count: 4 },
-              { id: 'starters', label: '🥘 Starters', count: 7 },
-              { id: 'mains', label: '🍲 Main Course', count: 7 },
-              { id: 'biryani', label: '🍚 Dum Biryani', count: 5 },
-              { id: 'desserts', label: '🍨 Desserts', count: 5 },
-              { id: 'drinks', label: '🥭 Beverages', count: 4 },
+              { id: 'specials', label: "Chef's Specials", count: 4 },
+              { id: 'starters', label: 'Starters', count: 7 },
+              { id: 'mains', label: 'Main Course', count: 7 },
+              { id: 'biryani', label: 'Dum Biryani', count: 5 },
+              { id: 'desserts', label: 'Desserts', count: 5 },
+              { id: 'drinks', label: 'Beverages', count: 4 },
             ].map((cat) => (
               <Pill
                 key={cat.id}
@@ -258,7 +258,7 @@ export default function DesignSystemPreviewPage() {
                   <VegIndicator type="non-veg" size="md" />
                 </div>
                 <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 text-white text-xs font-bold backdrop-blur-sm">
-                  ⭐ Bestseller
+                  Bestseller
                 </div>
               </div>
               <div className="flex-1 flex flex-col justify-between">
@@ -352,7 +352,7 @@ export default function DesignSystemPreviewPage() {
             </Card>
 
             <EmptyState
-              emoji="🍛"
+              icon={<Utensils className="w-8 h-8 text-primary" />}
               title="Your Feast Awaits"
               description="Choose from fragrant biryanis, slow-simmered gravies, and hot tandoori breads."
               actionLabel="Explore Menu"

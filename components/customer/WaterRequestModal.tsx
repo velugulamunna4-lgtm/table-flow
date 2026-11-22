@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { orderService } from '@/lib/orderService';
 import { useLanguageStore } from '@/lib/store';
 import { translations } from '@/lib/i18n';
-import { Droplet, Check, Sparkles } from 'lucide-react';
+import { Droplets, GlassWater, Snowflake, ThermometerSun, Check, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export interface WaterRequestModalProps {
@@ -30,10 +30,30 @@ export const WaterRequestModal: React.FC<WaterRequestModalProps> = ({
   const [isSending, setIsSending] = useState(false);
 
   const waterOptions = [
-    { id: 'normal', label: t.normal, icon: '🥛', desc: 'Fresh purified RO ambient water' },
-    { id: 'chilled', label: t.chilled, icon: '🧊', desc: 'Cold water with ice cubes' },
-    { id: 'warm', label: t.warm, icon: '🍵', desc: 'Lukewarm soothing water' },
-    { id: 'mineral', label: t.mineral, icon: '💧', desc: 'Sealed mineral water bottle' },
+    {
+      id: 'normal' as const,
+      label: t.normal,
+      icon: <GlassWater className="w-5 h-5 text-primary" />,
+      desc: 'Purified RO ambient drinking water',
+    },
+    {
+      id: 'chilled' as const,
+      label: t.chilled,
+      icon: <Snowflake className="w-5 h-5 text-info" />,
+      desc: 'Cold filtered water with ice cubes',
+    },
+    {
+      id: 'warm' as const,
+      label: t.warm,
+      icon: <ThermometerSun className="w-5 h-5 text-sun" />,
+      desc: 'Lukewarm soothing water',
+    },
+    {
+      id: 'mineral' as const,
+      label: t.mineral,
+      icon: <Droplets className="w-5 h-5 text-status-success" />,
+      desc: 'Packaged mineral water bottle',
+    },
   ];
 
   const handleRequest = async () => {
@@ -59,60 +79,74 @@ export const WaterRequestModal: React.FC<WaterRequestModalProps> = ({
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="w-14 h-14 mx-auto rounded-full bg-status-success/15 text-status-success flex items-center justify-center text-3xl"
+            className="w-16 h-16 mx-auto rounded-full bg-status-success/20 text-status-success flex items-center justify-center"
           >
-            ✓
+            <Check className="w-8 h-8" />
           </motion.div>
-          <h4 className="font-heading font-black text-xl text-content-primary">
+          <h3 className="font-heading font-black text-xl text-content-primary">
             {t.dispatchedToast}
-          </h4>
-          <p className="text-xs text-content-secondary">
-            Your table captain will serve fresh drinking water shortly.
+          </h3>
+          <p className="text-xs text-content-secondary max-w-xs mx-auto">
+            Our floor captain has been notified for Table {tableNumber}.
           </p>
         </div>
       ) : (
         <div className="space-y-4 pt-1">
           <p className="text-xs text-content-secondary">
-            Select your preferred drinking water type for Table {tableNumber}:
+            Select your preferred water temperature. We serve purified RO water directly to Table {tableNumber}.
           </p>
 
-          <div className="space-y-2">
-            {waterOptions.map((opt) => {
-              const active = selectedType === opt.id;
-              return (
-                <button
-                  key={opt.id}
-                  type="button"
-                  onClick={() => setSelectedType(opt.id as any)}
-                  className={`w-full p-3 rounded-2xl border text-left transition-all flex items-center justify-between ${
-                    active
-                      ? 'bg-primary/10 border-primary text-primary ring-1 ring-primary'
-                      : 'bg-canvas border-borderSubtle hover:bg-surface text-content-primary'
+          <div className="space-y-2.5">
+            {waterOptions.map((opt) => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => setSelectedType(opt.id)}
+                className={`w-full p-3.5 rounded-2xl border text-left flex items-center justify-between transition-all select-none ${
+                  selectedType === opt.id
+                    ? 'border-primary bg-primary/10 shadow-soft'
+                    : 'border-borderSubtle bg-canvas hover:bg-surface'
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-surface border border-borderSubtle flex items-center justify-center shrink-0">
+                    {opt.icon}
+                  </div>
+                  <div>
+                    <div className="font-heading font-bold text-sm text-content-primary">
+                      {opt.label}
+                    </div>
+                    <div className="text-[11px] text-content-secondary">{opt.desc}</div>
+                  </div>
+                </div>
+
+                <div
+                  className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                    selectedType === opt.id
+                      ? 'border-primary bg-primary text-white'
+                      : 'border-content-muted'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{opt.icon}</span>
-                    <div>
-                      <div className="font-heading font-bold text-sm">{opt.label}</div>
-                      <div className="text-[11px] text-content-secondary">{opt.desc}</div>
-                    </div>
-                  </div>
-
-                  {active && <Check className="w-4 h-4 text-primary shrink-0" />}
-                </button>
-              );
-            })}
+                  {selectedType === opt.id && <Check className="w-3 h-3 stroke-[3]" />}
+                </div>
+              </button>
+            ))}
           </div>
 
-          <Button
-            variant="primary"
-            size="lg"
-            isLoading={isSending}
-            onClick={handleRequest}
-            className="w-full font-bold shadow-accent"
-          >
-            {t.requestWater} (Table {tableNumber})
-          </Button>
+          <div className="pt-2 flex gap-2">
+            <Button variant="ghost" size="md" className="flex-1" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button
+              variant="primary"
+              size="md"
+              className="flex-1 font-bold shadow-accent"
+              isLoading={isSending}
+              onClick={handleRequest}
+            >
+              Request Water
+            </Button>
+          </div>
         </div>
       )}
     </Modal>

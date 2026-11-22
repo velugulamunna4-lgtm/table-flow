@@ -7,7 +7,7 @@ import { OrderReview } from '@/types';
 import { useLanguageStore } from '@/lib/store';
 import { translations } from '@/lib/i18n';
 import { formatTimeElapsed } from '@/lib/utils';
-import { Star, MessageSquare, Heart, Sparkles, User } from 'lucide-react';
+import { Star, User, Sparkles, MessageSquare, Utensils, Heart, UserCheck } from 'lucide-react';
 
 export const AdminReviewsFeed: React.FC = () => {
   const { language } = useLanguageStore();
@@ -21,63 +21,61 @@ export const AdminReviewsFeed: React.FC = () => {
     return () => unsub();
   }, []);
 
-  const avgOverall = reviews.length
-    ? (reviews.reduce((acc, r) => acc + r.overallRating, 0) / reviews.length).toFixed(1)
-    : '5.0';
+  const calculateAverage = (field: keyof OrderReview) => {
+    if (reviews.length === 0) return '5.0';
+    const sum = reviews.reduce((acc, r) => acc + (typeof r[field] === 'number' ? (r[field] as number) : 0), 0);
+    return (sum / reviews.length).toFixed(1);
+  };
 
-  const avgFood = reviews.length
-    ? (reviews.reduce((acc, r) => acc + r.foodRating, 0) / reviews.length).toFixed(1)
-    : '5.0';
-
-  const avgAmbiance = reviews.length
-    ? (reviews.reduce((acc, r) => acc + r.ambianceRating, 0) / reviews.length).toFixed(1)
-    : '5.0';
-
-  const avgService = reviews.length
-    ? (reviews.reduce((acc, r) => acc + r.serviceRating, 0) / reviews.length).toFixed(1)
-    : '5.0';
+  const avgOverall = calculateAverage('overallRating');
+  const avgFood = calculateAverage('foodRating');
+  const avgAmbiance = calculateAverage('ambianceRating');
+  const avgService = calculateAverage('serviceRating');
 
   return (
     <div className="space-y-6">
-      {/* Aggregate Score Header */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <Card padding="md" className="space-y-1 text-center bg-gradient-to-br from-sun/20 to-surface">
-          <span className="text-xs font-bold text-content-secondary uppercase tracking-wider">
+      {/* Top 4 Factor Summary Scorecards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <Card padding="md" className="space-y-1 text-center bg-gradient-to-br from-surface to-canvas">
+          <span className="text-[11px] sm:text-xs font-bold text-content-secondary uppercase tracking-wider">
             Overall Rating
           </span>
-          <div className="font-heading font-black text-3xl sm:text-4xl text-content-primary flex items-center justify-center gap-1.5">
-            <Star className="w-6 h-6 text-[#FFC233] fill-[#FFC233]" />
+          <div className="font-heading font-black text-2xl sm:text-3xl text-content-primary flex items-center justify-center gap-1.5">
+            <Star className="w-5 h-5 text-sun fill-sun" />
             <span>{avgOverall}</span>
           </div>
           <span className="text-[11px] text-content-muted">Based on {reviews.length} reviews</span>
         </Card>
 
         <Card padding="md" className="space-y-1 text-center">
-          <span className="text-xs font-bold text-content-secondary uppercase tracking-wider">
+          <span className="text-[11px] sm:text-xs font-bold text-content-secondary uppercase tracking-wider">
             Food & Taste
           </span>
-          <div className="font-heading font-black text-3xl text-primary flex items-center justify-center gap-1.5">
-            <span>🍛 {avgFood}</span>
+          <div className="font-heading font-black text-2xl sm:text-3xl text-primary flex items-center justify-center gap-1.5">
+            <Utensils className="w-5 h-5 text-primary" />
+            <span>{avgFood}</span>
           </div>
           <span className="text-[11px] text-content-muted">Flavors & Portions</span>
         </Card>
 
         <Card padding="md" className="space-y-1 text-center">
-          <span className="text-xs font-bold text-content-secondary uppercase tracking-wider">
+          <span className="text-[11px] sm:text-xs font-bold text-content-secondary uppercase tracking-wider">
             Ambiance
           </span>
-          <div className="font-heading font-black text-3xl text-status-success flex items-center justify-center gap-1.5">
-            <span>✨ {avgAmbiance}</span>
+          <div className="font-heading font-black text-2xl sm:text-3xl text-status-success flex items-center justify-center gap-1.5">
+            <Sparkles className="w-5 h-5 text-status-success" />
+            <span>{avgAmbiance}</span>
           </div>
-          <span className="text-[11px] text-content-muted">Vibe & Decor</span>
+          <span className="text-[11px] text-content-muted">Decor & Lighting</span>
         </Card>
 
         <Card padding="md" className="space-y-1 text-center">
-          <span className="text-xs font-bold text-content-secondary uppercase tracking-wider">
+          <span className="text-[11px] sm:text-xs font-bold text-content-secondary uppercase tracking-wider">
             Service
           </span>
-          <div className="font-heading font-black text-3xl text-[#8B6CF6] flex items-center justify-center gap-1.5">
-            <span>👨‍🍳 {avgService}</span>
+          <div className="font-heading font-black text-2xl sm:text-3xl text-info flex items-center justify-center gap-1.5">
+            <UserCheck className="w-5 h-5 text-info" />
+            <span>{avgService}</span>
           </div>
           <span className="text-[11px] text-content-muted">Captain Hospitality</span>
         </Card>
@@ -94,7 +92,7 @@ export const AdminReviewsFeed: React.FC = () => {
             <Card key={rev.id} padding="md" className="space-y-3">
               <div className="flex items-start justify-between gap-2 border-b border-borderSubtle pb-2.5">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">
+                  <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm shrink-0">
                     <User className="w-4 h-4" />
                   </div>
                   <div>
@@ -108,8 +106,8 @@ export const AdminReviewsFeed: React.FC = () => {
                 </div>
 
                 {/* Star pill */}
-                <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-sun/20 text-content-primary font-heading font-black text-xs">
-                  <Star className="w-3.5 h-3.5 fill-[#FFC233] text-[#FFC233]" />
+                <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-sun/20 text-content-primary font-heading font-black text-xs shrink-0">
+                  <Star className="w-3.5 h-3.5 fill-sun text-sun" />
                   <span>{rev.overallRating}.0</span>
                 </div>
               </div>

@@ -31,21 +31,18 @@ export const OnboardingGuideModal: React.FC = () => {
       icon: <Utensils className="w-10 h-10 text-primary" />,
       title: t.step1Title,
       desc: t.step1Desc,
-      emoji: '🍛',
       badge: 'Step 1 of 3',
     },
     {
       icon: <Smartphone className="w-10 h-10 text-sun" />,
       title: t.step2Title,
       desc: t.step2Desc,
-      emoji: '📲',
       badge: 'Step 2 of 3',
     },
     {
       icon: <ChefHat className="w-10 h-10 text-status-success" />,
       title: t.step3Title,
       desc: t.step3Desc,
-      emoji: '🔥',
       badge: 'Step 3 of 3',
     },
   ];
@@ -74,8 +71,8 @@ export const OnboardingGuideModal: React.FC = () => {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <div className="w-24 h-24 mx-auto rounded-3xl bg-canvas border border-borderSubtle flex items-center justify-center text-5xl shadow-soft">
-              {steps[step].emoji}
+            <div className="w-20 h-20 mx-auto rounded-3xl bg-canvas border border-borderSubtle flex items-center justify-center shadow-soft">
+              {steps[step].icon}
             </div>
             <div>
               <h3 className="font-heading font-extrabold text-2xl text-content-primary mb-2">
@@ -108,7 +105,7 @@ export const OnboardingGuideModal: React.FC = () => {
             <Button
               variant="primary"
               size="lg"
-              className="w-full"
+              className="w-full font-bold shadow-accent"
               rightIcon={<ArrowRight className="w-5 h-5" />}
               onClick={() => setStep((s) => s + 1)}
             >
@@ -118,7 +115,7 @@ export const OnboardingGuideModal: React.FC = () => {
             <Button
               variant="sun"
               size="lg"
-              className="w-full font-bold"
+              className="w-full font-bold shadow-sun"
               onClick={handleFinish}
             >
               {t.getStarted}
