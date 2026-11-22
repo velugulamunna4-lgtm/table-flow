@@ -1,0 +1,545 @@
+[
+  {
+    "id": "item-sp-1",
+    "name": "Nawabi Murgh Malai Tikka",
+    "nameTranslations": {
+      "te": "నవాబీ ముర్గ్ మలై టిక్కా",
+      "ta": "நவாபி முர்க் மலை டிக்கா",
+      "hi": "नवाबी मुर्ग मलाई टिक्का"
+    },
+    "description": "Tender chicken fillets steeped in rich cashew cream, green cardamom, and smoked over charcoal embers.",
+    "price": 460,
+    "category": "specials",
+    "vegType": "non-veg",
+    "spiceLevel": 1,
+    "isSpecial": true,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍗",
+    "preparationTimeMinutes": 18,
+    "calories": 520,
+    "tags": ["Chef Special", "Tandoor", "Must Try"]
+  },
+  {
+    "id": "item-sp-2",
+    "name": "Royal Nizami Paneer Pasanda",
+    "nameTranslations": {
+      "te": "రాయల్ నిజామీ పన్నీర్ పసందా",
+      "ta": "ராயல் நிஸாமி பன்னீர் பசந்தா",
+      "hi": "रॉयल निज़ामी पनीर पसंदा"
+    },
+    "description": "Stuffed cottage cheese triangles layered with dry fruits and simmered in a velvety saffron gravy.",
+    "price": 420,
+    "category": "specials",
+    "vegType": "veg",
+    "spiceLevel": 1,
+    "isSpecial": true,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🧀",
+    "preparationTimeMinutes": 20,
+    "calories": 480,
+    "tags": ["Chef Special", "Rich & Creamy"]
+  },
+  {
+    "id": "item-sp-3",
+    "name": "Guntur Gongura Mutton Fry",
+    "nameTranslations": {
+      "te": "గుంటూరు గోంగూర మటన్ ఫ్రై",
+      "ta": "குண்டூர் கோங்குரா மட்டன் ஃப்ரை",
+      "hi": "गुंटूर गोंगुरा मटन फ्राई"
+    },
+    "description": "Slow-cooked Andhra mutton tossed with tangy sorrel leaves and fiery crushed Guntur red chilies.",
+    "price": 540,
+    "category": "specials",
+    "vegType": "non-veg",
+    "spiceLevel": 3,
+    "isSpecial": true,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍖",
+    "preparationTimeMinutes": 22,
+    "calories": 610,
+    "tags": ["Chef Special", "Spicy", "Andhra Style"]
+  },
+  {
+    "id": "item-sp-4",
+    "name": "Avadhi Dum Kebab Platter",
+    "nameTranslations": {
+      "te": "అవధి దమ్ కబాబ్ పళ్ళెం",
+      "ta": "அவதி தம் கபாப் தட்டு",
+      "hi": "अवधी दम कबाब थाली"
+    },
+    "description": "A grand assortment of Kakori kebabs, Galouti melts, and Zafrani paneer with smoked mint chutney.",
+    "price": 680,
+    "category": "specials",
+    "vegType": "non-veg",
+    "spiceLevel": 2,
+    "isSpecial": true,
+    "isAvailable": false,
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍢",
+    "preparationTimeMinutes": 25,
+    "calories": 740,
+    "tags": ["Chef Special", "Platter", "Sold Out Demo"]
+  },
+  {
+    "id": "item-st-1",
+    "name": "Crispy Paneer Kurkure",
+    "nameTranslations": {
+      "te": "కుర్కురే పన్నీర్ వేపుడు",
+      "ta": "மொருமொரு பன்னீர் குர்குரே",
+      "hi": "कुरकुरा पनीर बाइट्स"
+    },
+    "description": "Golden spiced paneer cubes encased in crunchy papad crust, dusted with chatpata masala.",
+    "price": 320,
+    "category": "starters",
+    "vegType": "veg",
+    "spiceLevel": 1,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🧀",
+    "preparationTimeMinutes": 12,
+    "calories": 360
+  },
+  {
+    "id": "item-st-2",
+    "name": "Hyderabadi Chicken 65",
+    "nameTranslations": {
+      "te": "హైదరాబాదీ చికెన్ 65",
+      "ta": "ஹைதராபாதி சிக்கன் 65",
+      "hi": "हैदराबादी चिकन 65"
+    },
+    "description": "Crisp marinated chicken bites tossed with fresh curry leaves, crushed garlic, and green chilies.",
+    "price": 360,
+    "category": "starters",
+    "vegType": "non-veg",
+    "spiceLevel": 2,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍗",
+    "preparationTimeMinutes": 14,
+    "calories": 420
+  },
+  {
+    "id": "item-st-3",
+    "name": "Dahi Ke Kebab",
+    "nameTranslations": {
+      "te": "దహీ కే కబాబ్",
+      "ta": "தயிர் கபாப்",
+      "hi": "दही के कबाब"
+    },
+    "description": "Melt-in-mouth hung yogurt patties infused with roasted cumin, fresh coriander, and pomegranate seeds.",
+    "price": 290,
+    "category": "starters",
+    "vegType": "veg",
+    "spiceLevel": 0,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🥟",
+    "preparationTimeMinutes": 15,
+    "calories": 310
+  },
+  {
+    "id": "item-st-4",
+    "name": "Tandoori Malai Broccoli",
+    "nameTranslations": {
+      "te": "తందూరీ మలై బ్రకోలీ",
+      "ta": "தந்தூரி மலை ப்ரோக்கோலி",
+      "hi": "तंदूरी मलाई ब्रोकोली"
+    },
+    "description": "Char-grilled broccoli florets marinated in processed cheese, hung curd, and toasted cardamom.",
+    "price": 310,
+    "category": "starters",
+    "vegType": "veg",
+    "spiceLevel": 1,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🥦",
+    "preparationTimeMinutes": 14,
+    "calories": 260
+  },
+  {
+    "id": "item-st-5",
+    "name": "Amritsari Machhi Fry",
+    "nameTranslations": {
+      "te": "అమృత్‌సరి చేప వేపుడు",
+      "ta": "அமிர்தசரஸ் மீன் வறுவல்",
+      "hi": "अमृतसरी मच्छी फ्राई"
+    },
+    "description": "Carom-seed scented crispy river sole fillets tossed in gram flour batter and fried golden.",
+    "price": 440,
+    "category": "starters",
+    "vegType": "non-veg",
+    "spiceLevel": 2,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🐟",
+    "preparationTimeMinutes": 16,
+    "calories": 390
+  },
+  {
+    "id": "item-st-6",
+    "name": "Guntur Mirchi Bajji",
+    "nameTranslations": {
+      "te": "గుంటూరు మిర్చి బజ్జీ",
+      "ta": "குண்டூர் மிளகாய் பஜ்ஜி",
+      "hi": "गुंटूर मिर्ची भज्जी"
+    },
+    "description": "Spicy green peppers stuffed with ajwain tamarind crumble, dipped in batter and stuffed with onions.",
+    "price": 220,
+    "category": "starters",
+    "vegType": "veg",
+    "spiceLevel": 3,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🌶️",
+    "preparationTimeMinutes": 10,
+    "calories": 240
+  },
+  {
+    "id": "item-mn-1",
+    "name": "Old Delhi Butter Chicken",
+    "nameTranslations": {
+      "te": "ఓల్డ్ ఢిల్లీ బటర్ చికెన్",
+      "ta": "பட்டர் சிக்கன்",
+      "hi": "पुरानी दिल्ली बटर चिकन"
+    },
+    "description": "Charcoal grilled chicken simmered in a luscious satin tomato sauce enriched with butter and fenugreek.",
+    "price": 440,
+    "category": "mains",
+    "vegType": "non-veg",
+    "spiceLevel": 1,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🥘",
+    "preparationTimeMinutes": 18,
+    "calories": 580
+  },
+  {
+    "id": "item-mn-2",
+    "name": "Slow-Simmered Dal Makhani",
+    "nameTranslations": {
+      "te": "దాల్ మఖనీ",
+      "ta": "தால் மக்கானி",
+      "hi": "धीमी आंच वाली दाल मखनी"
+    },
+    "description": "Whole black lentils slow-cooked over wood embers for 24 hours with churned white butter and cream.",
+    "price": 340,
+    "category": "mains",
+    "vegType": "veg",
+    "spiceLevel": 0,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍲",
+    "preparationTimeMinutes": 12,
+    "calories": 420
+  },
+  {
+    "id": "item-mn-3",
+    "name": "Paneer Lababdar",
+    "nameTranslations": {
+      "te": "పన్నీర్ లబబ్దార్",
+      "ta": "பன்னீர் லபாப்தார்",
+      "hi": "पनीर लबाबदार"
+    },
+    "description": "Cottage cheese chunks cooked in a chunky onion-tomato gravy with grated paneer and freshly ground spices.",
+    "price": 380,
+    "category": "mains",
+    "vegType": "veg",
+    "spiceLevel": 1,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🧀",
+    "preparationTimeMinutes": 16,
+    "calories": 450
+  },
+  {
+    "id": "item-mn-4",
+    "name": "Kadai Gosht",
+    "nameTranslations": {
+      "te": "కడాయి మటన్",
+      "ta": "கடாய் மட்டன்",
+      "hi": "कड़ाही गोश्त"
+    },
+    "description": "Tender lamb cuts wok-tossed with crushed coriander seeds, Kashmiri chili, bell peppers, and onion petals.",
+    "price": 520,
+    "category": "mains",
+    "vegType": "non-veg",
+    "spiceLevel": 2,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1545247181-516773ca838b?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍖",
+    "preparationTimeMinutes": 20,
+    "calories": 620
+  },
+  {
+    "id": "item-mn-5",
+    "name": "Andhra Chettinad Fish Curry",
+    "nameTranslations": {
+      "te": "చెట్టినాడు చేపల పులుసు",
+      "ta": "செட்டிநாடு மீன் குழம்பு",
+      "hi": "चेट्टिनाड फिश करी"
+    },
+    "description": "Seer fish fillets simmered in roasted coconut paste, peppercorns, shallots, and fresh star anise.",
+    "price": 490,
+    "category": "mains",
+    "vegType": "non-veg",
+    "spiceLevel": 3,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🐟",
+    "preparationTimeMinutes": 20,
+    "calories": 480
+  },
+  {
+    "id": "item-mn-6",
+    "name": "Amritsari Garlic Butter Naan",
+    "nameTranslations": {
+      "te": "వెల్లుల్లి బటర్ నాన్",
+      "ta": "கார்லிக் பட்டர் நான்",
+      "hi": "लहसुन बटर नान"
+    },
+    "description": "Tandoor-baked leavened flatbread brushed with garlic butter and fresh coriander sprigs.",
+    "price": 85,
+    "category": "mains",
+    "vegType": "veg",
+    "spiceLevel": 0,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🫓",
+    "preparationTimeMinutes": 8,
+    "calories": 210
+  },
+  {
+    "id": "item-by-1",
+    "name": "Hyderabadi Chicken Dum Biryani",
+    "nameTranslations": {
+      "te": "హైదరాబాదీ చికెన్ దమ్ బిర్యానీ",
+      "ta": "ஹைதராபாதி சிக்கன் தம் பிரியாணி",
+      "hi": "हैदराबादी चिकन दम बिरयानी"
+    },
+    "description": "Fragrant long-grain aged basmati rice cooked on sealed dum with spiced marinated chicken and saffron ghee.",
+    "price": 390,
+    "category": "biryani",
+    "vegType": "non-veg",
+    "spiceLevel": 2,
+    "isSpecial": true,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍚",
+    "preparationTimeMinutes": 15,
+    "calories": 720,
+    "tags": ["Bestseller", "Royal Dum"]
+  },
+  {
+    "id": "item-by-2",
+    "name": "Kacche Gosht Ki Mutton Biryani",
+    "nameTranslations": {
+      "te": "కచ్చే గోష్ట్ మటన్ బిర్యానీ",
+      "ta": "கச்சே கோஷ்ட் மட்டன் பிரியாணி",
+      "hi": "कच्चे गोश्त की मटन बिरयानी"
+    },
+    "description": "Succulent lamb pieces marinated overnight, layered with saffron basmati and slow cooked on charcoal embers.",
+    "price": 490,
+    "category": "biryani",
+    "vegType": "non-veg",
+    "spiceLevel": 2,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍚",
+    "preparationTimeMinutes": 18,
+    "calories": 790,
+    "tags": ["Chef Signature"]
+  },
+  {
+    "id": "item-by-3",
+    "name": "Nawabi Subz Paneer Biryani",
+    "nameTranslations": {
+      "te": "నవాబీ పన్నీర్ వెజ్ బిర్యానీ",
+      "ta": "பன்னீர் காய்கறி பிரியாணி",
+      "hi": "नवाबी पनीर वेज बिरयानी"
+    },
+    "description": "Carrot, beans, cauliflower and marinated tandoori paneer layered with mint, brown onions, and fragrant rice.",
+    "price": 320,
+    "category": "biryani",
+    "vegType": "veg",
+    "spiceLevel": 1,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍚",
+    "preparationTimeMinutes": 14,
+    "calories": 540
+  },
+  {
+    "id": "item-by-4",
+    "name": "Coastal Prawn Dum Biryani",
+    "nameTranslations": {
+      "te": "రొయ్యల దమ్ బిర్యానీ",
+      "ta": "இறால் தம் பிரியாணி",
+      "hi": "झींगा दम बिरयानी"
+    },
+    "description": "Plump bay prawns sautéed with coastal spices, sealed with basmati rice, mint, and pure desi ghee.",
+    "price": 520,
+    "category": "biryani",
+    "vegType": "non-veg",
+    "spiceLevel": 2,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍤",
+    "preparationTimeMinutes": 16,
+    "calories": 640
+  },
+  {
+    "id": "item-ds-1",
+    "name": "Saffron Angoori Rasmalai",
+    "nameTranslations": {
+      "te": "కుంకుమపువ్వు రసమలై",
+      "ta": "குங்குமப்பூ ரசமலாய்",
+      "hi": "केसर अंगूरी रसमलाई"
+    },
+    "description": "Feather-soft cottage cheese dumplings soaked in saffron infused cardamom clotted milk, topped with pistachios.",
+    "price": 180,
+    "category": "desserts",
+    "vegType": "veg",
+    "spiceLevel": 0,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍨",
+    "preparationTimeMinutes": 6,
+    "calories": 280
+  },
+  {
+    "id": "item-ds-2",
+    "name": "Hot Gulab Jamun with Malai Rabri",
+    "nameTranslations": {
+      "te": "గులాబ్ జామున్ రబ్రీ తో",
+      "ta": "குலாப் ஜாமுன் ரப்ரி",
+      "hi": "गरम गुलाब जामुन मलाई रबड़ी"
+    },
+    "description": "Warm golden khoya dumplings soaked in rose water syrup, served over chilled slow-reduced thickened rabri.",
+    "price": 190,
+    "category": "desserts",
+    "vegType": "veg",
+    "spiceLevel": 0,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍯",
+    "preparationTimeMinutes": 5,
+    "calories": 390
+  },
+  {
+    "id": "item-ds-3",
+    "name": "Royal Shahi Tukda",
+    "nameTranslations": {
+      "te": "రాయల్ షాహీ తుక్డా",
+      "ta": "ராயல் ஷாஹி துக்டா",
+      "hi": "शाही टुकड़ा"
+    },
+    "description": "Ghee-crisped brioche toast dipped in saffron syrup, smothered with thickened rabri and silver vark.",
+    "price": 210,
+    "category": "desserts",
+    "vegType": "veg",
+    "spiceLevel": 0,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍞",
+    "preparationTimeMinutes": 8,
+    "calories": 440
+  },
+  {
+    "id": "item-ds-4",
+    "name": "Alphonso Mango Kulfi Pop",
+    "nameTranslations": {
+      "te": "మామిడి కుల్ఫీ",
+      "ta": "மாம்பழ குல்ஃபி",
+      "hi": "आम कुल्फी स्टिक"
+    },
+    "description": "Traditional pot-frozen clotted milk pop infused with Ratnagiri Alphonso mango pulp and cardamom.",
+    "price": 140,
+    "category": "desserts",
+    "vegType": "veg",
+    "spiceLevel": 0,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍦",
+    "preparationTimeMinutes": 4,
+    "calories": 210
+  },
+  {
+    "id": "item-dr-1",
+    "name": "Thick Alphonso Mango Lassi",
+    "nameTranslations": {
+      "te": "మామిడి లస్సీ",
+      "ta": "மாம்பழ லஸ்ஸி",
+      "hi": "गाढ़ा आम की लस्सी"
+    },
+    "description": "Creamy churned farm yogurt blended with sweet Alphonso pulp, green cardamom, and crushed pistachios.",
+    "price": 150,
+    "category": "drinks",
+    "vegType": "veg",
+    "spiceLevel": 0,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1546173159-315724a31696?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🥭",
+    "preparationTimeMinutes": 5,
+    "calories": 290
+  },
+  {
+    "id": "item-dr-2",
+    "name": "Spiced Tadka Buttermilk (Chaas)",
+    "nameTranslations": {
+      "te": "పోపు మజ్జిగ",
+      "ta": "மசாலா மோர்",
+      "hi": "तड़का छाछ"
+    },
+    "description": "Refreshing chilled buttermilk tempered with roasted cumin, mustard seeds, ginger, and fresh mint leaves.",
+    "price": 90,
+    "category": "drinks",
+    "vegType": "veg",
+    "spiceLevel": 1,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🥛",
+    "preparationTimeMinutes": 4,
+    "calories": 95
+  },
+  {
+    "id": "item-dr-3",
+    "name": "Masala Shikanji Soda",
+    "nameTranslations": {
+      "te": "మసాలా లెమన్ సోడా",
+      "ta": "மசாலா லெமன் சோடா",
+      "hi": "मसाला शिकंजी सोडा"
+    },
+    "description": "Freshly squeezed Meyer lemons, rock salt, roasted cumin, and mint topped with sparkling soda water.",
+    "price": 110,
+    "category": "drinks",
+    "vegType": "veg",
+    "spiceLevel": 0,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍋",
+    "preparationTimeMinutes": 4,
+    "calories": 75
+  },
+  {
+    "id": "item-dr-4",
+    "name": "Dum Irani Chai",
+    "nameTranslations": {
+      "te": "దమ్ ఇరానీ ఛాయ్",
+      "ta": "ஈரானி டீ",
+      "hi": "दम ईरानी चाय"
+    },
+    "description": "Authentic Hyderabadi slow-steamed tea decoction poured over rich evaporated milk.",
+    "price": 60,
+    "category": "drinks",
+    "vegType": "veg",
+    "spiceLevel": 0,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "☕",
+    "preparationTimeMinutes": 5,
+    "calories": 140
+  }
+]

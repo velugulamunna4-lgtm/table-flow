@@ -1,0 +1,106 @@
+[
+  {
+    "id": "TF-101",
+    "orderNumber": "#TF-101",
+    "tableId": "1",
+    "tableNumber": 1,
+    "items": [
+      {
+        "menuItemId": "item-mn-1",
+        "name": "Old Delhi Butter Chicken",
+        "price": 440,
+        "quantity": 1,
+        "vegType": "non-veg",
+        "notes": "Extra gravy if possible"
+      },
+      {
+        "menuItemId": "item-mn-6",
+        "name": "Amritsari Garlic Butter Naan",
+        "price": 85,
+        "quantity": 2,
+        "vegType": "veg"
+      }
+    ],
+    "subtotal": 610,
+    "tax": 30.5,
+    "serviceCharge": 30.5,
+    "total": 671,
+    "status": "cooking",
+    "createdAt": "2026-11-22T09:18:00.000Z",
+    "updatedAt": "2026-11-22T09:20:00.000Z",
+    "estimatedMinutes": 10,
+    "customerNotes": "Please serve naan piping hot",
+    "paymentStatus": "unpaid"
+  },
+  {
+    "id": "TF-102",
+    "orderNumber": "#TF-102",
+    "tableId": "4",
+    "tableNumber": 4,
+    "items": [
+      {
+        "menuItemId": "item-st-2",
+        "name": "Hyderabadi Chicken 65",
+        "price": 360,
+        "quantity": 1,
+        "vegType": "non-veg",
+        "notes": "Make it extra crisp"
+      },
+      {
+        "menuItemId": "item-by-1",
+        "name": "Hyderabadi Chicken Dum Biryani",
+        "price": 390,
+        "quantity": 2,
+        "vegType": "non-veg"
+      },
+      {
+        "menuItemId": "item-dr-1",
+        "name": "Thick Alphonso Mango Lassi",
+        "price": 150,
+        "quantity": 2,
+        "vegType": "veg"
+      }
+    ],
+    "subtotal": 1440,
+    "tax": 72,
+    "serviceCharge": 72,
+    "total": 1584,
+    "status": "sent",
+    "createdAt": "2026-11-22T09:25:00.000Z",
+    "updatedAt": "2026-11-22T09:25:00.000Z",
+    "estimatedMinutes": 18,
+    "customerNotes": "Serve lassi along with starters",
+    "paymentStatus": "unpaid"
+  },
+  {
+    "id": "TF-103",
+    "orderNumber": "#TF-103",
+    "tableId": "6",
+    "tableNumber": 6,
+    "items": [
+      {
+        "menuItemId": "item-sp-1",
+        "name": "Nawabi Murgh Malai Tikka",
+        "price": 460,
+        "quantity": 1,
+        "vegType": "non-veg"
+      },
+      {
+        "menuItemId": "item-mn-2",
+        "name": "Slow-Simmered Dal Makhani",
+        "price": 340,
+        "quantity": 1,
+        "vegType": "veg"
+      }
+    ],
+    "subtotal": 800,
+    "tax": 40,
+    "serviceCharge": 40,
+    "total": 880,
+    "status": "ready",
+    "createdAt": "2026-11-22T09:05:00.000Z",
+    "updatedAt": "2026-11-22T09:21:00.000Z",
+    "estimatedMinutes": 0,
+    "paymentStatus": "unpaid"
+  }
+]

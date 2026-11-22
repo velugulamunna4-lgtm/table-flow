@@ -1,0 +1,14 @@
+[
+  { "id": "1", "number": 1, "capacity": 2, "status": "occupied", "currentOrderId": "TF-101" },
+  { "id": "2", "number": 2, "capacity": 4, "status": "free" },
+  { "id": "3", "number": 3, "capacity": 4, "status": "needs_help", "currentOrderId": "TF-102", "activeHelpRequest": { "type": "water", "requestedAt": "2026-11-22T09:15:00.000Z" } },
+  { "id": "4", "number": 4, "capacity": 6, "status": "occupied", "currentOrderId": "TF-103" },
+  { "id": "5", "number": 5, "capacity": 2, "status": "free" },
+  { "id": "6", "number": 6, "capacity": 8, "status": "bill_pending", "currentOrderId": "TF-104" },
+  { "id": "7", "number": 7, "capacity": 4, "status": "free" },
+  { "id": "8", "number": 8, "capacity": 4, "status": "free" },
+  { "id": "9", "number": 9, "capacity": 6, "status": "occupied" },
+  { "id": "10", "number": 10, "capacity": 2, "status": "free" },
+  { "id": "11", "number": 11, "capacity": 4, "status": "free" },
+  { "id": "12", "number": 12, "capacity": 8, "status": "free" }
+]
