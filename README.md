@@ -1,5 +1,7 @@
 # Table Flow · Modern Digital Restaurant Operating System
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvelugulamunna4-lgtm%2Ftable-flow)
+
 > **A high-converting, demo-ready frontend prototype for restaurant digital ordering, live kitchen display sync, waiter management, and bill splitting.**
 
 Built with Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion, Zustand, and BroadcastChannel real-time sync.
