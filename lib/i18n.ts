@@ -36,6 +36,7 @@ export interface TranslationDictionary {
   playGameSub: string;
   playNow: string;
   viewBill: string;
+  orderHistory: string;
   orderStages: {
     sent: { title: string; desc: string };
     accepted: { title: string; desc: string };
@@ -52,6 +53,79 @@ export interface TranslationDictionary {
     payCounter: string;
     paymentSuccess: string;
     thankYou: string;
+  };
+  reviews: {
+    title: string;
+    subtitle: string;
+    overallRating: string;
+    foodQuality: string;
+    ambiance: string;
+    serviceHospitality: string;
+    selectTags: string;
+    commentPlaceholder: string;
+    submitReview: string;
+    reviewSuccess: string;
+    recentFeedback: string;
+  };
+  water: {
+    title: string;
+    requestWater: string;
+    normal: string;
+    chilled: string;
+    warm: string;
+    mineral: string;
+    dispatchedToast: string;
+    waterTankTitle: string;
+    tankLevel: string;
+    roHealth: string;
+    refillTank: string;
+  };
+  security: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    enterPin: string;
+    pinPlaceholder: string;
+    joinTable: string;
+    lockedDesc: string;
+    unlockedSuccess: string;
+    securityDashboard: string;
+    activeSessions: string;
+    lockTable: string;
+    resetSession: string;
+  };
+  stock: {
+    title: string;
+    subtitle: string;
+    inStock: string;
+    lowStock: string;
+    critical: string;
+    restockBtn: string;
+    costPerUnit: string;
+    lastRestocked: string;
+  };
+  production: {
+    title: string;
+    batchSummary: string;
+    liveStations: string;
+    allStations: string;
+    tandoor: string;
+    wok: string;
+    biryani: string;
+    breads: string;
+    bar: string;
+  };
+  admin: {
+    totalRevenue: string;
+    itemsSold: string;
+    grossProfit: string;
+    profitMargin: string;
+    avgRating: string;
+    overviewTab: string;
+    productionTab: string;
+    stockTab: string;
+    securityTab: string;
+    reviewsTab: string;
   };
   onboarding: {
     step1Title: string;
@@ -102,6 +176,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     playGameSub: 'Win up to 50 Spice Points and unlock sweet treats.',
     playNow: 'Play Mini-Game',
     viewBill: 'View Bill & Pay',
+    orderHistory: 'Order History',
     orderStages: {
       sent: {
         title: 'Sent to Kitchen',
@@ -133,6 +208,79 @@ export const translations: Record<Language, TranslationDictionary> = {
       payCounter: 'Pay at Counter',
       paymentSuccess: 'Payment Successful!',
       thankYou: 'Thank you for dining with Table Flow!',
+    },
+    reviews: {
+      title: 'Rate Your Dining Experience',
+      subtitle: 'Help us celebrate what was delicious and elevate your next feast.',
+      overallRating: 'Overall Dining Experience',
+      foodQuality: 'Food Taste & Flavors',
+      ambiance: 'Ambiance & Atmosphere',
+      serviceHospitality: 'Service & Hospitality',
+      selectTags: 'Highlight what you loved',
+      commentPlaceholder: 'Tell the head chef what made your meal memorable...',
+      submitReview: 'Submit Review & Feedback',
+      reviewSuccess: 'Thank you! Your feedback reached our team.',
+      recentFeedback: 'Guest Reviews & Ratings',
+    },
+    water: {
+      title: 'Table Water Request',
+      requestWater: 'Request Water',
+      normal: 'Room Temp Water',
+      chilled: 'Chilled Water',
+      warm: 'Warm Water',
+      mineral: 'Packaged Mineral Water',
+      dispatchedToast: 'Water request dispatched to your table captain!',
+      waterTankTitle: 'Commercial Water Tank & RO Plant',
+      tankLevel: 'Water Tank Level',
+      roHealth: 'RO Filtration Health',
+      refillTank: 'Refill Water Tank',
+    },
+    security: {
+      badge: 'Active ODG Session',
+      title: 'Table Session Protected',
+      subtitle: 'This table is currently occupied by an active dining party.',
+      enterPin: 'Enter Table Passcode or Scan PIN',
+      pinPlaceholder: '4-digit Table PIN (e.g. 4107)',
+      joinTable: 'Verify & Join Table Session',
+      lockedDesc: 'Unauthorized devices cannot modify the bill or place phantom orders.',
+      unlockedSuccess: 'Session Verified! Welcome to the table feast.',
+      securityDashboard: 'QR & ODG Table Security',
+      activeSessions: 'Active Floor Sessions',
+      lockTable: 'Lock Table',
+      resetSession: 'Reset Session',
+    },
+    stock: {
+      title: 'Inventory & Stock Maintenance',
+      subtitle: 'Real-time commodity reserves, utility tracking & reorder alerts',
+      inStock: 'Optimal Stock',
+      lowStock: 'Low Stock Alert',
+      critical: 'Critical Shortage',
+      restockBtn: 'Quick Restock',
+      costPerUnit: 'Cost per Unit',
+      lastRestocked: 'Last Restocked',
+    },
+    production: {
+      title: 'Kitchen Production & Station Routing',
+      batchSummary: 'Live Batch Production Summary',
+      liveStations: 'Active Kitchen Stations',
+      allStations: 'All Stations',
+      tandoor: 'Tandoor & Charcoal',
+      wok: 'Curry & Wok',
+      biryani: 'Dum Biryani Handi',
+      breads: 'Tandoor Breads',
+      bar: 'Beverages & Desserts',
+    },
+    admin: {
+      totalRevenue: 'Total Revenue Spent',
+      itemsSold: 'Dishes Sold Today',
+      grossProfit: 'Estimated Gross Profit',
+      profitMargin: 'Gross Profit Margin',
+      avgRating: 'Average Guest Rating',
+      overviewTab: 'Overview & Sales',
+      productionTab: 'Kitchen Production',
+      stockTab: 'Stock & Water Tank',
+      securityTab: 'Table Security (ODG)',
+      reviewsTab: 'Guest Reviews',
     },
     onboarding: {
       step1Title: 'Pick Your Food',
@@ -181,6 +329,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     playGameSub: 'పాయింట్లు గెలుచుకోండి మరియు బహుమతులు పొందండి.',
     playNow: 'ఆట ఆడండి',
     viewBill: 'బిల్లు చూడండి & చెల్లించండి',
+    orderHistory: 'ఆర్డర్ చరిత్ర',
     orderStages: {
       sent: {
         title: 'వంటగదికి పంపబడింది',
@@ -212,6 +361,79 @@ export const translations: Record<Language, TranslationDictionary> = {
       payCounter: 'కౌంటర్ వద్ద చెల్లించండి',
       paymentSuccess: 'చెల్లింపు విజయవంతమైంది!',
       thankYou: 'టేబుల్ ఫ్లో వద్ద భోజనం చేసినందుకు ధన్యవాదాలు!',
+    },
+    reviews: {
+      title: 'భోజన అనుభవాన్ని సమీక్షించండి',
+      subtitle: 'రుచులు మరియు సేవ ఎలా ఉన్నాయో మీ విలువైన అభిప్రాయం తెలియజేయండి.',
+      overallRating: 'మొత్తం భోజన అనుభవం',
+      foodQuality: 'ఆహార రుచి & నాణ్యత',
+      ambiance: 'వాతావరణం & పరిశుభ్రత',
+      serviceHospitality: 'సేవ & ఆతిథ్యం',
+      selectTags: 'మీకు నచ్చిన అంశాలు',
+      commentPlaceholder: 'చెఫ్‌కు మీ అభిప్రాయాన్ని చెప్పండి...',
+      submitReview: 'సమీక్షను సమర్పించండి',
+      reviewSuccess: 'ధన్యవాదాలు! మీ సమీక్ష నమోదు చేయబడింది.',
+      recentFeedback: 'అతిథుల సమీక్షలు & రేటింగ్‌లు',
+    },
+    water: {
+      title: 'నీటి అభ్యర్థన',
+      requestWater: 'నీరు కావాలి',
+      normal: 'సాధారణ నీరు',
+      chilled: 'చల్లని నీరు',
+      warm: 'గోరువెచ్చని నీరు',
+      mineral: 'ప్యాకేజ్డ్ మినరల్ వాటర్',
+      dispatchedToast: 'మీ టేబుల్‌కు నీటి అభ్యర్థన పంపబడింది!',
+      waterTankTitle: 'రెస్టారెంట్ వాటర్ ట్యాంక్ & ఆర్వో ప్లాంట్',
+      tankLevel: 'వాటర్ ట్యాంక్ స్థాయి',
+      roHealth: 'ఆర్వో ఫిల్టర్ నాణ్యత',
+      refillTank: 'ట్యాంక్ రీఫిల్ చేయండి',
+    },
+    security: {
+      badge: 'యాక్టివ్ డైనింగ్ సెషన్',
+      title: 'టేబుల్ సెషన్ రక్షించబడింది',
+      subtitle: 'ఈ టేబుల్ ప్రస్తుతం వేరొక అతిథి సెషన్‌లో ఉంది.',
+      enterPin: 'టేబుల్ సెక్యూరిటీ పిన్ నమోదు చేయండి',
+      pinPlaceholder: '4 అంకెల పిన్ (ఉదా: 4107)',
+      joinTable: 'ధృవీకరించి టేబుల్‌లో చేరండి',
+      lockedDesc: 'అనధికారిక వ్యక్తులు ఆర్డర్ మార్పులు చేయలేరు.',
+      unlockedSuccess: 'ధృవీకరించబడింది! స్వాగతం.',
+      securityDashboard: 'టేబుల్ సెక్యూరిటీ & ODG రక్షణ',
+      activeSessions: 'ప్రస్తుత ఫ్లోర్ సెషన్లు',
+      lockTable: 'టేబుల్ లాక్ చేయండి',
+      resetSession: 'సెషన్ రీసెట్ చేయండి',
+    },
+    stock: {
+      title: 'స్టాక్ & ఇన్వెంటరీ నిర్వహణ',
+      subtitle: 'ముడి పదార్థాల నిల్వలు మరియు వాటర్ ట్యాంక్ పర్యవేక్షణ',
+      inStock: 'తగినంత నిల్వ ఉంది',
+      lowStock: 'తక్కువ నిల్వ హెచ్చరిక',
+      critical: 'తీవ్ర కొరత',
+      restockBtn: 'వెంటనే రీస్టాక్ చేయండి',
+      costPerUnit: 'యూనిట్ ఖర్చు',
+      lastRestocked: 'చివరి రీస్టాక్ తేదీ',
+    },
+    production: {
+      title: 'కిచెన్ ప్రొడక్షన్ & స్టేషన్ రౌటింగ్',
+      batchSummary: 'లైవ్ బ్యాచ్ ప్రొడక్షన్ సారాంశం',
+      liveStations: 'వంటగది స్టేషన్లు',
+      allStations: 'అన్ని స్టేషన్లు',
+      tandoor: 'తందూరీ నిప్పులు',
+      wok: 'కర్రీ & కడాయి',
+      biryani: 'దమ్ బిర్యానీ హాండీ',
+      breads: 'రోటీ & నాన్',
+      bar: 'పానీయాలు & మిఠాయిలు',
+    },
+    admin: {
+      totalRevenue: 'మొత్తం అమ్మకాల ఆదాయం',
+      itemsSold: 'ఈరోజు అమ్ముడైన వంటకాలు',
+      grossProfit: 'అంచనా వేసిన స్థూల లాభం',
+      profitMargin: 'లాభ శాతం',
+      avgRating: 'సగటు అతిథి రేటింగ్',
+      overviewTab: 'అమ్మకాలు & సమీక్ష',
+      productionTab: 'కిచెన్ ప్రొడక్షన్',
+      stockTab: 'స్టాక్ & వాటర్ ట్యాంక్',
+      securityTab: 'సెక్యూరిటీ (ODG)',
+      reviewsTab: 'కస్టమర్ రివ్యూలు',
     },
     onboarding: {
       step1Title: 'రుచులు ఎంచుకోండి',
@@ -260,6 +482,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     playGameSub: 'புள்ளிகள் வென்று இனிப்பு சலுகைகளைப் பெறுங்கள்.',
     playNow: 'விளையாடுங்கள்',
     viewBill: 'பில் பார்க்க & செலுத்த',
+    orderHistory: 'ஆர்டர் வரலாறு',
     orderStages: {
       sent: {
         title: 'சமையலறைக்கு அனுப்பப்பட்டது',
@@ -291,6 +514,79 @@ export const translations: Record<Language, TranslationDictionary> = {
       payCounter: 'கவுண்டரில் செலுத்தவும்',
       paymentSuccess: 'பணம் செலுத்தப்பட்டது!',
       thankYou: 'டேபிள் ஃப்ளோவில் உணவருந்தியதற்கு நன்றி!',
+    },
+    reviews: {
+      title: 'உணவு அனுபவத்தை மதிப்பிடுங்கள்',
+      subtitle: 'சுவை மற்றும் உபசரிப்பு பற்றிய உங்கள் கருத்தைப் பகிருங்கள்.',
+      overallRating: 'ஒட்டுமொத்த உணவு அனுபவம்',
+      foodQuality: 'உணவு சுவை & தரம்',
+      ambiance: 'சுற்றுச்சூழல் & தூய்மை',
+      serviceHospitality: 'சேவை & உபசரிப்பு',
+      selectTags: 'உங்களுக்குப் பிடித்த சிறப்பம்சங்கள்',
+      commentPlaceholder: 'உங்கள் கருத்துக்களைப் பகிருங்கள்...',
+      submitReview: 'மதிப்பாய்வைச் சமர்ப்பிக்கவும்',
+      reviewSuccess: 'நன்றி! உங்கள் கருத்து பதிவு செய்யப்பட்டது.',
+      recentFeedback: 'விருந்தினர் மதிப்புரைகள் & மதிப்பீடுகள்',
+    },
+    water: {
+      title: 'தண்ணீர் தேவை',
+      requestWater: 'தண்ணீர் கோரிக்கை',
+      normal: 'சாதாரண தண்ணீர்',
+      chilled: 'குளிர்ந்த தண்ணீர்',
+      warm: 'வெதுவெதுப்பான தண்ணீர்',
+      mineral: 'மினரல் வாட்டர் பாட்டில்',
+      dispatchedToast: 'தண்ணீர் கோரிக்கை அனுப்பப்பட்டது!',
+      waterTankTitle: 'நீர் தொட்டி & சுத்திகரிப்பு அமைப்பு',
+      tankLevel: 'தொட்டி நீர் அளவு',
+      roHealth: 'வடிகட்டி தரம்',
+      refillTank: 'தொட்டியை நிரப்பவும்',
+    },
+    security: {
+      badge: 'செயலில் உள்ள உணவு அமர்வு',
+      title: 'மேஜை அமர்வு பாதுகாக்கப்பட்டுள்ளது',
+      subtitle: 'இந்த மேஜை ஏற்கனவே விருந்தினர் பயன்பாட்டில் உள்ளது.',
+      enterPin: 'மேஜை கடவுச்சொல் (PIN) உள்ளிடவும்',
+      pinPlaceholder: '4 இலக்க பின் (எ.கா. 4107)',
+      joinTable: 'சரிபார்த்து மேஜையில் இணையுங்கள்',
+      lockedDesc: 'அனுமதியற்ற நபர்கள் ஆர்டரை மாற்ற முடியாது.',
+      unlockedSuccess: 'சரிபார்க்கப்பட்டது! நல்வரவு.',
+      securityDashboard: 'மேஜை பாதுகாப்பு மற்றும் ODG முறைமை',
+      activeSessions: 'செயலில் உள்ள அமர்வுகள்',
+      lockTable: 'பூட்டு செய்க',
+      resetSession: 'மீட்டமைக்க',
+    },
+    stock: {
+      title: 'பொருட்கள் இருப்பு மேலாண்மை',
+      subtitle: 'மூலப்பொருட்கள் இருப்பு மற்றும் நீர் தொட்டி கண்காணிப்பு',
+      inStock: 'போதுமான இருப்பு',
+      lowStock: 'குறைந்த இருப்பு எச்சரிக்கை',
+      critical: 'அவசர தட்டுப்பாடு',
+      restockBtn: 'உடனடி இருப்பு நிரப்பு',
+      costPerUnit: 'யூனிட் விலை',
+      lastRestocked: 'கடைசியாக நிரப்பப்பட்ட தேதி',
+    },
+    production: {
+      title: 'சமையலறை தயாரிப்பு மற்றும் நிலைகள்',
+      batchSummary: 'மொத்த தயாரிப்பு சுருக்கம்',
+      liveStations: 'சமையல் நிலைகள்',
+      allStations: 'அனைத்து நிலைகள்',
+      tandoor: 'தந்தூரி அடுப்பு',
+      wok: 'கிரேவி & கடாய்',
+      biryani: 'தம் பிரியாணி பாண்டம்',
+      breads: 'ரோட்டி & நான்',
+      bar: 'பானங்கள் & இனிப்புகள்',
+    },
+    admin: {
+      totalRevenue: 'மொத்த வருமானம்',
+      itemsSold: 'விற்பனையான உணவுகள்',
+      grossProfit: 'மதிப்பிடப்பட்ட மொத்த லாபம்',
+      profitMargin: 'லாப வரம்பு',
+      avgRating: 'சராசரி மதிப்பீடு',
+      overviewTab: 'கண்ணோட்டம் & விற்பனை',
+      productionTab: 'சமையல் தயாரிப்பு',
+      stockTab: 'இருப்பு & நீர் தொட்டி',
+      securityTab: 'மேஜை பாதுகாப்பு (ODG)',
+      reviewsTab: 'மதிப்புரைகள்',
     },
     onboarding: {
       step1Title: 'உணவை தேர்ந்தெடுக்கவும்',
@@ -339,6 +635,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     playGameSub: 'पॉइंट्स जीतें और खास ऑफर्स पाएं।',
     playNow: 'गेम खेलें',
     viewBill: 'बिल देखें और भुगतान करें',
+    orderHistory: 'ऑर्डर इतिहास',
     orderStages: {
       sent: {
         title: 'रसोई में भेजा गया',
@@ -370,6 +667,79 @@ export const translations: Record<Language, TranslationDictionary> = {
       payCounter: 'काउंटर पर भुगतान करें',
       paymentSuccess: 'भुगतान सफल रहा!',
       thankYou: 'टेबल फ्लो में पधारने के लिए धन्यवाद!',
+    },
+    reviews: {
+      title: 'भोजन अनुभव की समीक्षा करें',
+      subtitle: 'आपके सुझाव हमारे शेफ और स्टाफ को और बेहतर सेवा देने में मदद करते हैं।',
+      overallRating: 'समग्र भोजन अनुभव',
+      foodQuality: 'स्वाद और गुणवत्ता',
+      ambiance: 'माहौल और स्वच्छता',
+      serviceHospitality: 'स्टाफ सेवा और शिष्टाचार',
+      selectTags: 'आपको क्या सबसे अच्छा लगा',
+      commentPlaceholder: 'शेफ और रेस्टोरेंट के लिए अपनी टिप्पणी लिखें...',
+      submitReview: 'समीक्षा जमा करें',
+      reviewSuccess: 'धन्यवाद! आपकी समीक्षा दर्ज कर ली गई है।',
+      recentFeedback: 'अतिथि समीक्षाएं और रेटिंग',
+    },
+    water: {
+      title: 'पानी का अनुरोध',
+      requestWater: 'पानी मंगाएं',
+      normal: 'सामान्य पानी',
+      chilled: 'ठंडा पानी',
+      warm: 'हल्का गरम पानी',
+      mineral: 'मिनरल वाटर बोतल',
+      dispatchedToast: 'आपकी टेबल पर पानी भेजा जा रहा है!',
+      waterTankTitle: 'कमर्शियल वाटर टैंक और आरओ प्लांट',
+      tankLevel: 'टैंक जल स्तर',
+      roHealth: 'आरओ फिल्टर गुणवत्ता',
+      refillTank: 'टैंक रिफिल करें',
+    },
+    security: {
+      badge: 'सक्रिय डाइनिंग सत्र',
+      title: 'टेबल सत्र सुरक्षित है',
+      subtitle: 'इस टेबल पर पहले से ग्राहक भोजन कर रहे हैं।',
+      enterPin: 'टेबल पासकोड (पिन) दर्ज करें',
+      pinPlaceholder: '4 अंकों का पिन (उदा. 4107)',
+      joinTable: 'सत्यापित करें और टेबल से जुड़ें',
+      lockedDesc: 'अनधिकृत व्यक्ति बिल या ऑर्डर में छेड़छाड़ नहीं कर सकते।',
+      unlockedSuccess: 'सत्यापित! टेबल में आपका स्वागत है।',
+      securityDashboard: 'टेबल सुरक्षा और ODG सुरक्षा प्रणाली',
+      activeSessions: 'सक्रिय फ्लोर सत्र',
+      lockTable: 'टेबल लॉक करें',
+      resetSession: 'सत्र रीसेट करें',
+    },
+    stock: {
+      title: 'स्टॉक और इन्वेंट्री प्रबंधन',
+      subtitle: 'कच्चे माल और रेस्टोरेंट वाटर टैंक की लाइव स्थिति',
+      inStock: 'उपयुक्त स्टॉक',
+      lowStock: 'कम स्टॉक चेतावनी',
+      critical: 'गंभीर कमी',
+      restockBtn: 'तुरंत स्टॉक भरें',
+      costPerUnit: 'प्रति इकाई लागत',
+      lastRestocked: 'अंतिम रीस्टॉक तारीख',
+    },
+    production: {
+      title: 'किचन प्रोडक्शन और स्टेशन रूटिंग',
+      batchSummary: 'लाइव बैच प्रोडक्शन सारांश',
+      liveStations: 'सक्रिय किचन स्टेशन',
+      allStations: 'सभी स्टेशन',
+      tandoor: 'तंदूर और अंगीठी',
+      wok: 'कड़ाही और ग्रेवी',
+      biryani: 'दम बिरयानी हांडी',
+      breads: 'नान और रोटी',
+      bar: 'पेय और मिठाइयां',
+    },
+    admin: {
+      totalRevenue: 'कुल बिक्री राजस्व',
+      itemsSold: 'आज बेचे गए व्यंजन',
+      grossProfit: 'अनुमानित सकल लाभ',
+      profitMargin: 'लाभ मार्जिन',
+      avgRating: 'औसत ग्राहक रेटिंग',
+      overviewTab: 'बिक्री और समीक्षा',
+      productionTab: 'किचन प्रोडक्शन',
+      stockTab: 'स्टॉक और वाटर टैंक',
+      securityTab: 'टेबल सुरक्षा (ODG)',
+      reviewsTab: 'ग्राहक समीक्षाएं',
     },
     onboarding: {
       step1Title: 'खाना चुनें',

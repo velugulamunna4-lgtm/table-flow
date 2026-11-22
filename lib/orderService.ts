@@ -1,8 +1,22 @@
-import { Order, OrderStatus } from '@/types';
+import {
+  Order,
+  OrderStatus,
+  OrderReview,
+  WaterTankStatus,
+  WaterRequest,
+  StockItem,
+  TableSessionSecurity,
+} from '@/types';
 import initialOrders from '@/data/mock/orders.json';
+import initialReviews from '@/data/mock/reviews.json';
+import initialStockData from '@/data/mock/stock.json';
 
 const STORAGE_ORDERS_KEY = 'tableflow_orders_db';
 const STORAGE_WAITER_CALLS_KEY = 'tableflow_waiter_calls';
+const STORAGE_REVIEWS_KEY = 'tableflow_reviews_db';
+const STORAGE_STOCK_KEY = 'tableflow_stock_db';
+const STORAGE_WATER_TANK_KEY = 'tableflow_water_tank';
+const STORAGE_SECURITY_KEY = 'tableflow_security_sessions';
 const BROADCAST_CHANNEL_NAME = 'tableflow_rms_broadcast';
 
 export interface WaiterCall {
@@ -10,19 +24,28 @@ export interface WaiterCall {
   tableNumber: number;
   type: 'call_waiter' | 'water' | 'bill';
   timestamp: string;
+  waterType?: string;
 }
 
 type OrderEvent =
   | { type: 'ORDERS_UPDATED'; payload: Order[] }
   | { type: 'WAITER_CALL_CREATED'; payload: WaiterCall }
   | { type: 'WAITER_CALL_CLEARED'; payload: { tableId: string } }
-  | { type: 'ITEM_AVAILABILITY_CHANGED'; payload: { itemId: string; available: boolean } };
+  | { type: 'ITEM_AVAILABILITY_CHANGED'; payload: { itemId: string; available: boolean } }
+  | { type: 'REVIEWS_UPDATED'; payload: OrderReview[] }
+  | { type: 'STOCK_UPDATED'; payload: StockItem[] }
+  | { type: 'WATER_TANK_UPDATED'; payload: WaterTankStatus }
+  | { type: 'SECURITY_UPDATED'; payload: Record<string, TableSessionSecurity> };
 
 class OrderService {
   private channel: BroadcastChannel | null = null;
   private orderListeners: Array<(orders: Order[]) => void> = [];
   private waiterCallListeners: Array<(calls: WaiterCall[]) => void> = [];
   private itemAvailabilityListeners: Array<(data: { itemId: string; available: boolean }) => void> = [];
+  private reviewListeners: Array<(reviews: OrderReview[]) => void> = [];
+  private stockListeners: Array<(stock: StockItem[]) => void> = [];
+  private waterTankListeners: Array<(tank: WaterTankStatus) => void> = [];
+  private securityListeners: Array<(sessions: Record<string, TableSessionSecurity>) => void> = [];
 
   constructor() {
     if (typeof window !== 'undefined') {
@@ -35,46 +58,76 @@ class OrderService {
         console.warn('BroadcastChannel not supported in this environment, falling back to local storage events', e);
       }
 
-      // Also listen to window storage event for cross-tab fallback
       window.addEventListener('storage', (e) => {
         if (e.key === STORAGE_ORDERS_KEY && e.newValue) {
-          const orders = JSON.parse(e.newValue);
-          this.notifyOrderListeners(orders);
+          this.notifyOrderListeners(JSON.parse(e.newValue));
         } else if (e.key === STORAGE_WAITER_CALLS_KEY && e.newValue) {
-          const calls = JSON.parse(e.newValue);
-          this.notifyWaiterListeners(calls);
+          this.notifyWaiterListeners(JSON.parse(e.newValue));
+        } else if (e.key === STORAGE_REVIEWS_KEY && e.newValue) {
+          this.notifyReviewListeners(JSON.parse(e.newValue));
+        } else if (e.key === STORAGE_WATER_TANK_KEY && e.newValue) {
+          this.notifyWaterTankListeners(JSON.parse(e.newValue));
+        } else if (e.key === STORAGE_STOCK_KEY && e.newValue) {
+          this.notifyStockListeners(JSON.parse(e.newValue));
+        } else if (e.key === STORAGE_SECURITY_KEY && e.newValue) {
+          this.notifySecurityListeners(JSON.parse(e.newValue));
         }
       });
     }
   }
 
   private handleBroadcastMessage(data: OrderEvent) {
-    if (data.type === 'ORDERS_UPDATED') {
-      this.notifyOrderListeners(data.payload);
-    } else if (data.type === 'WAITER_CALL_CREATED' || data.type === 'WAITER_CALL_CLEARED') {
-      this.notifyWaiterListeners(this.getWaiterCallsSync());
-    } else if (data.type === 'ITEM_AVAILABILITY_CHANGED') {
-      this.notifyItemAvailabilityListeners(data.payload);
+    switch (data.type) {
+      case 'ORDERS_UPDATED':
+        this.notifyOrderListeners(data.payload);
+        break;
+      case 'WAITER_CALL_CREATED':
+      case 'WAITER_CALL_CLEARED':
+        this.notifyWaiterListeners(this.getWaiterCallsSync());
+        break;
+      case 'ITEM_AVAILABILITY_CHANGED':
+        this.notifyItemAvailabilityListeners(data.payload);
+        break;
+      case 'REVIEWS_UPDATED':
+        this.notifyReviewListeners(data.payload);
+        break;
+      case 'STOCK_UPDATED':
+        this.notifyStockListeners(data.payload);
+        break;
+      case 'WATER_TANK_UPDATED':
+        this.notifyWaterTankListeners(data.payload);
+        break;
+      case 'SECURITY_UPDATED':
+        this.notifySecurityListeners(data.payload);
+        break;
     }
   }
 
   private notifyOrderListeners(orders: Order[]) {
     this.orderListeners.forEach((fn) => fn(orders));
   }
-
   private notifyWaiterListeners(calls: WaiterCall[]) {
     this.waiterCallListeners.forEach((fn) => fn(calls));
   }
-
   private notifyItemAvailabilityListeners(payload: { itemId: string; available: boolean }) {
     this.itemAvailabilityListeners.forEach((fn) => fn(payload));
+  }
+  private notifyReviewListeners(reviews: OrderReview[]) {
+    this.reviewListeners.forEach((fn) => fn(reviews));
+  }
+  private notifyStockListeners(stock: StockItem[]) {
+    this.stockListeners.forEach((fn) => fn(stock));
+  }
+  private notifyWaterTankListeners(tank: WaterTankStatus) {
+    this.waterTankListeners.forEach((fn) => fn(tank));
+  }
+  private notifySecurityListeners(sessions: Record<string, TableSessionSecurity>) {
+    this.securityListeners.forEach((fn) => fn(sessions));
   }
 
   // --- Orders Database Operations ---
   public async getOrders(): Promise<Order[]> {
-    if (typeof window === 'undefined') {
-      return initialOrders as Order[];
-    }
+    if (typeof window === 'undefined') return initialOrders as Order[];
     const cached = localStorage.getItem(STORAGE_ORDERS_KEY);
     if (!cached) {
       localStorage.setItem(STORAGE_ORDERS_KEY, JSON.stringify(initialOrders));
@@ -94,10 +147,14 @@ class OrderService {
 
   public async getOrderByTable(tableId: string): Promise<Order | undefined> {
     const orders = await this.getOrders();
-    // Return latest active order for this table
     return orders.find(
       (o) => o.tableId === tableId && o.status !== 'served' && o.status !== 'cancelled'
     );
+  }
+
+  public async getTableOrderHistory(tableId: string): Promise<Order[]> {
+    const orders = await this.getOrders();
+    return orders.filter((o) => o.tableId === tableId);
   }
 
   public async placeOrder(newOrder: Omit<Order, 'id' | 'orderNumber' | 'createdAt' | 'updatedAt'>): Promise<Order> {
@@ -117,20 +174,12 @@ class OrderService {
     const updatedOrders = [order, ...orders];
     this.persistOrders(updatedOrders);
 
-    // Broadcast live event to Kitchen & Waiter displays
+    // Register active ODG (On-Dining Guest) Table Security Session
+    await this.initTableSecuritySession(order.tableId, order.tableNumber);
+
     this.postMessage({ type: 'ORDERS_UPDATED', payload: updatedOrders });
     this.notifyOrderListeners(updatedOrders);
 
-    /* 
-     * TODO [Phase 2 Backend Integration]:
-     * Replace with:
-     * const response = await fetch('/api/orders', {
-     *   method: 'POST',
-     *   headers: { 'Content-Type': 'application/json' },
-     *   body: JSON.stringify(order)
-     * });
-     * return await response.json();
-     */
     return order;
   }
 
@@ -143,29 +192,13 @@ class OrderService {
     this.persistOrders(updatedOrders);
     this.postMessage({ type: 'ORDERS_UPDATED', payload: updatedOrders });
     this.notifyOrderListeners(updatedOrders);
-
-    /* 
-     * TODO [Phase 2 Backend Integration]:
-     * await fetch(`/api/orders/${orderId}/status`, {
-     *   method: 'PATCH',
-     *   headers: { 'Content-Type': 'application/json' },
-     *   body: JSON.stringify({ status })
-     * });
-     */
   }
 
   public async rejectOrderItem(orderId: string, itemId: string, reason: string): Promise<void> {
     const orders = await this.getOrders();
-    const updatedOrders = orders.map((o) => {
-      if (o.id === orderId) {
-        return {
-          ...o,
-          rejectionReason: reason,
-          updatedAt: new Date().toISOString(),
-        };
-      }
-      return o;
-    });
+    const updatedOrders = orders.map((o) =>
+      o.id === orderId ? { ...o, rejectionReason: reason, updatedAt: new Date().toISOString() } : o
+    );
 
     this.persistOrders(updatedOrders);
     this.postMessage({ type: 'ORDERS_UPDATED', payload: updatedOrders });
@@ -174,16 +207,19 @@ class OrderService {
 
   public subscribeToOrders(callback: (orders: Order[]) => void): () => void {
     this.orderListeners.push(callback);
-    // Initial emission
     this.getOrders().then(callback);
-
     return () => {
       this.orderListeners = this.orderListeners.filter((cb) => cb !== callback);
     };
   }
 
-  // --- Waiter Call Operations ---
-  public async callWaiter(tableId: string, tableNumber: number, type: 'call_waiter' | 'water' | 'bill'): Promise<void> {
+  // --- Waiter Call & Water Request Operations ---
+  public async callWaiter(
+    tableId: string,
+    tableNumber: number,
+    type: 'call_waiter' | 'water' | 'bill',
+    waterType?: string
+  ): Promise<void> {
     const calls = this.getWaiterCallsSync();
     const existingIdx = calls.findIndex((c) => c.tableId === tableId);
     const newCall: WaiterCall = {
@@ -191,14 +227,12 @@ class OrderService {
       tableNumber,
       type,
       timestamp: new Date().toISOString(),
+      waterType,
     };
 
-    let updated: WaiterCall[];
-    if (existingIdx > -1) {
-      updated = calls.map((c, i) => (i === existingIdx ? newCall : c));
-    } else {
-      updated = [newCall, ...calls];
-    }
+    const updated = existingIdx > -1
+      ? calls.map((c, i) => (i === existingIdx ? newCall : c))
+      : [newCall, ...calls];
 
     this.persistWaiterCalls(updated);
     this.postMessage({ type: 'WAITER_CALL_CREATED', payload: newCall });
@@ -216,7 +250,6 @@ class OrderService {
   public subscribeToWaiterCalls(callback: (calls: WaiterCall[]) => void): () => void {
     this.waiterCallListeners.push(callback);
     callback(this.getWaiterCallsSync());
-
     return () => {
       this.waiterCallListeners = this.waiterCallListeners.filter((cb) => cb !== callback);
     };
@@ -229,15 +262,6 @@ class OrderService {
       payload: { itemId, available },
     });
     this.notifyItemAvailabilityListeners({ itemId, available });
-
-    /* 
-     * TODO [Phase 2 Backend Integration]:
-     * await fetch(`/api/menu/${itemId}/availability`, {
-     *   method: 'PATCH',
-     *   headers: { 'Content-Type': 'application/json' },
-     *   body: JSON.stringify({ available })
-     * });
-     */
   }
 
   public subscribeToItemAvailability(callback: (data: { itemId: string; available: boolean }) => void): () => void {
@@ -247,7 +271,235 @@ class OrderService {
     };
   }
 
-  // --- Helpers ---
+  // --- Reviews & Feedback Operations ---
+  public async getReviews(): Promise<OrderReview[]> {
+    if (typeof window === 'undefined') return initialReviews as OrderReview[];
+    const cached = localStorage.getItem(STORAGE_REVIEWS_KEY);
+    if (!cached) {
+      localStorage.setItem(STORAGE_REVIEWS_KEY, JSON.stringify(initialReviews));
+      return initialReviews as OrderReview[];
+    }
+    try {
+      return JSON.parse(cached) as OrderReview[];
+    } catch {
+      return initialReviews as OrderReview[];
+    }
+  }
+
+  public async submitReview(newReview: Omit<OrderReview, 'id' | 'createdAt'>): Promise<OrderReview> {
+    const reviews = await this.getReviews();
+    const review: OrderReview = {
+      ...newReview,
+      id: `rev-${Date.now()}`,
+      createdAt: new Date().toISOString(),
+    };
+
+    const updated = [review, ...reviews];
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_REVIEWS_KEY, JSON.stringify(updated));
+    }
+    this.postMessage({ type: 'REVIEWS_UPDATED', payload: updated });
+    this.notifyReviewListeners(updated);
+    return review;
+  }
+
+  public subscribeToReviews(callback: (reviews: OrderReview[]) => void): () => void {
+    this.reviewListeners.push(callback);
+    this.getReviews().then(callback);
+    return () => {
+      this.reviewListeners = this.reviewListeners.filter((cb) => cb !== callback);
+    };
+  }
+
+  // --- Stock Maintenance & Commercial Water Tank System ---
+  public async getWaterTankStatus(): Promise<WaterTankStatus> {
+    if (typeof window === 'undefined') return initialStockData.waterTank as WaterTankStatus;
+    const cached = localStorage.getItem(STORAGE_WATER_TANK_KEY);
+    if (!cached) {
+      localStorage.setItem(STORAGE_WATER_TANK_KEY, JSON.stringify(initialStockData.waterTank));
+      return initialStockData.waterTank as WaterTankStatus;
+    }
+    try {
+      return JSON.parse(cached) as WaterTankStatus;
+    } catch {
+      return initialStockData.waterTank as WaterTankStatus;
+    }
+  }
+
+  public async refillWaterTank(litersToAdd: number): Promise<WaterTankStatus> {
+    const current = await this.getWaterTankStatus();
+    const newLiters = Math.min(current.capacityLiters, current.currentLiters + litersToAdd);
+    const updated: WaterTankStatus = {
+      ...current,
+      currentLiters: newLiters,
+      lastRefilledAt: new Date().toISOString(),
+      status: newLiters / current.capacityLiters > 0.4 ? 'optimal' : 'moderate',
+    };
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_WATER_TANK_KEY, JSON.stringify(updated));
+    }
+    this.postMessage({ type: 'WATER_TANK_UPDATED', payload: updated });
+    this.notifyWaterTankListeners(updated);
+    return updated;
+  }
+
+  public async modifyWaterTankCapacity(newCapacity: number): Promise<WaterTankStatus> {
+    const current = await this.getWaterTankStatus();
+    const updated: WaterTankStatus = {
+      ...current,
+      capacityLiters: newCapacity,
+      currentLiters: Math.min(current.currentLiters, newCapacity),
+    };
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_WATER_TANK_KEY, JSON.stringify(updated));
+    }
+    this.postMessage({ type: 'WATER_TANK_UPDATED', payload: updated });
+    this.notifyWaterTankListeners(updated);
+    return updated;
+  }
+
+  public subscribeToWaterTank(callback: (tank: WaterTankStatus) => void): () => void {
+    this.waterTankListeners.push(callback);
+    this.getWaterTankStatus().then(callback);
+    return () => {
+      this.waterTankListeners = this.waterTankListeners.filter((cb) => cb !== callback);
+    };
+  }
+
+  public async getStockItems(): Promise<StockItem[]> {
+    if (typeof window === 'undefined') return initialStockData.stockItems as StockItem[];
+    const cached = localStorage.getItem(STORAGE_STOCK_KEY);
+    if (!cached) {
+      localStorage.setItem(STORAGE_STOCK_KEY, JSON.stringify(initialStockData.stockItems));
+      return initialStockData.stockItems as StockItem[];
+    }
+    try {
+      return JSON.parse(cached) as StockItem[];
+    } catch {
+      return initialStockData.stockItems as StockItem[];
+    }
+  }
+
+  public async restockItem(itemId: string, addQty: number): Promise<StockItem[]> {
+    const stock = await this.getStockItems();
+    const updated = stock.map((item) => {
+      if (item.id === itemId) {
+        const nextQty = item.currentQty + addQty;
+        return {
+          ...item,
+          currentQty: nextQty,
+          status: (nextQty > item.minThreshold ? 'in_stock' : 'low_stock') as 'in_stock' | 'low_stock',
+          lastRestocked: new Date().toISOString(),
+        };
+      }
+      return item;
+    });
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_STOCK_KEY, JSON.stringify(updated));
+    }
+    this.postMessage({ type: 'STOCK_UPDATED', payload: updated });
+    this.notifyStockListeners(updated);
+    return updated;
+  }
+
+  public subscribeToStock(callback: (stock: StockItem[]) => void): () => void {
+    this.stockListeners.push(callback);
+    this.getStockItems().then(callback);
+    return () => {
+      this.stockListeners = this.stockListeners.filter((cb) => cb !== callback);
+    };
+  }
+
+  // --- Table ODG & Session Security ---
+  public async getSecuritySessions(): Promise<Record<string, TableSessionSecurity>> {
+    if (typeof window === 'undefined') return {};
+    const cached = localStorage.getItem(STORAGE_SECURITY_KEY);
+    if (!cached) return {};
+    try {
+      return JSON.parse(cached);
+    } catch {
+      return {};
+    }
+  }
+
+  public async getTableSecurity(tableId: string): Promise<TableSessionSecurity> {
+    const sessions = await this.getSecuritySessions();
+    if (sessions[tableId]) return sessions[tableId];
+
+    // Default open session
+    return {
+      tableId,
+      tableNumber: parseInt(tableId, 10) || 7,
+      isOccupiedUnderODG: false,
+      sessionToken: `token_${tableId}`,
+      sessionPin: `410${tableId}`,
+      guestCount: 1,
+      sessionStartedAt: new Date().toISOString(),
+      expiresAt: new Date(Date.now() + 1000 * 60 * 90).toISOString(),
+      isLocked: false,
+    };
+  }
+
+  public async initTableSecuritySession(tableId: string, tableNumber: number): Promise<TableSessionSecurity> {
+    const sessions = await this.getSecuritySessions();
+    const session: TableSessionSecurity = {
+      tableId,
+      tableNumber,
+      isOccupiedUnderODG: true,
+      sessionToken: `token_${tableId}_${Date.now()}`,
+      sessionPin: `${Math.floor(1000 + Math.random() * 9000)}`,
+      guestCount: 1,
+      sessionStartedAt: new Date().toISOString(),
+      expiresAt: new Date(Date.now() + 1000 * 60 * 90).toISOString(),
+      isLocked: true,
+    };
+
+    const updated = { ...sessions, [tableId]: session };
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_SECURITY_KEY, JSON.stringify(updated));
+    }
+    this.postMessage({ type: 'SECURITY_UPDATED', payload: updated });
+    this.notifySecurityListeners(updated);
+    return session;
+  }
+
+  public async setTableLock(tableId: string, isLocked: boolean): Promise<void> {
+    const sessions = await this.getSecuritySessions();
+    const current = sessions[tableId] || (await this.getTableSecurity(tableId));
+    const updated = {
+      ...sessions,
+      [tableId]: { ...current, isLocked },
+    };
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_SECURITY_KEY, JSON.stringify(updated));
+    }
+    this.postMessage({ type: 'SECURITY_UPDATED', payload: updated });
+    this.notifySecurityListeners(updated);
+  }
+
+  public async resetTableSession(tableId: string): Promise<void> {
+    const sessions = await this.getSecuritySessions();
+    const updated = { ...sessions };
+    delete updated[tableId];
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_SECURITY_KEY, JSON.stringify(updated));
+    }
+    this.postMessage({ type: 'SECURITY_UPDATED', payload: updated });
+    this.notifySecurityListeners(updated);
+  }
+
+  public subscribeToSecurity(callback: (sessions: Record<string, TableSessionSecurity>) => void): () => void {
+    this.securityListeners.push(callback);
+    this.getSecuritySessions().then(callback);
+    return () => {
+      this.securityListeners = this.securityListeners.filter((cb) => cb !== callback);
+    };
+  }
+
+  // --- Internal Helpers ---
   private getWaiterCallsSync(): WaiterCall[] {
     if (typeof window === 'undefined') return [];
     try {

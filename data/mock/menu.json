@@ -8,7 +8,13 @@
       "hi": "नवाबी मुर्ग मलाई टिक्का"
     },
     "description": "Tender chicken fillets steeped in rich cashew cream, green cardamom, and smoked over charcoal embers.",
+    "descriptionTranslations": {
+      "te": "జీడిపప్పు క్రీమ్ మరియు యాలకులతో ఊరబెట్టి బొగ్గుల నిప్పులపై కాల్చిన మెత్తని చికెన్.",
+      "ta": "முந்திரி க்ரீம் மற்றும் ஏலக்காய் சேர்த்து கரியடுப்பில் சுடப்பட்ட மிருதுவான சிக்கன் டிக்கா.",
+      "hi": "काजू की मलाई और हरी इलायची में मैरीनेट किया हुआ चारकोल पर भुना हुआ कोमल चिकन टिक्का।"
+    },
     "price": 460,
+    "costPrice": 160,
     "category": "specials",
     "vegType": "non-veg",
     "spiceLevel": 1,
@@ -17,6 +23,7 @@
     "image": "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍗",
     "preparationTimeMinutes": 18,
+    "station": "tandoor",
     "calories": 520,
     "tags": ["Chef Special", "Tandoor", "Must Try"]
   },
@@ -29,7 +36,13 @@
       "hi": "रॉयल निज़ामी पनीर पसंदा"
     },
     "description": "Stuffed cottage cheese triangles layered with dry fruits and simmered in a velvety saffron gravy.",
+    "descriptionTranslations": {
+      "te": "డ్రై ఫ్రూట్స్‌తో నిండిన పన్నీర్ త్రిభుజాలు మరియు కుంకుమపువ్వు గ్రేవీలో వండిన రుచికరమైన వంటకం.",
+      "ta": "உலர் பழங்கள் நிரப்பிய பன்னீர் முக்கோணங்கள் குங்குமப்பூ குழம்பில் சமைக்கப்பட்டது.",
+      "hi": "ड्राई फ्रूट्स से भरा पनीर और शाही केसरिया ग्रेवी में पका हुआ लाजवाब व्यंजन।"
+    },
     "price": 420,
+    "costPrice": 140,
     "category": "specials",
     "vegType": "veg",
     "spiceLevel": 1,
@@ -38,6 +51,7 @@
     "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🧀",
     "preparationTimeMinutes": 20,
+    "station": "wok",
     "calories": 480,
     "tags": ["Chef Special", "Rich & Creamy"]
   },
@@ -49,8 +63,14 @@
       "ta": "குண்டூர் கோங்குரா மட்டன் ஃப்ரை",
       "hi": "गुंटूर गोंगुरा मटन फ्राई"
     },
-    "description": "Slow-cooked Andhra mutton tossed with tangy sorrel leaves and fiery crushed Guntur red chilies.",
+    "description": "Slow-cooked tender Andhra mutton tossed with tangy sorrel leaves and fiery crushed Guntur red chilies.",
+    "descriptionTranslations": {
+      "te": "పుల్లటి గోంగూర మరియు గుంటూరు ఎర్ర మిరపకాయలతో వేయించిన ఘుమఘుమలాడే మటన్ వేపుడు.",
+      "ta": "புளிப்பான புளிச்சக்கீரை மற்றும் காரசாரமான குண்டூர் மிளகாயுடன் வறுத்த ஆட்டுக்கறி.",
+      "hi": "खट्टी गोंगुरा पत्तियों और तीखी गुंटूर मिर्च के साथ धीमी आंच पर भुना मटन फ्राई।"
+    },
     "price": 540,
+    "costPrice": 210,
     "category": "specials",
     "vegType": "non-veg",
     "spiceLevel": 3,
@@ -59,6 +79,7 @@
     "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍖",
     "preparationTimeMinutes": 22,
+    "station": "wok",
     "calories": 610,
     "tags": ["Chef Special", "Spicy", "Andhra Style"]
   },
@@ -71,7 +92,13 @@
       "hi": "अवधी दम कबाब थाली"
     },
     "description": "A grand assortment of Kakori kebabs, Galouti melts, and Zafrani paneer with smoked mint chutney.",
+    "descriptionTranslations": {
+      "te": "కాకోరీ కబాబ్స్, గలౌటీ మరియు కుంకుమపువ్వు పన్నీర్‌ల అద్భుతమైన కలయిక.",
+      "ta": "ககோரி கபாப், கலௌட்டி மெல்ட்ஸ் மற்றும் ஜாஃப்ரானி பன்னீரின் சுவையான தொகுப்பு.",
+      "hi": "काकोरी कबाब, गलौटी मेल्ट्स और ज़ाफ़रानी पनीर की शाही थाली पुदीना चटनी के साथ।"
+    },
     "price": 680,
+    "costPrice": 240,
     "category": "specials",
     "vegType": "non-veg",
     "spiceLevel": 2,
@@ -80,8 +107,37 @@
     "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍢",
     "preparationTimeMinutes": 25,
+    "station": "tandoor",
     "calories": 740,
     "tags": ["Chef Special", "Platter", "Sold Out Demo"]
+  },
+  {
+    "id": "item-sp-5",
+    "name": "Coastal Prawn Ghee Roast",
+    "nameTranslations": {
+      "te": "రొయ్యల నెయ్యి రోస్ట్",
+      "ta": "நெய் வறுத்த இறால்",
+      "hi": "झींगा घी रोस्ट"
+    },
+    "description": "Tiger prawns roasted in pure Mangalorean desi ghee with a fiery, aromatic byadagi chili and garlic paste.",
+    "descriptionTranslations": {
+      "te": "స్వచ్ఛమైన నెయ్యి మరియు బ్యాడగి మిరపకాయలతో వేయించిన రుచికరమైన టైగర్ రొయ్యలు.",
+      "ta": "சுத்தமான நெய்யில் வதக்கிய நறுமணமுள்ள காரசாரமான இறால் வறுவல்.",
+      "hi": "शुद्ध देसी घी और ब्याडगी मिर्च के मसाले में भुने हुए रसीले झींगे।"
+    },
+    "price": 580,
+    "costPrice": 220,
+    "category": "specials",
+    "vegType": "non-veg",
+    "spiceLevel": 2,
+    "isSpecial": true,
+    "isAvailable": true,
+    "image": "https://images.unsplash.com/photo-1559742811-822873691df8?w=800&auto=format&fit=crop&q=80",
+    "emojiFallback": "🍤",
+    "preparationTimeMinutes": 18,
+    "station": "wok",
+    "calories": 540,
+    "tags": ["Chef Special", "Desi Ghee", "Coastal"]
   },
   {
     "id": "item-st-1",
@@ -92,7 +148,13 @@
       "hi": "कुरकुरा पनीर बाइट्स"
     },
     "description": "Golden spiced paneer cubes encased in crunchy papad crust, dusted with chatpata masala.",
+    "descriptionTranslations": {
+      "te": "క్రిస్పీ అప్పడం పొరతో వేయించిన మృదువైన పన్నీర్ ముక్కలు.",
+      "ta": "மொறுமொறுப்பான பாப்பட் மேல்புறத்துடன் வறுத்த சுவையான பன்னீர்.",
+      "hi": "पापड़ की कुरकुरी परत में लिपटे मसालेदार पनीर के टुकड़े।"
+    },
     "price": 320,
+    "costPrice": 95,
     "category": "starters",
     "vegType": "veg",
     "spiceLevel": 1,
@@ -100,6 +162,7 @@
     "image": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🧀",
     "preparationTimeMinutes": 12,
+    "station": "tandoor",
     "calories": 360
   },
   {
@@ -111,7 +174,13 @@
       "hi": "हैदराबादी चिकन 65"
     },
     "description": "Crisp marinated chicken bites tossed with fresh curry leaves, crushed garlic, and green chilies.",
+    "descriptionTranslations": {
+      "te": "కరివేపాకు మరియు పచ్చిమిర్చితో వేయించిన అసలైన హైదరాబాదీ చికెన్ 65.",
+      "ta": "கறிவேப்பிலை, பூண்டு மற்றும் பச்சை மிளகாயுடன் வறுத்த சிக்கன் 65.",
+      "hi": "कढ़ी पत्ता, लहसुन और हरी मिर्च के साथ क्रिस्पी फ्राइड चिकन 65।"
+    },
     "price": 360,
+    "costPrice": 120,
     "category": "starters",
     "vegType": "non-veg",
     "spiceLevel": 2,
@@ -119,6 +188,7 @@
     "image": "https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍗",
     "preparationTimeMinutes": 14,
+    "station": "wok",
     "calories": 420
   },
   {
@@ -130,7 +200,13 @@
       "hi": "दही के कबाब"
     },
     "description": "Melt-in-mouth hung yogurt patties infused with roasted cumin, fresh coriander, and pomegranate seeds.",
+    "descriptionTranslations": {
+      "te": "జీలకర్ర మరియు దానిమ్మ గింజలతో తయారుచేసిన నోరూరించే పెరుగు కబాబ్.",
+      "ta": "வறுத்த சீரகம் மற்றும் மாதுளை முத்துக்களுடன் வாயில் கரையும் தயிர் கபாப்.",
+      "hi": "भुने जीरे और अनारदाने के स्वाद से सजे मुंह में घुल जाने वाले दही के कबाब।"
+    },
     "price": 290,
+    "costPrice": 85,
     "category": "starters",
     "vegType": "veg",
     "spiceLevel": 0,
@@ -138,6 +214,7 @@
     "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🥟",
     "preparationTimeMinutes": 15,
+    "station": "tandoor",
     "calories": 310
   },
   {
@@ -149,7 +226,13 @@
       "hi": "तंदूरी मलाई ब्रोकोली"
     },
     "description": "Char-grilled broccoli florets marinated in processed cheese, hung curd, and toasted cardamom.",
+    "descriptionTranslations": {
+      "te": "జున్ను మరియు పెరుగులో ఊరబెట్టి తందూర్‌లో కాల్చిన బ్రకోలీ.",
+      "ta": "சீஸ் மற்றும் தயிரில் ஊறவைத்து தந்தூரியில் சுட்ட ப்ரோக்கோலி.",
+      "hi": "चीज़ और गाढ़े दही में मैरीनेट की हुई तंदूर में ग्रिल की गई ब्रोकोली।"
+    },
     "price": 310,
+    "costPrice": 90,
     "category": "starters",
     "vegType": "veg",
     "spiceLevel": 1,
@@ -157,6 +240,7 @@
     "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🥦",
     "preparationTimeMinutes": 14,
+    "station": "tandoor",
     "calories": 260
   },
   {
@@ -168,7 +252,13 @@
       "hi": "अमृतसरी मच्छी फ्राई"
     },
     "description": "Carom-seed scented crispy river sole fillets tossed in gram flour batter and fried golden.",
+    "descriptionTranslations": {
+      "te": "వాము మరియు శనగపిండి మిశ్రమంతో బంగారు రంగులో వేయించిన చేప ముక్కలు.",
+      "ta": "ஓமம் கலந்த கடலை மாவில் பொரித்த பஞ்சாபி மீன் வறுவல்.",
+      "hi": "अजवाइन और बेसन के घोल में कुरकुरी तली हुई अमृतसरी मछली।"
+    },
     "price": 440,
+    "costPrice": 160,
     "category": "starters",
     "vegType": "non-veg",
     "spiceLevel": 2,
@@ -176,26 +266,34 @@
     "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🐟",
     "preparationTimeMinutes": 16,
+    "station": "wok",
     "calories": 390
   },
   {
     "id": "item-st-6",
-    "name": "Guntur Mirchi Bajji",
+    "name": "Delhi Chandni Chowk Samosa Chaat",
     "nameTranslations": {
-      "te": "గుంటూరు మిర్చి బజ్జీ",
-      "ta": "குண்டூர் மிளகாய் பஜ்ஜி",
-      "hi": "गुंटूर मिर्ची भज्जी"
+      "te": "సమోసా చాట్",
+      "ta": "சமோசா சாட்",
+      "hi": "चांदनी चौक समोसा चाट"
     },
-    "description": "Spicy green peppers stuffed with ajwain tamarind crumble, dipped in batter and stuffed with onions.",
-    "price": 220,
+    "description": "Crushed hot potato samosas smothered in spiced chana masala, chilled yogurt, mint, and saunth chutneys.",
+    "descriptionTranslations": {
+      "te": "వేడి సమోసాలు, శనగల మసాలా, పెరుగు మరియు తీపి చట్నీల అద్భుత కలయిక.",
+      "ta": "சூடான சமோசாவுடன் காரசாரமான சன்னா மசாலா மற்றும் இனிப்பு சட்னி.",
+      "hi": "गरम समोसे के ऊपर काबुली चना, मीठी सोंठ और हरी पुदीना चटनी की लजीज चाट।"
+    },
+    "price": 210,
+    "costPrice": 50,
     "category": "starters",
     "vegType": "veg",
-    "spiceLevel": 3,
+    "spiceLevel": 1,
     "isAvailable": true,
     "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🌶️",
-    "preparationTimeMinutes": 10,
-    "calories": 240
+    "emojiFallback": "🥟",
+    "preparationTimeMinutes": 8,
+    "station": "wok",
+    "calories": 340
   },
   {
     "id": "item-mn-1",
@@ -206,7 +304,13 @@
       "hi": "पुरानी दिल्ली बटर चिकन"
     },
     "description": "Charcoal grilled chicken simmered in a luscious satin tomato sauce enriched with butter and fenugreek.",
+    "descriptionTranslations": {
+      "te": "టొమాటో, వెన్న మరియు కస్తూరీ మేథీతో చేసిన చిక్కటి గ్రేవీలో కాల్చిన చికెన్.",
+      "ta": "வெண்ணெய் மற்றும் கஸ்தூரி மேத்தியுடன் கூடிய கிரீமி தக்காளி குழம்பில் சிக்கன்.",
+      "hi": "मक्खन, क्रीम और कसूरी मेथी की रेशमी टमाटर ग्रेवी में पकाया गया चिकन।"
+    },
     "price": 440,
+    "costPrice": 150,
     "category": "mains",
     "vegType": "non-veg",
     "spiceLevel": 1,
@@ -214,6 +318,7 @@
     "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🥘",
     "preparationTimeMinutes": 18,
+    "station": "wok",
     "calories": 580
   },
   {
@@ -225,7 +330,13 @@
       "hi": "धीमी आंच वाली दाल मखनी"
     },
     "description": "Whole black lentils slow-cooked over wood embers for 24 hours with churned white butter and cream.",
+    "descriptionTranslations": {
+      "te": "24 గంటల పాటు మందపాటి మంటపై వెన్నతో వండిన అద్భుతమైన నల్ల మినుముల పప్పు.",
+      "ta": "24 மணி நேரம் மெதுவான தீயில் வெண்ணெயுடன் சமைக்கப்பட்ட தால் மக்கானி.",
+      "hi": "लकड़ी की आंच पर 24 घंटे पकी हुई मक्खन और मलाई से भरपूर काली दाल मखनी।"
+    },
     "price": 340,
+    "costPrice": 85,
     "category": "mains",
     "vegType": "veg",
     "spiceLevel": 0,
@@ -233,6 +344,7 @@
     "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍲",
     "preparationTimeMinutes": 12,
+    "station": "wok",
     "calories": 420
   },
   {
@@ -244,7 +356,13 @@
       "hi": "पनीर लबाबदार"
     },
     "description": "Cottage cheese chunks cooked in a chunky onion-tomato gravy with grated paneer and freshly ground spices.",
+    "descriptionTranslations": {
+      "te": "ఉల్లిపాయ, టొమాటో గ్రేవీలో తురిమిన పన్నీర్‌తో చేసిన రుచికరమైన కూర.",
+      "ta": "வெங்காயம் மற்றும் தக்காளி கிரேவியில் துருவிய பன்னீருடன் சமைக்கப்பட்டது.",
+      "hi": "कद्दूकस किए पनीर और प्याज-टमाटर की मसालेदार ग्रेवी में पनीर के टुकड़े।"
+    },
     "price": 380,
+    "costPrice": 110,
     "category": "mains",
     "vegType": "veg",
     "spiceLevel": 1,
@@ -252,6 +370,7 @@
     "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🧀",
     "preparationTimeMinutes": 16,
+    "station": "wok",
     "calories": 450
   },
   {
@@ -263,7 +382,13 @@
       "hi": "कड़ाही गोश्त"
     },
     "description": "Tender lamb cuts wok-tossed with crushed coriander seeds, Kashmiri chili, bell peppers, and onion petals.",
+    "descriptionTranslations": {
+      "te": "ధనియాలు, కాశ్మీరీ కారం మరియు క్యాప్సికమ్‌తో వేయించిన మటన్ కర్రీ.",
+      "ta": "மல்லி விதைகள், காஷ்மீரி மிளகாய் மற்றும் குடைமிளகாயுடன் வறுத்த ஆட்டுக்கறி.",
+      "hi": "साबुत धनिया, शिमला मिर्च और कश्मीरी मिर्च के साथ कड़ाही में भुना गोश्त।"
+    },
     "price": 520,
+    "costPrice": 195,
     "category": "mains",
     "vegType": "non-veg",
     "spiceLevel": 2,
@@ -271,37 +396,25 @@
     "image": "https://images.unsplash.com/photo-1545247181-516773ca838b?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍖",
     "preparationTimeMinutes": 20,
+    "station": "wok",
     "calories": 620
   },
   {
     "id": "item-mn-5",
-    "name": "Andhra Chettinad Fish Curry",
-    "nameTranslations": {
-      "te": "చెట్టినాడు చేపల పులుసు",
-      "ta": "செட்டிநாடு மீன் குழம்பு",
-      "hi": "चेट्टिनाड फिश करी"
-    },
-    "description": "Seer fish fillets simmered in roasted coconut paste, peppercorns, shallots, and fresh star anise.",
-    "price": 490,
-    "category": "mains",
-    "vegType": "non-veg",
-    "spiceLevel": 3,
-    "isAvailable": true,
-    "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🐟",
-    "preparationTimeMinutes": 20,
-    "calories": 480
-  },
-  {
-    "id": "item-mn-6",
     "name": "Amritsari Garlic Butter Naan",
     "nameTranslations": {
       "te": "వెల్లుల్లి బటర్ నాన్",
       "ta": "கார்லிக் பட்டர் நான்",
       "hi": "लहसुन बटर नान"
     },
-    "description": "Tandoor-baked leavened flatbread brushed with garlic butter and fresh coriander sprigs.",
+    "description": "Tandoor-baked leavened flatbread brushed with crushed garlic butter and fresh coriander sprigs.",
+    "descriptionTranslations": {
+      "te": "తందూర్‌లో కాల్చి వెల్లుల్లి వెన్నతో అద్దిన సువాసనగల నాన్.",
+      "ta": "தந்தூரியில் சுடப்பட்டு பூண்டு வெண்ணெய் தடவப்பட்ட சுவையான நான்.",
+      "hi": "तंदूर में सिका हुआ ताजा लहसुन मक्खन और धनिए की खुशबू वाला नान।"
+    },
     "price": 85,
+    "costPrice": 18,
     "category": "mains",
     "vegType": "veg",
     "spiceLevel": 0,
@@ -309,6 +422,7 @@
     "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🫓",
     "preparationTimeMinutes": 8,
+    "station": "breads",
     "calories": 210
   },
   {
@@ -320,7 +434,13 @@
       "hi": "हैदराबादी चिकन दम बिरयानी"
     },
     "description": "Fragrant long-grain aged basmati rice cooked on sealed dum with spiced marinated chicken and saffron ghee.",
+    "descriptionTranslations": {
+      "te": "సుగంధ ద్రవ్యాలు, కుంకుమపువ్వు నెయ్యి మరియు చికెన్‌తో దమ్ పద్ధతిలో వండిన అసలైన బాస్మతి బిర్యానీ.",
+      "ta": "நறுமண பாசுமதி அரிசி மற்றும் மசாலா சிக்கனுடன் நெய்யில் தம்மில் வடித்த பிரியாணி.",
+      "hi": "असली बासमती चावल, केसर और मसालों के साथ सीलबंद हांडी में धीमी आंच पर पकी दम बिरयानी।"
+    },
     "price": 390,
+    "costPrice": 130,
     "category": "biryani",
     "vegType": "non-veg",
     "spiceLevel": 2,
@@ -329,6 +449,7 @@
     "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍚",
     "preparationTimeMinutes": 15,
+    "station": "biryani",
     "calories": 720,
     "tags": ["Bestseller", "Royal Dum"]
   },
@@ -341,7 +462,13 @@
       "hi": "कच्चे गोश्त की मटन बिरयानी"
     },
     "description": "Succulent lamb pieces marinated overnight, layered with saffron basmati and slow cooked on charcoal embers.",
+    "descriptionTranslations": {
+      "te": "రాత్రంతా నానబెట్టిన మెత్తని మటన్ మరియు కేసరి అన్నంతో బొగ్గుల నిప్పులపై దమ్ చేసిన బిర్యానీ.",
+      "ta": "மெதுவான கரியடுப்பு தம்மில் ஆட்டுக்கறியுடன் சமைக்கப்பட்ட அசல் நிஸாமி பிரியாணி.",
+      "hi": "रात भर मैरीनेट किया हुआ मटन और केसरिया चावल के साथ अंगारों पर पकी हैदराबादी बिरयानी।"
+    },
     "price": 490,
+    "costPrice": 185,
     "category": "biryani",
     "vegType": "non-veg",
     "spiceLevel": 2,
@@ -349,6 +476,7 @@
     "image": "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍚",
     "preparationTimeMinutes": 18,
+    "station": "biryani",
     "calories": 790,
     "tags": ["Chef Signature"]
   },
@@ -361,7 +489,13 @@
       "hi": "नवाबी पनीर वेज बिरयानी"
     },
     "description": "Carrot, beans, cauliflower and marinated tandoori paneer layered with mint, brown onions, and fragrant rice.",
+    "descriptionTranslations": {
+      "te": "కూరగాయలు, తందూరీ పన్నీర్ మరియు పుదీనాతో చేసిన సుగంధభరిత శాకాహార బిర్యానీ.",
+      "ta": "காய்கறிகள் மற்றும் தந்தூரி பன்னீருடன் நெய் மணக்கும் வெஜ் பிரியாணி.",
+      "hi": "सब्जियों और तंदूरी पनीर के साथ पुदीना और तले प्याज से सजी खुशबूदार दम बिरयानी।"
+    },
     "price": 320,
+    "costPrice": 95,
     "category": "biryani",
     "vegType": "veg",
     "spiceLevel": 1,
@@ -369,26 +503,8 @@
     "image": "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍚",
     "preparationTimeMinutes": 14,
+    "station": "biryani",
     "calories": 540
-  },
-  {
-    "id": "item-by-4",
-    "name": "Coastal Prawn Dum Biryani",
-    "nameTranslations": {
-      "te": "రొయ్యల దమ్ బిర్యానీ",
-      "ta": "இறால் தம் பிரியாணி",
-      "hi": "झींगा दम बिरयानी"
-    },
-    "description": "Plump bay prawns sautéed with coastal spices, sealed with basmati rice, mint, and pure desi ghee.",
-    "price": 520,
-    "category": "biryani",
-    "vegType": "non-veg",
-    "spiceLevel": 2,
-    "isAvailable": true,
-    "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍤",
-    "preparationTimeMinutes": 16,
-    "calories": 640
   },
   {
     "id": "item-ds-1",
@@ -399,7 +515,13 @@
       "hi": "केसर अंगूरी रसमलाई"
     },
     "description": "Feather-soft cottage cheese dumplings soaked in saffron infused cardamom clotted milk, topped with pistachios.",
+    "descriptionTranslations": {
+      "te": "కేసరి మరియు పిస్తాపప్పులతో కూడిన చిక్కటి పాలల్లో మునిగిన మెత్తని రసమలై.",
+      "ta": "குங்குமப்பூ பால் மற்றும் பிஸ்தாவுடன் பஞ்சு போன்ற மென்மையான ரசமலாய்.",
+      "hi": "केसरिया दूध और पिस्ते की मलाई में डूबी हुई रुई जैसी कोमल छेने की रसमलाई।"
+    },
     "price": 180,
+    "costPrice": 48,
     "category": "desserts",
     "vegType": "veg",
     "spiceLevel": 0,
@@ -407,6 +529,7 @@
     "image": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍨",
     "preparationTimeMinutes": 6,
+    "station": "dessert",
     "calories": 280
   },
   {
@@ -418,7 +541,13 @@
       "hi": "गरम गुलाब जामुन मलाई रबड़ी"
     },
     "description": "Warm golden khoya dumplings soaked in rose water syrup, served over chilled slow-reduced thickened rabri.",
+    "descriptionTranslations": {
+      "te": "గులాబీ పాకంలో మునిగిన వేడి గులాబ్ జామున్ మరియు చల్లని రబ్రీ కలయిక.",
+      "ta": "சூடான குலாப் ஜாமுன் குளிர்ந்த மலாய் ரப்ரியுடன் பரிமாறப்படுகிறது.",
+      "hi": "गुलाब की चाशनी में डूबे गरम गुलाब जामुन ठंडी गाढ़ी मलाईदार रबड़ी के साथ।"
+    },
     "price": 190,
+    "costPrice": 52,
     "category": "desserts",
     "vegType": "veg",
     "spiceLevel": 0,
@@ -426,29 +555,11 @@
     "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍯",
     "preparationTimeMinutes": 5,
+    "station": "dessert",
     "calories": 390
   },
   {
     "id": "item-ds-3",
-    "name": "Royal Shahi Tukda",
-    "nameTranslations": {
-      "te": "రాయల్ షాహీ తుక్డా",
-      "ta": "ராயல் ஷாஹி துக்டா",
-      "hi": "शाही टुकड़ा"
-    },
-    "description": "Ghee-crisped brioche toast dipped in saffron syrup, smothered with thickened rabri and silver vark.",
-    "price": 210,
-    "category": "desserts",
-    "vegType": "veg",
-    "spiceLevel": 0,
-    "isAvailable": true,
-    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&auto=format&fit=crop&q=80",
-    "emojiFallback": "🍞",
-    "preparationTimeMinutes": 8,
-    "calories": 440
-  },
-  {
-    "id": "item-ds-4",
     "name": "Alphonso Mango Kulfi Pop",
     "nameTranslations": {
       "te": "మామిడి కుల్ఫీ",
@@ -456,7 +567,13 @@
       "hi": "आम कुल्फी स्टिक"
     },
     "description": "Traditional pot-frozen clotted milk pop infused with Ratnagiri Alphonso mango pulp and cardamom.",
+    "descriptionTranslations": {
+      "te": "ఆల్ఫోన్సో మామిడి గుజ్జు మరియు యాలకులతో చేసిన అసలైన మట్కా కుల్ఫీ.",
+      "ta": "அல்போன்சா மாம்பழக்கூழ் மற்றும் ஏலக்காய் மணக்கும் பாரம்பரிய குல்ஃபி.",
+      "hi": "रत्नागिरी अल्फोंसो आम और इलायची से बनी पारंपरिक मलाईदार कुल्फी।"
+    },
     "price": 140,
+    "costPrice": 35,
     "category": "desserts",
     "vegType": "veg",
     "spiceLevel": 0,
@@ -464,6 +581,7 @@
     "image": "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍦",
     "preparationTimeMinutes": 4,
+    "station": "dessert",
     "calories": 210
   },
   {
@@ -475,7 +593,13 @@
       "hi": "गाढ़ा आम की लस्सी"
     },
     "description": "Creamy churned farm yogurt blended with sweet Alphonso pulp, green cardamom, and crushed pistachios.",
+    "descriptionTranslations": {
+      "te": "తాజా పెరుగు, మామిడి గుజ్జు మరియు పిస్తాలతో చేసిన చిక్కటి చల్లని లస్సీ.",
+      "ta": "கிரீமியான தயிர் மற்றும் அல்போன்சா மாம்பழக்கூழால் செய்யப்பட்ட சுவையான லஸ்ஸி.",
+      "hi": "ताजा गाढ़ा दही, मीठा आम का गूदा और पिस्ते की कतरन से बनी स्वादिष्ट लस्सी।"
+    },
     "price": 150,
+    "costPrice": 40,
     "category": "drinks",
     "vegType": "veg",
     "spiceLevel": 0,
@@ -483,6 +607,7 @@
     "image": "https://images.unsplash.com/photo-1546173159-315724a31696?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🥭",
     "preparationTimeMinutes": 5,
+    "station": "bar",
     "calories": 290
   },
   {
@@ -494,7 +619,13 @@
       "hi": "तड़का छाछ"
     },
     "description": "Refreshing chilled buttermilk tempered with roasted cumin, mustard seeds, ginger, and fresh mint leaves.",
+    "descriptionTranslations": {
+      "te": "జీలకర్ర, ఆవాలు మరియు అల్లం పోపుతో చేసిన చల్లని జీర్ణకారి మజ్జిగ.",
+      "ta": "சீரகம், இஞ்சி மற்றும் புதினா தாளித்த குளிர்ச்சியான மசாலா மோர்.",
+      "hi": "भुने जीरे, अदरक और ताजे पुदीने के तड़के वाली ठंडी ताजगी भरी छाछ।"
+    },
     "price": 90,
+    "costPrice": 15,
     "category": "drinks",
     "vegType": "veg",
     "spiceLevel": 1,
@@ -502,6 +633,7 @@
     "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🥛",
     "preparationTimeMinutes": 4,
+    "station": "bar",
     "calories": 95
   },
   {
@@ -513,7 +645,13 @@
       "hi": "मसाला शिकंजी सोडा"
     },
     "description": "Freshly squeezed Meyer lemons, rock salt, roasted cumin, and mint topped with sparkling soda water.",
+    "descriptionTranslations": {
+      "te": "నిమ్మరసం, సైంధవ లవణం, జీలకర్ర మరియు చల్లని సోడాతో చేసిన పానీయం.",
+      "ta": "எலுமிச்சம்பழம், சீரகம் மற்றும் சோடா கலந்த உற்சாக பானம்.",
+      "hi": "नींबू, काला नमक, भुना जीरा और सोडे की चटपटी ताजगी भरी शिकंजी।"
+    },
     "price": 110,
+    "costPrice": 22,
     "category": "drinks",
     "vegType": "veg",
     "spiceLevel": 0,
@@ -521,6 +659,7 @@
     "image": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "🍋",
     "preparationTimeMinutes": 4,
+    "station": "bar",
     "calories": 75
   },
   {
@@ -531,8 +670,14 @@
       "ta": "ஈரானி டீ",
       "hi": "दम ईरानी चाय"
     },
-    "description": "Authentic Hyderabadi slow-steamed tea decoction poured over rich evaporated milk.",
+    "description": "Authentic Hyderabadi slow-steamed tea decoction poured over rich evaporated mawa milk.",
+    "descriptionTranslations": {
+      "te": "చిక్కటి పాలతో దమ్ చేసిన అసలైన హైదరాబాదీ ఇరానీ ఛాయ్.",
+      "ta": "சுவையான அடர்த்தியான பாலில் ஊற்றப்படும் பாரம்பரிய ஈரானி டீ.",
+      "hi": "गाढ़े मलाईदार दूध और भाप में पकी हुई पत्ती की असली हैदराबादी ईरानी चाय।"
+    },
     "price": 60,
+    "costPrice": 12,
     "category": "drinks",
     "vegType": "veg",
     "spiceLevel": 0,
@@ -540,6 +685,7 @@
     "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800&auto=format&fit=crop&q=80",
     "emojiFallback": "☕",
     "preparationTimeMinutes": 5,
+    "station": "bar",
     "calories": 140
   }
 ]

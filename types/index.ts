@@ -17,6 +17,7 @@ export interface MenuItem {
     hi?: string;
   };
   price: number;
+  costPrice?: number; // Cost price for gross profit calculation
   category: 'specials' | 'starters' | 'mains' | 'biryani' | 'desserts' | 'drinks';
   vegType: VegType;
   spiceLevel: 0 | 1 | 2 | 3; // 0=mild, 3=extra spicy
@@ -25,6 +26,7 @@ export interface MenuItem {
   image: string;
   emojiFallback: string;
   preparationTimeMinutes: number;
+  station?: 'tandoor' | 'wok' | 'biryani' | 'breads' | 'bar' | 'dessert';
   calories?: number;
   tags?: string[];
 }
@@ -39,6 +41,7 @@ export interface OrderItem {
   menuItemId: string;
   name: string;
   price: number;
+  costPrice?: number;
   quantity: number;
   vegType: VegType;
   notes?: string;
@@ -108,4 +111,66 @@ export interface BillSplit {
     paid: boolean;
     qrPayload?: string;
   }[];
+}
+
+// --- Customer Review & Feedback System ---
+export interface OrderReview {
+  id: string;
+  orderId?: string;
+  tableId: string;
+  tableNumber: number;
+  overallRating: number; // 1 to 5
+  foodRating: number;    // 1 to 5
+  ambianceRating: number;// 1 to 5
+  serviceRating: number; // 1 to 5
+  tags: string[];        // e.g. "Piping Hot 🔥", "Quick Service ⚡"
+  customerName?: string;
+  comment: string;
+  createdAt: string;
+}
+
+// --- Water Tank & Commercial Utility System ---
+export interface WaterTankStatus {
+  currentLiters: number;
+  capacityLiters: number;
+  roHealthPercent: number;
+  tdsPpm: number;
+  lastRefilledAt: string;
+  status: 'optimal' | 'moderate' | 'critical';
+  dailyConsumptionLiters: number;
+}
+
+export interface WaterRequest {
+  id: string;
+  tableId: string;
+  tableNumber: number;
+  waterType: 'normal' | 'chilled' | 'warm' | 'mineral';
+  status: 'pending' | 'served';
+  requestedAt: string;
+}
+
+// --- Stock & Inventory Maintenance ---
+export interface StockItem {
+  id: string;
+  name: string;
+  category: 'staples' | 'dairy' | 'poultry' | 'spices' | 'beverages' | 'utility';
+  currentQty: number;
+  minThreshold: number;
+  unit: string; // 'kg' | 'L' | 'cylinders' | 'units'
+  costPerUnit: number;
+  status: 'in_stock' | 'low_stock' | 'critical';
+  lastRestocked: string;
+}
+
+// --- Table ODG & Session Security ---
+export interface TableSessionSecurity {
+  tableId: string;
+  tableNumber: number;
+  isOccupiedUnderODG: boolean; // Active On-Dining Guest session
+  sessionToken: string;
+  sessionPin: string; // e.g. "4107" to prevent rogue scanning
+  guestCount: number;
+  sessionStartedAt: string;
+  expiresAt: string;
+  isLocked: boolean; // Security lock toggle
 }

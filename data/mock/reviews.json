@@ -1,0 +1,41 @@
+[
+  {
+    "id": "rev-1",
+    "tableId": "7",
+    "tableNumber": 7,
+    "overallRating": 5,
+    "foodRating": 5,
+    "ambianceRating": 5,
+    "serviceRating": 5,
+    "tags": ["Piping Hot 🔥", "Royal Dum Biryani 👑", "Quick Service ⚡"],
+    "customerName": "Arjun & Sneha",
+    "comment": "The Hyderabadi Dum Biryani and Gongura Mutton are out of this world! Saffron aroma was mesmerizing and zero waiting for menus.",
+    "createdAt": "2026-11-22T08:30:00.000Z"
+  },
+  {
+    "id": "rev-2",
+    "tableId": "4",
+    "tableNumber": 4,
+    "overallRating": 5,
+    "foodRating": 5,
+    "ambianceRating": 4,
+    "serviceRating": 5,
+    "tags": ["Melt-in-Mouth Kebabs 🍢", "Great Music 🎵", "Generous Portions 🍛"],
+    "customerName": "Kavitha R.",
+    "comment": "Nawabi Murgh Malai Tikka was tender and juicy. The phone ordering and bill split made paying with friends so effortless!",
+    "createdAt": "2026-11-22T07:45:00.000Z"
+  },
+  {
+    "id": "rev-3",
+    "tableId": "2",
+    "tableNumber": 2,
+    "overallRating": 4,
+    "foodRating": 5,
+    "ambianceRating": 5,
+    "serviceRating": 4,
+    "tags": ["Royal Vibe ✨", "Best Rasmalai 🍨"],
+    "customerName": "Rahul V.",
+    "comment": "Loved the warm Sunny Family theme and the mini-game while waiting! The slow-simmered Dal Makhani is legendary.",
+    "createdAt": "2026-11-22T06:15:00.000Z"
+  }
+]

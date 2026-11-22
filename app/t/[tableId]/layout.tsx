@@ -6,6 +6,7 @@ import { CustomerHeader } from '@/components/customer/CustomerHeader';
 import { FloatingCartBar } from '@/components/customer/FloatingCartBar';
 import { CartBottomSheet } from '@/components/customer/CartBottomSheet';
 import { OnboardingGuideModal } from '@/components/customer/OnboardingGuideModal';
+import { TableSecurityLockModal } from '@/components/customer/TableSecurityLockModal';
 import { useCartStore, useMenuStore } from '@/lib/store';
 import { orderService } from '@/lib/orderService';
 
@@ -37,6 +38,7 @@ export default function CustomerTableLayout({
 
   return (
     <div className="min-h-screen bg-canvas flex flex-col transition-colors duration-300">
+      <TableSecurityLockModal tableId={tableId} tableNumber={tableNumber} />
       <OnboardingGuideModal />
       <CustomerHeader tableNumber={tableNumber} tableId={tableId} />
       <main className="flex-1 pb-28">{children}</main>

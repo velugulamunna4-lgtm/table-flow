@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { TableStatusCard } from '@/components/waiter/TableStatusCard';
 import { WaiterOrderDetailDrawer } from '@/components/waiter/WaiterOrderDetailDrawer';
 import { WaiterPlaceOrderModal } from '@/components/waiter/WaiterPlaceOrderModal';
+import { LanguageSwitcher } from '@/components/customer/LanguageSwitcher';
 import { orderService, WaiterCall } from '@/lib/orderService';
 import { Table, Order } from '@/types';
 import tablesData from '@/data/mock/tables.json';
@@ -19,6 +20,7 @@ import {
   RefreshCw,
   QrCode,
   ArrowLeft,
+  Droplet,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -42,8 +44,12 @@ export default function WaiterAppPage() {
       setWaiterCalls(latestCalls);
       if (latestCalls.length > 0) {
         const topCall = latestCalls[0];
+        const detail =
+          topCall.type === 'water'
+            ? `Water: ${topCall.waterType?.toUpperCase() || 'NORMAL'}`
+            : topCall.type.replace('_', ' ').toUpperCase();
         setBannerAlert(
-          `🔔 Table ${topCall.tableNumber} is calling for ${topCall.type.replace('_', ' ')}!`
+          `🔔 Table ${topCall.tableNumber} is requesting: ${detail}!`
         );
         setTimeout(() => setBannerAlert(null), 6000);
       }
@@ -57,13 +63,11 @@ export default function WaiterAppPage() {
 
   const handleApproveOrder = async (orderId: string) => {
     await orderService.updateOrderStatus(orderId, 'cooking');
-    // Refresh drawer
     const updated = await orderService.getOrders();
     setOrders(updated);
   };
 
   const handleClearTable = async (tableId: string) => {
-    // Mark order served
     const order = orders.find((o) => o.tableId === tableId && o.status !== 'served');
     if (order) {
       await orderService.updateOrderStatus(order.id, 'served');
@@ -72,7 +76,6 @@ export default function WaiterAppPage() {
     setSelectedTable(null);
   };
 
-  // Compute table status counts
   const totalTables = tables.length;
   const occupiedCount = tables.filter((t) =>
     orders.some((o) => o.tableId === t.id && o.status !== 'served')
@@ -105,7 +108,7 @@ export default function WaiterAppPage() {
           </div>
         </div>
 
-        {/* Floor Metrics Pill Counter */}
+        {/* Floor Metrics Pill Counter & Language Switcher */}
         <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
           <div className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill bg-surface border border-[#2DBE7E]/30 text-xs font-bold shadow-soft">
             <span className="w-2.5 h-2.5 rounded-full bg-[#2DBE7E]" />
@@ -130,6 +133,8 @@ export default function WaiterAppPage() {
               {helpCount}
             </span>
           </div>
+
+          <LanguageSwitcher />
 
           {/* Audio Chime Toggle */}
           <button

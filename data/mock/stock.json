@@ -1,0 +1,112 @@
+{
+  "waterTank": {
+    "currentLiters": 1850,
+    "capacityLiters": 2500,
+    "roHealthPercent": 94,
+    "tdsPpm": 72,
+    "lastRefilledAt": "2026-11-22T04:00:00.000Z",
+    "status": "optimal",
+    "dailyConsumptionLiters": 650
+  },
+  "stockItems": [
+    {
+      "id": "stk-1",
+      "name": "Commercial RO Water Reservoir",
+      "category": "utility",
+      "currentQty": 1850,
+      "minThreshold": 600,
+      "unit": "Liters",
+      "costPerUnit": 0.08,
+      "status": "in_stock",
+      "lastRestocked": "2026-11-22T04:00:00.000Z"
+    },
+    {
+      "id": "stk-2",
+      "name": "Royal Aged Basmati Rice",
+      "category": "staples",
+      "currentQty": 180,
+      "minThreshold": 50,
+      "unit": "kg",
+      "costPerUnit": 110,
+      "status": "in_stock",
+      "lastRestocked": "2026-11-20T10:00:00.000Z"
+    },
+    {
+      "id": "stk-3",
+      "name": "Fresh Organic Malai Paneer",
+      "category": "dairy",
+      "currentQty": 14,
+      "minThreshold": 15,
+      "unit": "kg",
+      "costPerUnit": 260,
+      "status": "low_stock",
+      "lastRestocked": "2026-11-22T06:30:00.000Z"
+    },
+    {
+      "id": "stk-4",
+      "name": "Farm Tender Chicken (Curry & Tikka cuts)",
+      "category": "poultry",
+      "currentQty": 42,
+      "minThreshold": 20,
+      "unit": "kg",
+      "costPerUnit": 170,
+      "status": "in_stock",
+      "lastRestocked": "2026-11-22T05:45:00.000Z"
+    },
+    {
+      "id": "stk-5",
+      "name": "Pure Desi Cow Ghee (Bilona)",
+      "category": "dairy",
+      "currentQty": 28,
+      "minThreshold": 10,
+      "unit": "Liters",
+      "costPerUnit": 580,
+      "status": "in_stock",
+      "lastRestocked": "2026-11-19T14:00:00.000Z"
+    },
+    {
+      "id": "stk-6",
+      "name": "Kashmiri Mogra Saffron (Kesar)",
+      "category": "spices",
+      "currentQty": 220,
+      "minThreshold": 50,
+      "unit": "grams",
+      "costPerUnit": 220,
+      "status": "in_stock",
+      "lastRestocked": "2026-11-15T11:00:00.000Z"
+    },
+    {
+      "id": "stk-7",
+      "name": "Commercial Kitchen LPG Cylinders",
+      "category": "utility",
+      "currentQty": 2,
+      "minThreshold": 3,
+      "unit": "cylinders",
+      "costPerUnit": 1850,
+      "status": "critical",
+      "lastRestocked": "2026-11-18T09:00:00.000Z"
+    },
+    {
+      "id": "stk-8",
+      "name": "Ratnagiri Alphonso Mango Pulp",
+      "category": "beverages",
+      "currentQty": 35,
+      "minThreshold": 10,
+      "unit": "Liters",
+      "costPerUnit": 120,
+      "status": "in_stock",
+      "lastRestocked": "2026-11-21T12:00:00.000Z"
+    },
+    {
+      "id": "stk-9",
+      "name": "Black Urad Dal for Dal Makhani",
+      "category": "staples",
+      "currentQty": 45,
+      "minThreshold": 15,
+      "unit": "kg",
+      "costPerUnit": 130,
+      "status": "in_stock",
+      "lastRestocked": "2026-11-20T08:00:00.000Z"
+    }
+  ]
+}

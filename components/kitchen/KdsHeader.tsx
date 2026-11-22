@@ -2,22 +2,31 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ChefHat, Volume2, VolumeX, Store, ArrowLeft, RefreshCw } from 'lucide-react';
+import { LanguageSwitcher } from '@/components/customer/LanguageSwitcher';
+import { ChefHat, Volume2, VolumeX, Store, ArrowLeft, RefreshCw, Layers, LayoutGrid } from 'lucide-react';
 import { restaurantConfig } from '@/config/restaurant.config';
+import { useLanguageStore } from '@/lib/store';
+import { translations } from '@/lib/i18n';
 
 export interface KdsHeaderProps {
   orderCounts: { new: number; cooking: number; ready: number };
+  activeView: 'tickets' | 'production';
+  onChangeView: (view: 'tickets' | 'production') => void;
   onOpenSoldOut: () => void;
   onRefresh: () => void;
 }
 
 export const KdsHeader: React.FC<KdsHeaderProps> = ({
   orderCounts,
+  activeView,
+  onChangeView,
   onOpenSoldOut,
   onRefresh,
 }) => {
   const [currentTime, setCurrentTime] = useState<string>('');
   const [audioEnabled, setAudioEnabled] = useState(true);
+  const { language } = useLanguageStore();
+  const t = translations[language].production;
 
   useEffect(() => {
     const updateTime = () => {
@@ -60,36 +69,44 @@ export const KdsHeader: React.FC<KdsHeaderProps> = ({
           </div>
         </div>
 
-        {/* Center: Live Ticket Counters */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-[#8B6CF6]/15 border border-[#8B6CF6]/30">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#8B6CF6] animate-pulse" />
-            <span className="text-xs text-[#C4B5FD] font-bold">New:</span>
-            <span className="text-base font-black text-white font-mono">{orderCounts.new}</span>
-          </div>
+        {/* Center: View Switcher (Tickets vs Batch Production) */}
+        <div className="flex items-center gap-1.5 bg-[#241F1C] p-1 rounded-pill border border-[#332C26]">
+          <button
+            onClick={() => onChangeView('tickets')}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-pill text-xs font-bold transition-all ${
+              activeView === 'tickets'
+                ? 'bg-primary text-white shadow-sm'
+                : 'text-[#A89689] hover:text-white'
+            }`}
+          >
+            <LayoutGrid className="w-3.5 h-3.5" />
+            <span>Tickets Swimlane</span>
+          </button>
 
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-[#FF7A45]/15 border border-[#FF7A45]/30">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#FF7A45] animate-pulse" />
-            <span className="text-xs text-[#FFC0A8] font-bold">Cooking:</span>
-            <span className="text-base font-black text-white font-mono">{orderCounts.cooking}</span>
-          </div>
-
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-[#2DBE7E]/15 border border-[#2DBE7E]/30">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#2DBE7E]" />
-            <span className="text-xs text-[#9CE6C2] font-bold">Ready:</span>
-            <span className="text-base font-black text-white font-mono">{orderCounts.ready}</span>
-          </div>
+          <button
+            onClick={() => onChangeView('production')}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-pill text-xs font-bold transition-all ${
+              activeView === 'production'
+                ? 'bg-primary text-white shadow-sm'
+                : 'text-[#A89689] hover:text-white'
+            }`}
+          >
+            <Layers className="w-3.5 h-3.5" />
+            <span>Production & Stations</span>
+          </button>
         </div>
 
-        {/* Right: Controls (Sold out sheet, Audio, Refresh, Customer link) */}
+        {/* Right: Controls (Sold out sheet, Language, Audio, Refresh, Back link) */}
         <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
           <button
             onClick={onOpenSoldOut}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill bg-[#FF5A6E]/20 text-[#FF8595] border border-[#FF5A6E]/40 hover:bg-[#FF5A6E]/30 text-xs sm:text-sm font-bold transition-all"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-pill bg-[#FF5A6E]/20 text-[#FF8595] border border-[#FF5A6E]/40 hover:bg-[#FF5A6E]/30 text-xs sm:text-sm font-bold transition-all"
           >
             <Store className="w-4 h-4" />
             <span>86 / Sold Out</span>
           </button>
+
+          <LanguageSwitcher />
 
           <button
             onClick={() => setAudioEnabled(!audioEnabled)}
