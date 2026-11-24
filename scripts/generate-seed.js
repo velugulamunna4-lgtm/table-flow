@@ -44,7 +44,7 @@ BEGIN
 `;
 
 for (let i = 1; i <= 12; i++) {
-  const tableUuid = `t0000000-0000-0000-0000-${String(i).padStart(12, '0')}`;
+  const tableUuid = `b0000000-0000-0000-0000-${String(i).padStart(12, '0')}`;
   const qrPlaceholder = `table_${i}_token_placeholder`;
   sql += `    INSERT INTO public.tables (id, restaurant_id, table_number, capacity, qr_token, status)
     VALUES ('${tableUuid}', v_rest_id, ${i}, 4, '${qrPlaceholder}', 'free')
@@ -74,7 +74,7 @@ const catVarMap = {
 };
 
 menu.forEach((item, idx) => {
-  const itemUuid = `m0000000-0000-0000-0000-${String(idx + 1).padStart(12, '0')}`;
+  const itemUuid = `d0000000-0000-0000-0000-${String(idx + 1).padStart(12, '0')}`;
   const catVar = catVarMap[item.category] || 'v_cat_mains';
   const name = sqlEscape(item.name);
   const nameTrans = sqlEscape(JSON.stringify(item.nameTranslations || {}));
