@@ -22,9 +22,10 @@ const BROADCAST_CHANNEL_NAME = 'tableflow_rms_broadcast';
 export interface WaiterCall {
   tableId: string;
   tableNumber: number;
-  type: 'call_waiter' | 'water' | 'bill';
+  type: 'call_waiter' | 'water' | 'bill' | 'clean_table';
   timestamp: string;
   waterType?: string;
+  cleanDetails?: string;
 }
 
 type OrderEvent =
@@ -217,8 +218,9 @@ class OrderService {
   public async callWaiter(
     tableId: string,
     tableNumber: number,
-    type: 'call_waiter' | 'water' | 'bill',
-    waterType?: string
+    type: 'call_waiter' | 'water' | 'bill' | 'clean_table',
+    waterType?: string,
+    cleanDetails?: string
   ): Promise<void> {
     const calls = this.getWaiterCallsSync();
     const existingIdx = calls.findIndex((c) => c.tableId === tableId);
@@ -228,6 +230,7 @@ class OrderService {
       type,
       timestamp: new Date().toISOString(),
       waterType,
+      cleanDetails,
     };
 
     const updated = existingIdx > -1
@@ -237,6 +240,14 @@ class OrderService {
     this.persistWaiterCalls(updated);
     this.postMessage({ type: 'WAITER_CALL_CREATED', payload: newCall });
     this.notifyWaiterListeners(updated);
+  }
+
+  public async requestTableCleaning(
+    tableId: string,
+    tableNumber: number,
+    cleanDetails?: string
+  ): Promise<void> {
+    return this.callWaiter(tableId, tableNumber, 'clean_table', undefined, cleanDetails);
   }
 
   public async clearWaiterCall(tableId: string): Promise<void> {

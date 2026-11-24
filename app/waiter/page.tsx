@@ -44,10 +44,12 @@ export default function WaiterAppPage() {
       setWaiterCalls(latestCalls);
       if (latestCalls.length > 0) {
         const topCall = latestCalls[0];
-        const detail =
-          topCall.type === 'water'
-            ? `Water: ${topCall.waterType?.toUpperCase() || 'NORMAL'}`
-            : topCall.type.replace('_', ' ').toUpperCase();
+        let detail = topCall.type.replace('_', ' ').toUpperCase();
+        if (topCall.type === 'water') {
+          detail = `Water (${topCall.waterType?.toUpperCase() || 'NORMAL'})`;
+        } else if (topCall.type === 'clean_table') {
+          detail = `Table Cleaning (${topCall.cleanDetails || 'Full Wipe & Clear'})`;
+        }
         setBannerAlert(
           `Table ${topCall.tableNumber} is requesting: ${detail}!`
         );

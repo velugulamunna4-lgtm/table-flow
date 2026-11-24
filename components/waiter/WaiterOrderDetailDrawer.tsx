@@ -7,7 +7,7 @@ import { WaiterCall, orderService } from '@/lib/orderService';
 import { formatCurrency, formatTimeElapsed } from '@/lib/utils';
 import { VegIndicator } from '@/components/ui/VegIndicator';
 import { StatusBadge } from '@/components/ui/StatusBadge';
-import { X, Check, BellOff, ArrowRight, QrCode, Trash2, PlusCircle, Utensils } from 'lucide-react';
+import { X, Check, BellOff, ArrowRight, QrCode, Trash2, PlusCircle, Utensils, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export interface WaiterOrderDetailDrawerProps {
@@ -77,15 +77,40 @@ export const WaiterOrderDetailDrawer: React.FC<WaiterOrderDetailDrawerProps> = (
 
             {/* Active Waiter Call Alert if present */}
             {activeCall && (
-              <div className="my-4 p-4 rounded-2xl bg-[#FFF2F4] border border-[#FF5A6E] flex items-center justify-between gap-3">
+              <div
+                className={`my-4 p-4 rounded-2xl border flex items-center justify-between gap-3 ${
+                  activeCall.type === 'clean_table'
+                    ? 'bg-[#FFF9F2] border-[#FF7A45]'
+                    : 'bg-[#FFF2F4] border-[#FF5A6E]'
+                }`}
+              >
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-[#FF5A6E] text-white flex items-center justify-center font-bold">
-                    !
+                  <div
+                    className={`w-9 h-9 rounded-full text-white flex items-center justify-center font-bold ${
+                      activeCall.type === 'clean_table' ? 'bg-[#FF7A45]' : 'bg-[#FF5A6E]'
+                    }`}
+                  >
+                    {activeCall.type === 'clean_table' ? (
+                      <Sparkles className="w-5 h-5 text-white" />
+                    ) : (
+                      '!'
+                    )}
                   </div>
                   <div>
-                    <div className="font-heading font-bold text-sm text-[#FF5A6E]">
-                      Customer Alert: {activeCall.type.toUpperCase()}
+                    <div
+                      className={`font-heading font-bold text-sm ${
+                        activeCall.type === 'clean_table' ? 'text-[#FF7A45]' : 'text-[#FF5A6E]'
+                      }`}
+                    >
+                      {activeCall.type === 'clean_table'
+                        ? 'Clean Table Request'
+                        : `Customer Alert: ${activeCall.type.toUpperCase()}`}
                     </div>
+                    {activeCall.type === 'clean_table' && activeCall.cleanDetails && (
+                      <div className="text-xs font-semibold text-content-primary">
+                        {activeCall.cleanDetails}
+                      </div>
+                    )}
                     <div className="text-xs text-content-secondary">
                       Requested {formatTimeElapsed(activeCall.timestamp)}
                     </div>
@@ -96,10 +121,23 @@ export const WaiterOrderDetailDrawer: React.FC<WaiterOrderDetailDrawerProps> = (
                   onClick={async () => {
                     await orderService.clearWaiterCall(table.id);
                   }}
-                  className="px-3 py-1.5 rounded-full bg-white text-[#FF5A6E] font-bold text-xs border border-[#FF5A6E]/30 hover:bg-[#FF5A6E] hover:text-white transition-all flex items-center gap-1 shadow-sm"
+                  className={`px-3 py-1.5 rounded-full font-bold text-xs border transition-all flex items-center gap-1 shadow-sm ${
+                    activeCall.type === 'clean_table'
+                      ? 'bg-white text-[#FF7A45] border-[#FF7A45]/30 hover:bg-[#FF7A45] hover:text-white'
+                      : 'bg-white text-[#FF5A6E] border-[#FF5A6E]/30 hover:bg-[#FF5A6E] hover:text-white'
+                  }`}
                 >
-                  <BellOff className="w-3.5 h-3.5" />
-                  <span>Resolve</span>
+                  {activeCall.type === 'clean_table' ? (
+                    <>
+                      <Check className="w-3.5 h-3.5" />
+                      <span>Mark Cleaned</span>
+                    </>
+                  ) : (
+                    <>
+                      <BellOff className="w-3.5 h-3.5" />
+                      <span>Resolve</span>
+                    </>
+                  )}
                 </button>
               </div>
             )}

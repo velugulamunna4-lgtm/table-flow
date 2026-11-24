@@ -11,6 +11,7 @@ import { useLanguageStore } from '@/lib/store';
 import { translations } from '@/lib/i18n';
 import { formatCurrency, formatTimeElapsed } from '@/lib/utils';
 import { Order, OrderStatus } from '@/types';
+import { CleanTableModal } from '@/components/customer/CleanTableModal';
 import {
   Send,
   BellRing,
@@ -40,6 +41,7 @@ export default function OrderStatusPage() {
 
   const [order, setOrder] = useState<Order | null>(null);
   const [waiterCalled, setWaiterCalled] = useState(false);
+  const [isCleanModalOpen, setIsCleanModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -370,12 +372,12 @@ export default function OrderStatusPage() {
       </Card>
 
       {/* Quick Action Buttons */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
         <Link href={`/t/${tableId}`}>
           <Button
             variant="secondary"
             size="md"
-            className="w-full font-bold"
+            className="w-full font-bold text-xs sm:text-sm h-12"
             leftIcon={<PlusCircle className="w-4 h-4 text-primary" />}
           >
             {t.orderMore}
@@ -385,25 +387,42 @@ export default function OrderStatusPage() {
         <Button
           variant={waiterCalled ? 'success' : 'secondary'}
           size="md"
-          className="w-full font-bold"
+          className="w-full font-bold text-xs sm:text-sm h-12"
           onClick={handleCallWaiter}
           disabled={waiterCalled}
           leftIcon={<PhoneCall className="w-4 h-4" />}
         >
-          {waiterCalled ? 'Captain Notified!' : t.callWaiter}
+          {waiterCalled ? 'Notified!' : t.callWaiter}
+        </Button>
+
+        <Button
+          variant="secondary"
+          size="md"
+          className="w-full font-bold text-xs sm:text-sm h-12"
+          onClick={() => setIsCleanModalOpen(true)}
+          leftIcon={<Sparkles className="w-4 h-4 text-sun" />}
+        >
+          {t.cleanTable?.cleanTableBtn || 'Clean Table'}
         </Button>
 
         <Link href={`/t/${tableId}/bill`}>
           <Button
             variant="primary"
             size="md"
-            className="w-full font-bold"
+            className="w-full font-bold text-xs sm:text-sm h-12"
             leftIcon={<Receipt className="w-4 h-4" />}
           >
             {t.viewBill}
           </Button>
         </Link>
       </div>
+
+      <CleanTableModal
+        isOpen={isCleanModalOpen}
+        onClose={() => setIsCleanModalOpen(false)}
+        tableId={tableId}
+        tableNumber={tableNumber}
+      />
     </div>
   );
 }

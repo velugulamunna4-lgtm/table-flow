@@ -80,6 +80,22 @@ export interface TranslationDictionary {
     roHealth: string;
     refillTank: string;
   };
+  cleanTable: {
+    cleanTableBtn: string;
+    modalTitle: string;
+    modalSubtitle: string;
+    wipeTable: string;
+    clearPlates: string;
+    spillCleanup: string;
+    freshCutlery: string;
+    quickCleanPrompt: string;
+    requestSentToast: string;
+    cancel: string;
+    confirmBtn: string;
+    waiterCleaningAlert: string;
+    markCleaned: string;
+    cleaningActiveBadge: string;
+  };
   security: {
     badge: string;
     title: string;
@@ -235,6 +251,22 @@ export const translations: Record<Language, TranslationDictionary> = {
       roHealth: 'RO Filtration Health',
       refillTank: 'Refill Water Tank',
     },
+    cleanTable: {
+      cleanTableBtn: 'Clean Table',
+      modalTitle: 'Request Table Cleaning',
+      modalSubtitle: 'Let our floor captain know how we can freshen up your table.',
+      wipeTable: 'Wipe & Sanitize Table Surface',
+      clearPlates: 'Clear Used Plates & Bowls',
+      spillCleanup: 'Clean Liquid / Beverage Spill',
+      freshCutlery: 'Fresh Cutlery & Napkins',
+      quickCleanPrompt: 'Our floor captain will arrive promptly to assist with table cleaning.',
+      requestSentToast: 'Cleaning request dispatched! Captain will arrive at your table shortly.',
+      cancel: 'Cancel',
+      confirmBtn: 'Request Cleaning',
+      waiterCleaningAlert: 'Table Needs Cleaning',
+      markCleaned: 'Mark Table Cleaned',
+      cleaningActiveBadge: 'Cleaning Requested',
+    },
     security: {
       badge: 'Active ODG Session',
       title: 'Table Session Protected',
@@ -387,6 +419,22 @@ export const translations: Record<Language, TranslationDictionary> = {
       tankLevel: 'వాటర్ ట్యాంక్ స్థాయి',
       roHealth: 'ఆర్వో ఫిల్టర్ నాణ్యత',
       refillTank: 'ట్యాంక్ రీఫిల్ చేయండి',
+    },
+    cleanTable: {
+      cleanTableBtn: 'టేబుల్ క్లీన్ చేయండి',
+      modalTitle: 'టేబుల్ క్లీనింగ్ రిక్వెస్ట్',
+      modalSubtitle: 'మీ టేబుల్‌ను శుభ్రం చేయడానికి ఫ్లోర్ కెప్టెన్‌కు తెలియజేయండి.',
+      wipeTable: 'టేబుల్ తుడవడం & శానిటైజ్ చేయడం',
+      clearPlates: 'ఖాళీ ప్లేట్లు & గిన్నెలు తీసివేయండి',
+      spillCleanup: 'పారిన పానీయం శుభ్రం చేయండి',
+      freshCutlery: 'కొత్త స్పూన్లు & నాప్‌కిన్లు',
+      quickCleanPrompt: 'కెప్టెన్ త్వరలో మీ టేబుల్ వద్దకు వచ్చి క్లీన్ చేస్తారు.',
+      requestSentToast: 'క్లీనింగ్ అభ్యర్థన పంపబడింది! కెప్టెన్ వెంటనే వస్తారు.',
+      cancel: 'రద్దు చేయండి',
+      confirmBtn: 'క్లీనింగ్ కోరండి',
+      waiterCleaningAlert: 'టేబుల్ క్లీనింగ్ అవసరం',
+      markCleaned: 'క్లీన్ చేసినట్లు గుర్తించండి',
+      cleaningActiveBadge: 'క్లీనింగ్ కోరబడింది',
     },
     security: {
       badge: 'యాక్టివ్ డైనింగ్ సెషన్',
@@ -541,6 +589,22 @@ export const translations: Record<Language, TranslationDictionary> = {
       roHealth: 'வடிகட்டி தரம்',
       refillTank: 'தொட்டியை நிரப்பவும்',
     },
+    cleanTable: {
+      cleanTableBtn: 'மேசையை சுத்தம் செய்க',
+      modalTitle: 'மேஜை சுத்தம் செய்யும் கோரிக்கை',
+      modalSubtitle: 'உங்கள் மேஜையை சுத்தம் செய்ய பணியாளருக்கு தெரிவிக்கவும்.',
+      wipeTable: 'மேஜையை துடைத்து சுத்தம் செய்க',
+      clearPlates: 'காலியான தட்டுகளை அகற்றுக',
+      spillCleanup: 'சிந்தியதை சுத்தம் செய்க',
+      freshCutlery: 'புதிய கரண்டிகள் & துடைப்பான்கள்',
+      quickCleanPrompt: 'பணியாளர் விரைவில் வந்து மேஜையை சுத்தம் செய்வார்.',
+      requestSentToast: 'சுத்தம் செய்ய கோரிக்கை அனுப்பப்பட்டது! பணியாளர் விரைவில் வருவார்.',
+      cancel: 'ரத்துசெய்',
+      confirmBtn: 'சுத்தம் செய்யக் கோருக',
+      waiterCleaningAlert: 'மேஜை சுத்தம் செய்யப்பட வேண்டும்',
+      markCleaned: 'சுத்தம் செய்யப்பட்டதாக குறிக்கவும்',
+      cleaningActiveBadge: 'சுத்தம் செய்யக் கோரப்பட்டது',
+    },
     security: {
       badge: 'செயலில் உள்ள உணவு அமர்வு',
       title: 'மேஜை அமர்வு பாதுகாக்கப்பட்டுள்ளது',
@@ -693,6 +757,22 @@ export const translations: Record<Language, TranslationDictionary> = {
       tankLevel: 'टैंक जल स्तर',
       roHealth: 'आरओ फिल्टर गुणवत्ता',
       refillTank: 'टैंक रिफिल करें',
+    },
+    cleanTable: {
+      cleanTableBtn: 'टेबल साफ करें',
+      modalTitle: 'टेबल सफाई का अनुरोध',
+      modalSubtitle: 'अपनी टेबल को साफ करवाने के लिए कैप्टन को सूचित करें।',
+      wipeTable: 'टेबल पोंछें और साफ करें',
+      clearPlates: 'खाली प्लेटें और कटोरियां हटाएं',
+      spillCleanup: 'गिरा हुआ पानी/ड्रिंक साफ करें',
+      freshCutlery: 'ताजा कटलरी और नैपकिन',
+      quickCleanPrompt: 'कैप्टन तुरंत आकर आपकी टेबल को साफ करेंगे।',
+      requestSentToast: 'सफाई का अनुरोध भेजा गया! कैप्टन शीघ्र ही उपस्थित होंगे।',
+      cancel: 'रद्द करें',
+      confirmBtn: 'सफाई का अनुरोध करें',
+      waiterCleaningAlert: 'टेबल सफाई की आवश्यकता है',
+      markCleaned: 'साफ किया गया चिह्नित करें',
+      cleaningActiveBadge: 'सफाई का अनुरोध किया गया',
     },
     security: {
       badge: 'सक्रिय डाइनिंग सत्र',

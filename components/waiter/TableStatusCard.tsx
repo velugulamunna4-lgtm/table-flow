@@ -3,7 +3,7 @@
 import React from 'react';
 import { Table, Order } from '@/types';
 import { WaiterCall } from '@/lib/orderService';
-import { Users, Clock, BellRing, Receipt, Check, AlertTriangle } from 'lucide-react';
+import { Users, Clock, BellRing, Receipt, Check, AlertTriangle, Sparkles, Droplets } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export interface TableStatusCardProps {
@@ -50,11 +50,19 @@ export const TableStatusCard: React.FC<TableStatusCardProps> = ({
       pulse: false,
     },
     needs_help: {
-      border: 'border-[#FF5A6E] shadow-[0_0_20px_rgba(255,90,110,0.25)]',
-      bg: 'bg-[#FFF2F4]',
-      badgeBg: 'bg-[#FF5A6E] text-white',
-      label: activeCall?.type === 'water' ? 'Needs Water' : activeCall?.type === 'bill' ? 'Wants Bill' : 'Needs Help!',
-      dot: 'bg-[#FF5A6E]',
+      border: activeCall?.type === 'clean_table'
+        ? 'border-[#FF7A45] shadow-[0_0_20px_rgba(255,122,69,0.25)]'
+        : 'border-[#FF5A6E] shadow-[0_0_20px_rgba(255,90,110,0.25)]',
+      bg: activeCall?.type === 'clean_table' ? 'bg-[#FFF9F2]' : 'bg-[#FFF2F4]',
+      badgeBg: activeCall?.type === 'clean_table' ? 'bg-[#FF7A45] text-white' : 'bg-[#FF5A6E] text-white',
+      label: activeCall?.type === 'clean_table'
+        ? 'Clean Table'
+        : activeCall?.type === 'water'
+        ? 'Needs Water'
+        : activeCall?.type === 'bill'
+        ? 'Wants Bill'
+        : 'Needs Help!',
+      dot: activeCall?.type === 'clean_table' ? 'bg-white' : 'bg-[#FF5A6E]',
       pulse: true,
     },
     bill_pending: {
@@ -103,9 +111,27 @@ export const TableStatusCard: React.FC<TableStatusCardProps> = ({
       {/* Order Info or Help Alert Footer */}
       <div className="pt-3 border-t border-borderSubtle">
         {activeCall ? (
-          <div className="flex items-center gap-2 text-xs font-bold text-[#FF5A6E]">
-            <BellRing className="w-4 h-4 shrink-0 animate-bounce" />
-            <span className="line-clamp-1">Customer requested assistance</span>
+          <div className="flex items-center gap-2 text-xs font-bold">
+            {activeCall.type === 'clean_table' ? (
+              <>
+                <Sparkles className="w-4 h-4 shrink-0 text-[#FF7A45] animate-pulse" />
+                <span className="line-clamp-1 text-[#FF7A45]">
+                  Clean: {activeCall.cleanDetails || 'Table cleaning requested'}
+                </span>
+              </>
+            ) : activeCall.type === 'water' ? (
+              <>
+                <Droplets className="w-4 h-4 shrink-0 text-info animate-pulse" />
+                <span className="line-clamp-1 text-info">
+                  Water: {activeCall.waterType?.toUpperCase() || 'Normal'}
+                </span>
+              </>
+            ) : (
+              <>
+                <BellRing className="w-4 h-4 shrink-0 text-[#FF5A6E] animate-bounce" />
+                <span className="line-clamp-1 text-[#FF5A6E]">Customer requested assistance</span>
+              </>
+            )}
           </div>
         ) : activeOrder ? (
           <div className="flex items-center justify-between text-xs">

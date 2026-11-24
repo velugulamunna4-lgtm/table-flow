@@ -1,14 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { WaterRequestModal } from './WaterRequestModal';
+import { CleanTableModal } from './CleanTableModal';
 import { OrderHistoryDrawer } from './OrderHistoryDrawer';
 import { OrderReviewModal } from './OrderReviewModal';
 import { useLanguageStore, useMenuStore } from '@/lib/store';
 import { translations } from '@/lib/i18n';
 import { restaurantConfig } from '@/config/restaurant.config';
-import { orderService } from '@/lib/orderService';
+import { orderService, WaiterCall } from '@/lib/orderService';
 import { Search, BellRing, Sparkles, X, Check, Droplets, Clock, Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -24,8 +25,20 @@ export const CustomerHeader: React.FC<CustomerHeaderProps> = ({ tableNumber, tab
 
   const [waiterCalled, setWaiterCalled] = useState(false);
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
+  const [isCleanModalOpen, setIsCleanModalOpen] = useState(false);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
+  const [activeCalls, setActiveCalls] = useState<WaiterCall[]>([]);
+
+  useEffect(() => {
+    const unsub = orderService.subscribeToWaiterCalls((calls) => {
+      setActiveCalls(calls.filter((c) => c.tableId === tableId));
+    });
+    return () => unsub();
+  }, [tableId]);
+
+  const isCleaningRequested = activeCalls.some((c) => c.type === 'clean_table');
+  const isWaterRequested = activeCalls.some((c) => c.type === 'water');
 
   const handleCallWaiter = async () => {
     try {
@@ -92,16 +105,46 @@ export const CustomerHeader: React.FC<CustomerHeaderProps> = ({ tableNumber, tab
             </div>
           </div>
 
-          {/* Quick utility bar for phones: Water, History, Review */}
+          {/* Quick utility bar for phones: Water, Clean Table, History, Review */}
           <div className="flex items-center justify-between gap-1.5 overflow-x-auto no-scrollbar py-0.5">
             <div className="flex items-center gap-1.5 shrink-0">
               {/* Quick Water Button */}
               <button
                 onClick={() => setIsWaterModalOpen(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-pill font-bold text-xs bg-surface border border-borderSubtle text-primary hover:bg-canvas shadow-soft transition-all"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-pill font-bold text-xs transition-all border ${
+                  isWaterRequested
+                    ? 'bg-info/15 text-info border-info/40 shadow-xs'
+                    : 'bg-surface border-borderSubtle text-primary hover:bg-canvas shadow-soft'
+                }`}
               >
                 <Droplets className="w-3.5 h-3.5 text-primary" />
-                <span>{t.water.requestWater}</span>
+                <span>
+                  {isWaterRequested ? 'Water Requested' : t.water.requestWater}
+                </span>
+                {isWaterRequested && (
+                  <span className="w-2 h-2 rounded-full bg-info animate-pulse" />
+                )}
+              </button>
+
+              {/* Clean Table Button */}
+              <button
+                onClick={() => setIsCleanModalOpen(true)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-pill font-bold text-xs transition-all border ${
+                  isCleaningRequested
+                    ? 'bg-status-success/15 text-status-success border-status-success/40 shadow-xs'
+                    : 'bg-surface border-borderSubtle text-content-primary hover:bg-canvas shadow-soft'
+                }`}
+                title={t.cleanTable.modalTitle}
+              >
+                <Sparkles className={`w-3.5 h-3.5 ${isCleaningRequested ? 'text-status-success' : 'text-sun'}`} />
+                <span>
+                  {isCleaningRequested
+                    ? t.cleanTable.cleaningActiveBadge
+                    : t.cleanTable.cleanTableBtn}
+                </span>
+                {isCleaningRequested && (
+                  <span className="w-2 h-2 rounded-full bg-status-success animate-pulse" />
+                )}
               </button>
 
               {/* Order History */}
@@ -204,6 +247,14 @@ export const CustomerHeader: React.FC<CustomerHeaderProps> = ({ tableNumber, tab
       <WaterRequestModal
         isOpen={isWaterModalOpen}
         onClose={() => setIsWaterModalOpen(false)}
+        tableId={tableId}
+        tableNumber={tableNumber}
+      />
+
+      {/* Clean Table Modal */}
+      <CleanTableModal
+        isOpen={isCleanModalOpen}
+        onClose={() => setIsCleanModalOpen(false)}
         tableId={tableId}
         tableNumber={tableNumber}
       />
