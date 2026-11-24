@@ -51,39 +51,18 @@ async function main() {
   console.log(`Connecting to Supabase at: ${supabaseUrl}`);
 
   // 1. Fetch or verify restaurant
+  let restaurantId: string | null = null;
   const { data: restaurant, error: restError } = await supabase
     .from('restaurants')
     .select('id, name')
     .eq('slug', 'aroma-saffron')
-    .single();
+    .maybeSingle();
 
-  let restaurantId: string;
-
-  if (restError || !restaurant) {
-    console.log('⚠️ Restaurant "aroma-saffron" not found. Creating default restaurant record...');
-    const { data: newRest, error: createRestErr } = await supabase
-      .from('restaurants')
-      .insert({
-        slug: 'aroma-saffron',
-        name: 'Aroma & Saffron',
-        currency: 'INR',
-        gst_rate: 5.0,
-        service_charge_rate: 0.0,
-        theme: 'sunny-family',
-        address: 'Road No. 36, Jubilee Hills, Hyderabad',
-      })
-      .select('id, name')
-      .single();
-
-    if (createRestErr || !newRest) {
-      console.error('❌ Failed to create restaurant:', createRestErr?.message);
-      process.exit(1);
-    }
-    restaurantId = newRest.id;
-    console.log(`✅ Created Restaurant: ${newRest.name} (${restaurantId})`);
-  } else {
+  if (restaurant) {
     restaurantId = restaurant.id;
     console.log(`✅ Found Restaurant: ${restaurant.name} (${restaurantId})`);
+  } else {
+    console.log('ℹ️ Note: Database tables not yet created. Creating auth users directly in Supabase Auth...');
   }
 
   // 2. Provision Staff Accounts
@@ -100,7 +79,10 @@ async function main() {
       console.log(` - User exists in auth. Updating password...`);
       const { data: updated, error: updateErr } = await supabase.auth.admin.updateUserById(
         existing.id,
-        { password: staffPassword }
+        {
+          password: staffPassword,
+          user_metadata: { full_name: staff.fullName, role: staff.role },
+        }
       );
       if (updateErr) {
         console.error(` - ❌ Error updating password:`, updateErr.message);
@@ -122,20 +104,24 @@ async function main() {
       userId = created.user.id;
     }
 
-    // Upsert into profiles table
-    const { error: profileErr } = await supabase
-      .from('profiles')
-      .upsert({
-        id: userId,
-        restaurant_id: restaurantId,
-        full_name: staff.fullName,
-        role: staff.role,
-      });
+    console.log(` - ✅ Auth user ready: ${staff.email} (ID: ${userId})`);
 
-    if (profileErr) {
-      console.error(` - ❌ Error creating/updating profile:`, profileErr.message);
-    } else {
-      console.log(` - ✅ Profile provisioned successfully!`);
+    // Upsert into profiles table if restaurant exists
+    if (restaurantId) {
+      const { error: profileErr } = await supabase
+        .from('profiles')
+        .upsert({
+          id: userId,
+          restaurant_id: restaurantId,
+          full_name: staff.fullName,
+          role: staff.role,
+        });
+
+      if (profileErr) {
+        console.error(` - ❌ Error updating profile:`, profileErr.message);
+      } else {
+        console.log(` - ✅ Profile synced to database!`);
+      }
     }
   }
 

@@ -54,14 +54,22 @@ function LoginForm() {
             throw error;
           }
 
-          // Fetch profile to redirect to correct portal if not overridden
-          const { data: profile } = await supabase
-            .from('profiles')
-            .select('role')
-            .eq('id', data.user.id)
-            .single();
+          // Fetch role from metadata first, then database profile if available
+          let targetRole = data.user.user_metadata?.role || 'waiter';
+          try {
+            const { data: profile } = await supabase
+              .from('profiles')
+              .select('role')
+              .eq('id', data.user.id)
+              .maybeSingle();
 
-          const targetRole = profile?.role || 'waiter';
+            if (profile?.role) {
+              targetRole = profile.role;
+            }
+          } catch {
+            // Profile fallback to metadata
+          }
+
           const defaultPath =
             targetRole === 'kitchen'
               ? '/kitchen'
