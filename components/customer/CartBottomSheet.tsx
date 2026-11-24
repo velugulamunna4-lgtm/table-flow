@@ -56,6 +56,10 @@ export const CartBottomSheet: React.FC<CartBottomSheetProps> = ({
     try {
       setIsSubmitting(true);
 
+      const token = typeof window !== 'undefined'
+        ? new URLSearchParams(window.location.search).get('t') || undefined
+        : undefined;
+
       const orderPayload = {
         tableId,
         tableNumber,
@@ -75,6 +79,7 @@ export const CartBottomSheet: React.FC<CartBottomSheetProps> = ({
         estimatedMinutes: 18,
         customerNotes: generalNotes,
         paymentStatus: 'unpaid' as const,
+        qrToken: token,
       };
 
       const placedOrder = await orderService.placeOrder(orderPayload);

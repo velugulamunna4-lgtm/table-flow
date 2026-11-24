@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useParams, useSearchParams } from 'next/navigation';
 import { Card } from '@/components/ui/Card';
@@ -29,7 +29,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function OrderStatusPage() {
+function OrderStatusContent() {
   const params = useParams();
   const searchParams = useSearchParams();
   const tableId = (params?.tableId as string) || '7';
@@ -424,5 +424,19 @@ export default function OrderStatusPage() {
         tableNumber={tableNumber}
       />
     </div>
+  );
+}
+
+export default function OrderStatusPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-2xl mx-auto px-4 py-16 flex justify-center">
+          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+        </div>
+      }
+    >
+      <OrderStatusContent />
+    </Suspense>
   );
 }

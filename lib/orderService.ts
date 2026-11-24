@@ -10,6 +10,8 @@ import {
 import initialOrders from '@/data/mock/orders.json';
 import initialReviews from '@/data/mock/reviews.json';
 import initialStockData from '@/data/mock/stock.json';
+import { supabaseService } from '@/lib/services/supabaseService';
+import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 
 const STORAGE_ORDERS_KEY = 'tableflow_orders_db';
 const STORAGE_WAITER_CALLS_KEY = 'tableflow_waiter_calls';
@@ -74,6 +76,40 @@ class OrderService {
           this.notifySecurityListeners(JSON.parse(e.newValue));
         }
       });
+
+      // Connect to Supabase Realtime Channel if configured
+      if (supabaseService.isEnabled) {
+        try {
+          const supabase = getSupabaseBrowserClient();
+          supabase
+            .channel('tableflow-realtime-sync')
+            .on(
+              'postgres_changes',
+              { event: '*', schema: 'public', table: 'orders' },
+              async () => {
+                const liveOrders = await supabaseService.getOrders();
+                if (liveOrders && liveOrders.length > 0) {
+                  this.persistOrders(liveOrders);
+                  this.notifyOrderListeners(liveOrders);
+                }
+              }
+            )
+            .on(
+              'postgres_changes',
+              { event: '*', schema: 'public', table: 'waiter_requests' },
+              async () => {
+                const liveCalls = await supabaseService.getWaiterCalls();
+                if (liveCalls) {
+                  this.persistWaiterCalls(liveCalls as WaiterCall[]);
+                  this.notifyWaiterListeners(liveCalls as WaiterCall[]);
+                }
+              }
+            )
+            .subscribe();
+        } catch (e) {
+          console.warn('[OrderService] Could not initialize Supabase Realtime channel:', e);
+        }
+      }
     }
   }
 
@@ -129,6 +165,20 @@ class OrderService {
   // --- Orders Database Operations ---
   public async getOrders(): Promise<Order[]> {
     if (typeof window === 'undefined') return initialOrders as Order[];
+
+    // Attempt live Supabase fetch first if configured
+    if (supabaseService.isEnabled) {
+      try {
+        const liveOrders = await supabaseService.getOrders();
+        if (liveOrders && liveOrders.length > 0) {
+          this.persistOrders(liveOrders);
+          return liveOrders;
+        }
+      } catch (err) {
+        console.warn('[OrderService] Supabase getOrders fetch error, falling back to local cache:', err);
+      }
+    }
+
     const cached = localStorage.getItem(STORAGE_ORDERS_KEY);
     if (!cached) {
       localStorage.setItem(STORAGE_ORDERS_KEY, JSON.stringify(initialOrders));
@@ -172,6 +222,32 @@ class OrderService {
       updatedAt: now,
     };
 
+    // If Supabase is active, persist to database
+    if (supabaseService.isEnabled) {
+      try {
+        const created = await supabaseService.createOrder({
+          tableId: order.tableId,
+          tableNumber: order.tableNumber,
+          items: order.items.map((it) => ({
+            id: it.menuItemId,
+            name: it.name,
+            price: it.price,
+            quantity: it.quantity,
+            vegType: it.vegType,
+            notes: it.notes,
+          })),
+          notes: order.customerNotes,
+          source: 'customer',
+        });
+        if (created) {
+          order.id = created.id;
+          order.orderNumber = created.orderNumber;
+        }
+      } catch (err) {
+        console.warn('[OrderService] Supabase placeOrder error:', err);
+      }
+    }
+
     const updatedOrders = [order, ...orders];
     this.persistOrders(updatedOrders);
 
@@ -185,6 +261,14 @@ class OrderService {
   }
 
   public async updateOrderStatus(orderId: string, status: OrderStatus): Promise<void> {
+    if (supabaseService.isEnabled) {
+      try {
+        await supabaseService.updateOrderStatus(orderId, status);
+      } catch (err) {
+        console.warn('[OrderService] Supabase updateOrderStatus error:', err);
+      }
+    }
+
     const orders = await this.getOrders();
     const updatedOrders = orders.map((o) =>
       o.id === orderId ? { ...o, status, updatedAt: new Date().toISOString() } : o
@@ -222,6 +306,20 @@ class OrderService {
     waterType?: string,
     cleanDetails?: string
   ): Promise<void> {
+    if (supabaseService.isEnabled) {
+      try {
+        await supabaseService.createWaiterCall({
+          tableId,
+          tableNumber,
+          type,
+          waterType,
+          cleanDetails,
+        });
+      } catch (err) {
+        console.warn('[OrderService] Supabase createWaiterCall error:', err);
+      }
+    }
+
     const calls = this.getWaiterCallsSync();
     const existingIdx = calls.findIndex((c) => c.tableId === tableId);
     const newCall: WaiterCall = {
@@ -251,6 +349,14 @@ class OrderService {
   }
 
   public async clearWaiterCall(tableId: string): Promise<void> {
+    if (supabaseService.isEnabled) {
+      try {
+        await supabaseService.resolveWaiterCall(tableId);
+      } catch (err) {
+        console.warn('[OrderService] Supabase resolveWaiterCall error:', err);
+      }
+    }
+
     const calls = this.getWaiterCallsSync();
     const updated = calls.filter((c) => c.tableId !== tableId);
     this.persistWaiterCalls(updated);
@@ -298,6 +404,22 @@ class OrderService {
   }
 
   public async submitReview(newReview: Omit<OrderReview, 'id' | 'createdAt'>): Promise<OrderReview> {
+    if (supabaseService.isEnabled) {
+      try {
+        await supabaseService.submitReview({
+          tableNumber: newReview.tableNumber,
+          orderId: newReview.orderId,
+          foodRating: newReview.foodRating,
+          serviceRating: newReview.serviceRating,
+          ambianceRating: newReview.ambianceRating,
+          overallRating: newReview.overallRating,
+          comment: newReview.comment,
+        });
+      } catch (err) {
+        console.warn('[OrderService] Supabase submitReview error:', err);
+      }
+    }
+
     const reviews = await this.getReviews();
     const review: OrderReview = {
       ...newReview,

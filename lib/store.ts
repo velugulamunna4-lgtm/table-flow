@@ -3,6 +3,7 @@ import { MenuItem, CartItem, VegType } from '@/types';
 import menuData from '@/data/mock/menu.json';
 import { restaurantConfig } from '@/config/restaurant.config';
 import { Language } from '@/lib/i18n';
+import { supabaseService } from '@/lib/services/supabaseService';
 
 // --- Cart Store (Persisted per tableId in localStorage) ---
 interface CartState {
@@ -167,6 +168,7 @@ interface MenuState {
   setDietaryFilter: (filter: 'all' | 'veg' | 'non-veg') => void;
   setItemAvailability: (itemId: string, available: boolean) => void;
   updateMenuItems: (items: MenuItem[]) => void;
+  fetchMenuItems: () => Promise<void>;
 }
 
 export const useMenuStore = create<MenuState>((set) => ({
@@ -188,6 +190,19 @@ export const useMenuStore = create<MenuState>((set) => ({
   },
 
   updateMenuItems: (items: MenuItem[]) => set({ menuItems: items }),
+
+  fetchMenuItems: async () => {
+    if (supabaseService.isEnabled) {
+      try {
+        const liveItems = await supabaseService.getMenuItems();
+        if (liveItems && liveItems.length > 0) {
+          set({ menuItems: liveItems as MenuItem[] });
+        }
+      } catch (e) {
+        console.warn('Failed to load menu items from Supabase, using defaults:', e);
+      }
+    }
+  },
 }));
 
 // --- Game & Points Store ---

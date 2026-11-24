@@ -104,10 +104,69 @@ Theme definitions reside in `config/themes.ts`:
 
 ---
 
-## 🔌 Architecture & Backend Swappability
+## 🔌 Full-Stack Supabase Backend Architecture
 
-All state and data access is isolated inside `/lib/orderService.ts` and `/lib/store.ts`. The UI components never communicate directly with local storage or BroadcastChannel.
+Table Flow connects to a production-ready **Supabase PostgreSQL** backend with Row Level Security (RLS), Supabase Auth, real-time live synchronization, and storage.
 
-When connecting a real backend (e.g. Node.js, NestJS, FastAPI, Supabase, Firebase, or PostgreSQL):
-1. Keep the UI screens and component interfaces identical.
-2. Replace the methods inside `lib/orderService.ts` (`placeOrder`, `updateOrderStatus`, `toggleItemAvailability`) with your HTTP `fetch('/api/orders')` or WebSocket/Pusher events as noted by the explicit `/* TODO [Phase 2 Backend Integration] */` comments in the file.
+### 1. Environment Configuration
+
+Copy `.env.example` to `.env.local`:
+```bash
+cp .env.example .env.local
+```
+
+Populate the required credentials in `.env.local`:
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-publishable-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-secret-service-role-key
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+TABLE_QR_SECRET=your-random-hmac-salt-secret
+DEMO_STAFF_PASSWORD=TableFlow@Demo2026
+```
+
+> **Security Note**: Never commit `.env.local` to Git. `.gitignore` is pre-configured to ignore all `.env*.local` files.
+
+---
+
+### 2. Database Migrations & Seeding
+
+Migrations are located in `supabase/migrations/`:
+1. `001_init.sql`: Core schema (restaurants, profiles, tables, menu categories, menu items, table sessions, orders, order items, bills, payments, waiter requests, reviews) with RLS policies and Realtime publications.
+2. `002_auth_trigger.sql`: Automatic profile creation trigger on `auth.users` signup with staff role assignment.
+3. `003_storage.sql`: Public `food-images` bucket setup and security policies.
+
+#### Apply Migrations:
+Using the Supabase CLI:
+```bash
+supabase db push
+```
+Or paste the migration files into the **Supabase Dashboard SQL Editor** in order (`001_init.sql` -> `002_auth_trigger.sql` -> `003_storage.sql` -> `seed.sql`).
+
+#### Apply Realistic Seed Data:
+Run `supabase/seed.sql` to populate:
+- Restaurant **Aroma & Saffron**
+- 12 Dining Floor Tables (1–12)
+- 6 Menu Categories
+- 32 Authentic Indian Cuisine dishes with multilingual translations and photos
+
+---
+
+### 3. Provisioning Staff Accounts
+
+Create staff login accounts (`waiter@demo.com`, `kitchen@demo.com`, `owner@demo.com`) with one command:
+```bash
+npx tsx scripts/create-staff.ts
+```
+
+Staff can log in via `/login` or use the 1-click role switcher. Next.js middleware guards `/kitchen`, `/waiter`, and `/admin`.
+
+---
+
+### 4. Cryptographic Table QR Code Tokens
+
+Table Flow uses HMAC-SHA256 signed QR codes to prevent unauthorized remote scans or table tampering:
+- Format: `/t/[tableId]?t=[expiry].[signature]`
+- URL Verification: Missing, malformed, or expired tokens present a friendly assistance screen to the diner.
+- Regeneration: The **Admin Table Manager** (`/admin`) allows instant token regeneration and prints updated QR tent-cards.
+

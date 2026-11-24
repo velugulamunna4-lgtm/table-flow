@@ -65,6 +65,7 @@ export interface Order {
   paymentStatus: 'unpaid' | 'paid_online' | 'paid_counter';
   paymentMethod?: 'upi' | 'card' | 'wallet' | 'counter';
   rejectionReason?: string;
+  qrToken?: string;
 }
 
 export interface Table {

@@ -1,25 +1,51 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { CategoryPills } from '@/components/customer/CategoryPills';
 import { MenuItemCard } from '@/components/customer/MenuItemCard';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { Button } from '@/components/ui/Button';
 import { useMenuStore, useLanguageStore } from '@/lib/store';
 import { orderService } from '@/lib/orderService';
 import { Order } from '@/types';
 import { translations } from '@/lib/i18n';
-import { Clock, Receipt, Gamepad2, ArrowRight, Search, Sparkles } from 'lucide-react';
+import { Clock, Receipt, Gamepad2, ArrowRight, Search, Sparkles, QrCode, PhoneCall } from 'lucide-react';
 
-export default function CustomerMenuPage() {
+function CustomerMenuContent() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const tableId = (params?.tableId as string) || '7';
-  const { menuItems, selectedCategory, searchQuery, dietaryFilter } = useMenuStore();
+  const qrToken = searchParams.get('t');
+
+  const { menuItems, selectedCategory, searchQuery, dietaryFilter, fetchMenuItems } = useMenuStore();
   const { language } = useLanguageStore();
   const t = translations[language];
 
   const [activeOrder, setActiveOrder] = useState<Order | null>(null);
+  const [tokenExpired, setTokenExpired] = useState(false);
+  const [waiterCalled, setWaiterCalled] = useState(false);
+
+  useEffect(() => {
+    fetchMenuItems();
+  }, [fetchMenuItems]);
+
+  // Check table QR token if provided
+  useEffect(() => {
+    if (qrToken) {
+      fetch(`/api/tables/${tableId}/verify?t=${encodeURIComponent(qrToken)}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && data.valid === false) {
+            setTokenExpired(true);
+          }
+        })
+        .catch(() => {
+          // Graceful fallback in offline/demo mode
+        });
+    }
+  }, [tableId, qrToken]);
 
   // Check if this table has an active order in progress
   useEffect(() => {
@@ -37,6 +63,40 @@ export default function CustomerMenuPage() {
     });
     return () => unsub();
   }, [tableId]);
+
+  if (tokenExpired) {
+    return (
+      <div className="max-w-md mx-auto my-12 px-4 py-8 rounded-3xl bg-surface border border-borderSubtle text-center space-y-5 shadow-lifted">
+        <div className="w-16 h-16 mx-auto rounded-3xl bg-sun/20 flex items-center justify-center">
+          <QrCode className="w-8 h-8 text-primary" />
+        </div>
+        <div className="space-y-2">
+          <h2 className="font-heading font-black text-2xl text-content-primary">
+            Table Code Notice
+          </h2>
+          <p className="text-sm text-content-secondary leading-relaxed">
+            This table code has expired. Please ask our staff for help.
+          </p>
+        </div>
+
+        <div className="pt-3">
+          <Button
+            variant="primary"
+            size="md"
+            className="w-full font-bold h-12"
+            disabled={waiterCalled}
+            leftIcon={<PhoneCall className="w-4 h-4" />}
+            onClick={async () => {
+              await orderService.callWaiter(tableId, parseInt(tableId, 10) || 7, 'call_waiter');
+              setWaiterCalled(true);
+            }}
+          >
+            {waiterCalled ? 'Staff Notified & Heading Over' : 'Call Staff for New Code'}
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   // Filter items based on category, search, and veg/non-veg
   const filteredItems = menuItems.filter((item) => {
@@ -178,5 +238,19 @@ export default function CustomerMenuPage() {
         </Link>
       </div>
     </div>
+  );
+}
+
+export default function CustomerMenuPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-4xl mx-auto px-4 py-12 flex justify-center">
+          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+        </div>
+      }
+    >
+      <CustomerMenuContent />
+    </Suspense>
   );
 }
